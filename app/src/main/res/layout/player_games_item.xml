@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="6">
+
+    <TextView
+        android:id="@+id/GameID"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        tools:text="SpielID"
+        android:minWidth="250dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_weight="1"
+        />
+
+    <TextView
+        android:id="@+id/Points"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Punkte"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_weight="1"
+        />
+
+    <TextView
+
+        android:id="@+id/freethrows_made"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        tools:text="getroffene Freiwürfe"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_weight="1"
+        />
+    <TextView
+
+        android:id="@+id/freethrows_thrown"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        tools:text="geworfene Freiwürfe"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_weight="1"
+        />
+
+    <TextView
+        android:id="@+id/freethrows_percentage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Freiwurfquote"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_weight="1"
+        />
+    <TextView
+
+        android:id="@+id/threes_made"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        tools:text="3 Punkte Würfe"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_weight="1"
+        />
+    <TextView
+
+        android:id="@+id/fouls"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        tools:text="Fouls"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_weight="1"
+        />
+
+</LinearLayout>
