@@ -5,4 +5,7 @@
     <string name="retry">Retry</string>
     <string name="exit">Exit</string>
     <string name="ok">OK</string>
+    <string name="abbrechen">Abbrechen</string>
+    <string name="Spieler_auswählen">Spieler auswählen</string>
+    <string name="Datumauswählen">Wähle Datum</string>
 </resources>
