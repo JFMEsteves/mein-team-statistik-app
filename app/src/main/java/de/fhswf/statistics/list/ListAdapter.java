@@ -4,9 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -15,15 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import de.fhswf.statistics.R;
-import de.fhswf.statistics.list.fragments.SeasonFragment;
-import de.fhswf.statistics.list.item.HeaderListItem;
 import de.fhswf.statistics.list.item.ListItem;
-import de.fhswf.statistics.list.item.SpielListItem;
-import de.fhswf.statistics.list.item.SpielSpielerListItem;
 import de.fhswf.statistics.list.item.SpielerListItem;
 import de.fhswf.statistics.list.viewholder.BaseViewHolder;
-import de.fhswf.statistics.list.viewholder.HeaderViewHolder;
-import de.fhswf.statistics.list.viewholder.SpielSpielerViewHolder;
 import de.fhswf.statistics.list.viewholder.SpielerListViewHolder;
 
 public class ListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
@@ -41,6 +33,7 @@ public class ListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 
+        //TODO Alle möglichen TYPEs hinzufügen mit ihrem dazugehörigem Viewholder und Layout
         switch (viewType) {
 
             //1
@@ -55,9 +48,9 @@ public class ListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                         inflater.inflate(R.layout.question_item, parent, false));
 */
             //3
-            case SpielSpielerListItem.TYPE:
+         //   case SpielSpielerListItem.TYPE:
                //TODO Lösung finden für das Viewtype Problem
-                return new SpielSpielerViewHolder(FragmentItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+            // return new SpielSpielerViewHolder(FragmentItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
 
             default:
                 throw new RuntimeException("Unsupported item-type: " + viewType);

@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 
 import de.fhswf.statistics.model.Spieler;
 
-public class SpielerListItem implements ListItem{
+public class SpielerListItem implements ListItem, SpielerInterfaceListItem {
     public static final int TYPE = 1;
 
     private final Spieler spieler;
@@ -22,10 +22,10 @@ public class SpielerListItem implements ListItem{
         return TYPE;
     }
 
+    @Override
     public Spieler getSpieler() {
         return spieler;
     }
-
 
 
     public OnSpielerListener getOnSpielerListener() {

@@ -38,7 +38,7 @@ implements View.OnClickListener {
     }
 
     @Override
-    public void bind(SpielerListItem item) {
+    public void bind(@NonNull SpielerListItem item) {
         this.currentSpieler = item;
         name.setText(item.getSpieler().getName());
        // freiwurfquote.setText(StatCalculator.freiwurfquote(item.getSpieler()));
