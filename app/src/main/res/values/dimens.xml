@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="list_padding">8dp</dimen>
+    <dimen name="default_marginTop">10dp</dimen>
+    <dimen name="default_padding">10dp</dimen>
+</resources>
