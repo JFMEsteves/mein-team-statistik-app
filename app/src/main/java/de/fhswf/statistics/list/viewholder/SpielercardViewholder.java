@@ -8,17 +8,14 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import com.google.android.material.textfield.TextInputEditText;
-
 import de.fhswf.statistics.R;
-import de.fhswf.statistics.list.item.SpielerItem;
-import de.fhswf.statistics.model.Spieler;
+import de.fhswf.statistics.list.item.SpielercardItem;
 
-public class SpielcardViewholder extends BaseViewHolder<SpielerItem> {
+public class SpielercardViewholder extends BaseViewHolder<SpielercardItem> {
     private final TextView name,decription;
     private final EditText punkteInput, dreierInput, geworfeneFreiwuerfeInput, getroffeneFreiwuerfeInput, foulsInput;
 
-    public SpielcardViewholder(@NonNull View itemView) {
+    public SpielercardViewholder(@NonNull View itemView) {
         super(itemView);
         this.name = itemView.findViewById(R.id.player_name);
         this.decription = itemView.findViewById(R.id.description);
@@ -30,7 +27,7 @@ public class SpielcardViewholder extends BaseViewHolder<SpielerItem> {
     }
 
     @Override
-    public void bind(SpielerItem item) {
+    public void bind(SpielercardItem item) {
         //TODO Testing
         initTextWatcher(item);
         name.setText(item.getSpieler().getName());
@@ -38,7 +35,7 @@ public class SpielcardViewholder extends BaseViewHolder<SpielerItem> {
 
     }
 
-    private void initTextWatcher(SpielerItem item) {
+    private void initTextWatcher(SpielercardItem item) {
         TextWatcher textWatcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
