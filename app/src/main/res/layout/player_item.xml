@@ -25,7 +25,8 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/white"
             android:textSize="30sp"
-            tools:text="Spieler Name" />
+            tools:text="Spieler Name"
+            android:text="Spieler Name"/>
 
         <TextView
             android:id="@+id/description"
@@ -36,7 +37,8 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="@color/light_grey"
             android:textSize="18sp"
-            tools:text="Hier Stats eintragen." />
+            tools:text="Hier Stats eintragen."
+            android:text="Hier Stats eintragen."/>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -55,7 +57,8 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:textSize="30sp"
-                            tools:text="Punkte" />
+                            tools:text="Punkte"
+                            android:text="Punkte"/>
 
                         <EditText
                             android:id="@+id/punkteInput"
@@ -63,10 +66,13 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="100dp"
                             android:background="@drawable/black_border"
-                            android:paddingHorizontal="16dp"
+                            android:paddingHorizontal="@dimen/default_padding"
                             android:textAlignment="center"
                             android:textSize="28sp"
                             android:inputType="number"
+                            android:ems="2"
+                            android:maxLength="3"
+                            android:textColor="@color/black"
 
                             tools:text="50" />
                     </TableRow>
@@ -78,7 +84,8 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:textSize="30sp"
-                            tools:text="3PM" />
+                            tools:text="3PM"
+                            android:text="3PM"/>
 
                         <EditText
                             android:id="@+id/threes_input"
@@ -87,9 +94,11 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="100dp"
                             android:background="@drawable/black_border"
-                            android:paddingHorizontal="16dp"
+                            android:paddingHorizontal="@dimen/default_padding"
                             android:textAlignment="center"
                             android:textSize="28sp"
+                            android:ems="2"
+                            android:maxLength="2"
 
                             tools:text="50" />
                     </TableRow>
@@ -101,7 +110,8 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:textSize="30sp"
-                            tools:text="FTM" />
+                            tools:text="FTM"
+                            android:text="FTM"/>
 
                         <EditText
                             android:id="@+id/freethrows_made_input"
@@ -109,9 +119,12 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="100dp"
                             android:background="@drawable/black_border"
-                            android:paddingHorizontal="16dp"
+                            android:paddingHorizontal="@dimen/default_padding"
                             android:textAlignment="center"
+                            android:inputType="number"
                             android:textSize="28sp"
+                            android:ems="2"
+                            android:maxLength="2"
 
                             tools:text="35" />
                     </TableRow>
@@ -123,7 +136,8 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:textSize="30sp"
-                            tools:text="FTA" />
+                            tools:text="FTA"
+                            android:text="FTA"/>
 
                         <EditText
                             android:id="@+id/freethrows_thrown_input"
@@ -132,9 +146,11 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="100dp"
                             android:background="@drawable/black_border"
-                            android:paddingHorizontal="16dp"
+                            android:paddingHorizontal="@dimen/default_padding"
                             android:textAlignment="center"
                             android:textSize="28sp"
+                            android:ems="2"
+                            android:maxLength="2"
 
                             tools:text="8" />
                     </TableRow>
@@ -146,7 +162,9 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:textSize="30sp"
-                            tools:text="Fouls" />
+                            tools:text="Fouls"
+                            android:text="Fouls"
+                            />
 
                         <EditText
                             android:id="@+id/fouls_input"
@@ -155,9 +173,11 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="100dp"
                             android:background="@drawable/black_border"
-                            android:paddingHorizontal="16dp"
+                            android:paddingHorizontal="@dimen/default_padding"
                             android:textAlignment="center"
                             android:textSize="28sp"
+                            android:ems="1"
+                            android:maxLength="1"
 
                             tools:text="0" />
                     </TableRow>
