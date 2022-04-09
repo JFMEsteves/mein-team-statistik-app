@@ -1,8 +1,5 @@
 package de.fhswf.statistics.list;
 
-import static android.content.ContentValues.TAG;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -42,23 +39,23 @@ public class ListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         //TODO Alle möglichen TYPEs hinzufügen mit ihrem dazugehörigem Viewholder und Layout
         switch (viewType) {
 
-            //1
+        //1
             case SpielerListItem.TYPE:
                 return new SpielerListViewHolder(
                         inflater.inflate(R.layout.item_header_layout, parent, false));
 
 
-            //4
+        //4
             case SpielercardItem.TYPE:
                 return new SpielercardViewholder(
                         inflater.inflate(R.layout.player_item, parent, false));
 
-            //3
+        //10
             case EndaddGameListItem.TYPE:
                 return new EndaddGameViewholder(
                         inflater.inflate(R.layout.player_end_item, parent, false));
 
-            //2
+        //2
             case SpielListItem.TYPE:
                 return new SpielViewholder(
                         inflater.inflate(R.layout.game_item, parent, false));
@@ -71,7 +68,7 @@ public class ListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        Log.d(TAG, "getItemViewType: Checking position :" + position);
+       // Log.d(TAG, "getItemViewType: Checking position :" + position);
         return items.get(position).getType();
     }
 
@@ -108,7 +105,7 @@ public class ListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     public ArrayList<ListItem> getItems() {
         return items;
     }
-
+//TODO Fragment
     public void addFragment(Fragment fragment) {
         fragmentArrayList.add(fragment);
     }

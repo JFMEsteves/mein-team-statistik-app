@@ -1,5 +1,6 @@
 package de.fhswf.statistics;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,22 +21,33 @@ import de.fhswf.statistics.list.item.SpielercardItem;
 import de.fhswf.statistics.model.Spiel;
 import de.fhswf.statistics.model.Spieler;
 
-public class newGameActivity extends AppCompatActivity implements EndaddGameListItem.OnEndClickListener {
+public class NewGameActivity extends AppCompatActivity implements EndaddGameListItem.OnEndClickListener {
+    public static final String EXTRA_SPIELER_IDLIST = "spieler_ids";
+    
     private boolean busy;
+    private ArrayList<Integer> spielerIds;
     private SpielerService spielerService;
     private LinearLayoutManager layoutManager;
     private ListAdapter adapter;
+    private SpielerService SpielService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         //Intent stuff
+        Intent mainActivityIntent = getIntent();
+        this.spielerIds = mainActivityIntent.getIntegerArrayListExtra(EXTRA_SPIELER_IDLIST);
+
+        if(spielerIds == null) {
+            throw new RuntimeException("Keine Spieler ausgewählt!");
+        }
+
+        //Setting up View
         setContentView(R.layout.add_game_view);
         RecyclerView container = findViewById(R.id.add_player_container);
 
-        layoutManager = new LinearLayoutManager(
-                this, RecyclerView.HORIZONTAL, false);
+        layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
         container.setLayoutManager(layoutManager);
 
 
@@ -46,32 +58,40 @@ public class newGameActivity extends AppCompatActivity implements EndaddGameList
         SnapHelper snapHelper = new PagerSnapHelper();
         snapHelper.attachToRecyclerView(container);
 
-        //Testing mit manuellen Daten
-        ArrayList<Spieler> spielerlist = new ArrayList<>();
-        spielerlist.add(new Spieler(1, "Marcel"));
-        spielerlist.add(new Spieler(2, "Joey"));
-        spielerlist.add(new Spieler(3, "Tyron"));
-        spielerlist.add(new Spieler(4, "Paul"));
-        addSpielercardToList(spielerlist);
-        // this.spielerService = new MockService(false);
-        // this.busy=false;
+        this.spielerService = new MockService(false);
+        this.busy = false;
+        refreshContent();
 
         //TODO Liste von Spielern hier annehmen und weiterverarbeiten. / Liste von SPielern hier sammeln
     }
+    private void refreshContent(){
+        if(!busy){
+            this.busy = true;
+            spielerService.fetchSpielerList(
+                    this::addSpielercardToList,
+                    this::showErrorDialog
+            );
+        }
+    }
 
-    private void addSpielercardToList(List<Spieler> result) {
+    private void showErrorDialog(Throwable throwable) {
+    }
+
+    private void addSpielercardToList(@NonNull List<Spieler> result) {
         this.busy = false;
 
         //Adapter säubern
         adapter.clear();
-
-        //TODO Spielcard hinzufügen
         adapter.add(new SpielListItem());
 
-        // Liste dem Adapter hinzufügen
-        for (Spieler c : result) {
-            adapter.add(new SpielercardItem(c));
+        for(int c : spielerIds) {
+            for(Spieler s : result) {
+                if(s.getId() == c) {
+                    adapter.add(new SpielercardItem(s));
+                }
+            }
         }
+
         //End-Card einfügen
         adapter.add(new EndaddGameListItem().setOnEndListener(this));
     }

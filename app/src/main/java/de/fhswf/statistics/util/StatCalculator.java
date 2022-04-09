@@ -32,7 +32,6 @@ public class StatCalculator{
         if(c.getSpielerId() == id)
         {
             result += c.getPunkte();
-            Log.d(TAG, "gesamtpunkteCalc: " + result);
 
         }
     }
@@ -62,7 +61,7 @@ public class StatCalculator{
         int id = spieler.getId();
         for (SpielSpieler c : spieler.getStats()) {
             if (c.getSpielerId() == id) {
-                Log.d(TAG, "freiwurfquote: Spieler gefunden ! \n Wert ist : "+ c.getGeworfeneFreiwuerfe() + "und " + c.getGetroffeneFreiwuerfe());
+
                 geworfen += c.getGeworfeneFreiwuerfe();
                 getroffen += c.getGetroffeneFreiwuerfe();
             }
@@ -71,7 +70,7 @@ public class StatCalculator{
 
         result = getroffen/geworfen*100;
         double roundresult = Math.round(result*10.0)/10.0;
-        Log.d(TAG, "freiwurfquote: nach berechnung : " + result);
+
         String Quote = String.valueOf(roundresult+"%");
         return Quote;
       //  return String.format(Locale.getDefault(),"%d %%",result);
@@ -105,5 +104,16 @@ public class StatCalculator{
         String formattedDate = format.format(currentdate);
 
         return formattedDate;
+    }
+
+    public static String getChosenString(ArrayList<Spieler> list){
+        String stringlist="";
+        for (Spieler c : list){
+            stringlist.concat(c.getId()+";");
+        }
+        Log.d(TAG, "getChosenString: " + stringlist);
+
+        return stringlist;
+
     }
 }
