@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="parent"
-        tools:listitem="@layout/player_end_item"
+        tools:listitem="@layout/player_item"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

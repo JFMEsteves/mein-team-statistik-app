@@ -2,11 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-android:id="@+id/constraint_container"
-    tools:context=".MainActivity"
-   >
+    tools:context=".MainActivity">
 
 
     <HorizontalScrollView
@@ -16,73 +15,69 @@ android:id="@+id/constraint_container"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="parent">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:weightSum="5"
-    >
-    <TextView
-        android:id="@+id/HeaderName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Name"
-        android:minWidth="250dp"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:layout_weight="1.25"
-        />
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/HeaderAllPoints"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Punkte(ges.)"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:layout_weight="1.25"
-       />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5">
 
-    <TextView
+                <TextView
+                    android:id="@+id/HeaderName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.25"
+                    android:gravity="center"
+                    android:minWidth="250dp"
+                    android:text="@string/name"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-        android:id="@+id/HeaderPointsPerGame"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Punkte pro Spiel"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:layout_weight="1.25"
-       />
+                <TextView
+                    android:id="@+id/HeaderAllPoints"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.25"
+                    android:gravity="center"
+                    android:text="@string/punkte_ges"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/HeaderFreethrows"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Freiwurfquote"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:layout_weight="1.25"
-      />
+                <TextView
+
+                    android:id="@+id/HeaderPointsPerGame"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.25"
+                    android:gravity="center"
+                    android:text="@string/punkte_pro_spiel"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/HeaderFreethrows"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.25"
+                    android:gravity="center"
+                    android:text="@string/freiwurfquote"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
 
-</LinearLayout>
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:listitem="@layout/item_header_layout"/>
+                tools:listitem="@layout/item_header_layout" />
 
         </LinearLayout>
     </HorizontalScrollView>
@@ -92,10 +87,10 @@ android:id="@+id/constraint_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/horizontalView"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
         app:srcCompat="@drawable/ic_addgame" />
 
 

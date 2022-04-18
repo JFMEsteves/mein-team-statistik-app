@@ -1,7 +1,10 @@
 package de.fhswf.statistics;
 
+import static android.content.ContentValues.TAG;
+
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -16,16 +19,19 @@ import de.fhswf.statistics.api.service.SpielerService;
 import de.fhswf.statistics.model.SpielSpieler;
 import de.fhswf.statistics.model.Spieler;
 
-public class MockService  implements SpielerService {
+public class MockService implements SpielerService {
     public static final int DELAY = 2000;
     private final Handler handler = new Handler(Looper.getMainLooper());
     private final ArrayList<Spieler> spielerList;
+    private ArrayList<SpielSpieler> spielelist;
     private boolean generateNegativeResponses;
+
     public MockService() {
         this.spielerList = new ArrayList<>();
         fillExampleSpieler();
 
     }
+
     public MockService(boolean generateNegativeResponses) {
         this();
 
@@ -33,27 +39,27 @@ public class MockService  implements SpielerService {
     }
 
 
-
-    private boolean isGenerateNegativeResponses() {return generateNegativeResponses;
+    private boolean isGenerateNegativeResponses() {
+        return generateNegativeResponses;
     }
 
 
     private void fillExampleSpieler() {
-        spielerList.add(new Spieler(1,"Marcel").addstats(new SpielSpieler(1,1,13,5,2,6,1)
-                    ).addstats(new SpielSpieler(1,2,9,3,3,1,4)
-                    ).addstats(new SpielSpieler(1,3,45,12,8,4,2)
-                    ).addstats(new SpielSpieler(1,4,30,20,20,1,0)));
-        spielerList.add(new Spieler(2,"Joey").addstats(new SpielSpieler(2,1,5,6,5,0,0)));
-        spielerList.add(new Spieler(3,"Tahiry").addstats(new SpielSpieler(3,1,14,2,2,3,1)));
-        spielerList.add(new Spieler(4,"Leon").addstats(new SpielSpieler(4,1,14,2,2,3,1)));
-        spielerList.add(new Spieler(5,"Paul").addstats(new SpielSpieler(5,1,100,50,40,30,1)));
-        spielerList.add(new Spieler(6,"Lennard").addstats(new SpielSpieler(6,2,9,0,0,3,0)));
-        spielerList.add(new Spieler(7,"Dimi").addstats(new SpielSpieler(7,4,1400,10,20,0,1)));
-        spielerList.add(new Spieler(8,"Björn").addstats(new SpielSpieler(8,1,14,2,2,3,1)));
-        spielerList.add(new Spieler(9,"Sven").addstats(new SpielSpieler(9,1,14,2,2,3,1)));
-        spielerList.add(new Spieler(10,"Tolga").addstats(new SpielSpieler(10,1,14,2,2,3,1)));
-        spielerList.add(new Spieler(11,"Mike").addstats(new SpielSpieler(11,1,14,2,2,3,1)));
-        spielerList.add(new Spieler(12,"Jonas").addstats(new SpielSpieler(12,1,14,2,2,3,1)));
+        spielerList.add(new Spieler(1, "Marcel").addstats(new SpielSpieler(1, 1, 13, 5, 2, 6, 1)
+        ).addstats(new SpielSpieler(1, 2, 9, 3, 3, 1, 4)
+        ).addstats(new SpielSpieler(1, 3, 45, 12, 8, 4, 2)
+        ).addstats(new SpielSpieler(1, 4, 30, 20, 20, 1, 0)));
+        spielerList.add(new Spieler(2, "Joey").addstats(new SpielSpieler(2, 1, 5, 6, 5, 0, 0)));
+        spielerList.add(new Spieler(3, "Tahiry").addstats(new SpielSpieler(3, 1, 14, 2, 2, 3, 1)));
+        spielerList.add(new Spieler(4, "Leon").addstats(new SpielSpieler(4, 1, 14, 2, 2, 3, 1)));
+        spielerList.add(new Spieler(5, "Paul").addstats(new SpielSpieler(5, 1, 100, 50, 40, 30, 1)));
+        spielerList.add(new Spieler(6, "Lennard").addstats(new SpielSpieler(6, 2, 9, 0, 0, 3, 0)));
+        spielerList.add(new Spieler(7, "Dimi").addstats(new SpielSpieler(7, 4, 1400, 10, 20, 0, 1)));
+        spielerList.add(new Spieler(8, "Björn").addstats(new SpielSpieler(8, 1, 14, 2, 2, 3, 1)));
+        spielerList.add(new Spieler(9, "Sven").addstats(new SpielSpieler(9, 1, 14, 2, 2, 3, 1)));
+        spielerList.add(new Spieler(10, "Tolga").addstats(new SpielSpieler(10, 1, 14, 2, 2, 3, 1)));
+        spielerList.add(new Spieler(11, "Mike").addstats(new SpielSpieler(11, 1, 14, 2, 2, 3, 1)));
+        spielerList.add(new Spieler(12, "Jonas").addstats(new SpielSpieler(12, 1, 14, 2, 2, 3, 1)));
     }
 
 
@@ -69,9 +75,27 @@ public class MockService  implements SpielerService {
 
     @Override
     public void fetchSpielerDetails(int id,
-            @Nullable OnSuccessListener<Spieler> onSuccessListener, @Nullable OnFailureListener onFailureListener) {
+                                    @Nullable OnSuccessListener<Spieler> onSuccessListener, @Nullable OnFailureListener onFailureListener) {
+        if (isGenerateNegativeResponses()) {
+            errorCall("FetchSpielerDetails", onFailureListener);
+        } else if (onSuccessListener != null) {
 
+            handler.postDelayed(() -> {
+                for (Spieler c : spielerList) {
+                    if (c.getId() == id) {
+                        onSuccessListener.onSuccess(c);
+                        return;
+                    }
+                }
+
+                if (onFailureListener != null)
+                    onFailureListener.onFailure(new RuntimeException("Spieler not found! (mock)"));
+            }, DELAY);
+        }
+        if (onSuccessListener == null)
+            Log.d("FAILURE", "Listener Null for some reason ------------------------ ");
     }
+
     private void errorCall(String source, @Nullable OnFailureListener onFailureListener) {
         if (onFailureListener != null) {
             handler.postDelayed(() -> onFailureListener.onFailure(

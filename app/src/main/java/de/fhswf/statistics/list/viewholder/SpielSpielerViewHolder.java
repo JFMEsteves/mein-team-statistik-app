@@ -11,8 +11,9 @@ import de.fhswf.statistics.list.item.SpielSpielerListItem;
 public class SpielSpielerViewHolder extends BaseViewHolder<SpielSpielerListItem> {
 
     private SpielSpielerListItem currentSpiel;
-    private final TextView spielid,punkte,madeFreethrows,shotFreethrows,freethrowPercantage,threePointmades,fouls;
-//TODO Testing
+    private final TextView spielid, punkte, madeFreethrows, shotFreethrows, freethrowPercantage, threePointmades, fouls;
+
+    //TODO Testing
     public SpielSpielerViewHolder(@NonNull View itemView) {
         super(itemView);
         this.spielid = itemView.findViewById(R.id.GameID);
@@ -27,14 +28,14 @@ public class SpielSpielerViewHolder extends BaseViewHolder<SpielSpielerListItem>
     @Override
     public void bind(@NonNull SpielSpielerListItem item) {
         this.currentSpiel = item;
-        spielid.setText(item.getStats().getSpielId());
-        punkte.setText(item.getStats().getPunkte());
-        madeFreethrows.setText(item.getStats().getGetroffeneFreiwuerfe());
-        shotFreethrows.setText(item.getStats().getGeworfeneFreiwuerfe());
-        //TODO Testing
-        freethrowPercantage.setText(item.getStats().getGetroffeneFreiwuerfe()/item.getStats().getGeworfeneFreiwuerfe()*100);
-        threePointmades.setText(item.getStats().getDreiPunkteTreffer());
-        fouls.setText(item.getStats().getFouls());
+        spielid.setText(String.valueOf(item.getStats().getSpielId()));
+        punkte.setText(String.valueOf(item.getStats().getPunkte()));
+        madeFreethrows.setText(String.valueOf(item.getStats().getGetroffeneFreiwuerfe()));
+        shotFreethrows.setText(String.valueOf(item.getStats().getGeworfeneFreiwuerfe()));
+        String placeholder = item.getStats().getGetroffeneFreiwuerfe() / item.getStats().getGeworfeneFreiwuerfe() * 100 + "%";
+        freethrowPercantage.setText(placeholder);
+        threePointmades.setText(String.valueOf(item.getStats().getDreiPunkteTreffer()));
+        fouls.setText(String.valueOf(item.getStats().getFouls()));
 
     }
 }

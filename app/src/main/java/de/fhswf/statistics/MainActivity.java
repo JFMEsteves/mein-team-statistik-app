@@ -21,21 +21,19 @@ import java.util.List;
 
 import de.fhswf.statistics.api.service.SpielerService;
 import de.fhswf.statistics.dialog.SpielerAuswahlDialog;
-import de.fhswf.statistics.list.ListAdapter;
+import de.fhswf.statistics.list.Adapter.ListAdapter;
 import de.fhswf.statistics.list.item.SpielerListItem;
 import de.fhswf.statistics.model.Spieler;
 import de.fhswf.statistics.util.StatCalculator;
 
 public class MainActivity extends AppCompatActivity implements SpielerListItem.OnSpielerListener {
-    private PopupWindow newGamePopupWindow;
-    private ListAdapter adapter,adapter2;
+
+    private ListAdapter adapter;
     private Context context;
-    private DatePickerDialog datePickerDialog;
     private StatCalculator calculator;
 
     private Button dateButton, closeButton, createButton, playerButton;
     //TODO Refactor between activites of SpielerService
-    //TODO Finish Popup Window
     private SpielerService SpielService;
     private boolean busy;
     private ConstraintLayout constraintLayout;
@@ -58,8 +56,6 @@ public class MainActivity extends AppCompatActivity implements SpielerListItem.O
 
         //Set Adapter for Recyclerview
         adapter = new ListAdapter();
-        // 2ter Adapter hier ?
-        adapter2 = new ListAdapter();
         container.setAdapter(adapter);
 
 
@@ -109,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements SpielerListItem.O
     public void onSpielerClick(@NonNull SpielerListItem item) {
         //Intent zu Player Activity, TO BE BUILT
         Intent intent = new Intent(this, PlayerActivity.class);
-        intent.putExtra(String.valueOf(PlayerActivity.EXTRA_SPIELER_ID), item.getSpieler().getId());
+        intent.putExtra(PlayerActivity.EXTRA_SPIELER_ID, item.getSpieler().getId());
         startActivity(intent);
     }
 

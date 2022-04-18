@@ -1,27 +1,32 @@
 package de.fhswf.statistics.list.item;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import de.fhswf.statistics.model.Spiel;
 
-public class SpielListItem implements ListItem {
+public class SpielcardItem implements ListItem, SpielerSubmitItem {
     public static final int TYPE = 2;
 
     @Nullable
     private Spiel spiel;
+    @Nullable
     private String userInput;
 
-    //TODO OnSpielListener erstellen, getter und Setter
 
+    @Nullable
     public String getUserInput() {
         return userInput;
     }
-    public void setUserInput(String userInput) {
+    public void setUserInput(@Nullable String userInput) {
         this.userInput = userInput;
     }
 
-    public SpielListItem(Spiel spiel){this.spiel = spiel;}
-    public SpielListItem(){
+    public SpielcardItem(@NonNull Spiel spiel){this.spiel = spiel;}
+    public SpielcardItem(){
 
     }
 
@@ -32,5 +37,11 @@ public class SpielListItem implements ListItem {
 
     public Spiel getSpiel() {
         return spiel;
+    }
+
+    @Nullable
+    @Override
+    public JSONObject getResult() throws JSONException {
+        return null;
     }
 }

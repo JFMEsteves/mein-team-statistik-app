@@ -34,7 +34,7 @@ public class SpielercardViewholder extends BaseViewHolder<SpielercardItem> {
 
 
     }
-
+//TODO Unterschiedliche Textwatcher ?
     private void initTextWatcher(SpielercardItem item) {
         TextWatcher textWatcher = new TextWatcher() {
             @Override

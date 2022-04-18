@@ -1,11 +1,30 @@
 <resources>
     <string name="app_name">4te Herren Statistiken</string>
     <string name="dialog_title_error">Error</string>
-    <string name="dialog_message_error">The following error occurred while fetching or processing data:\n\n%s</string>
+    <string name="dialog_message_error">The following error occurred while fetching or processing data:  %s</string>
     <string name="retry">Retry</string>
     <string name="exit">Exit</string>
     <string name="ok">OK</string>
-    <string name="abbrechen">Abbrechen</string>
-    <string name="Spieler_auswählen">Spieler auswählen</string>
-    <string name="Datumauswählen">Wähle Datum</string>
+    <string name="spiel_liste">Games</string>
+    <string name="threes_made">3PM</string>
+    <string name="fouls">Fouls</string>
+    <string name="name">Name</string>
+    <string name="freiwurfquote">Freethrow %</string>
+    <string name="geworfene_freiwuerfe">Thrown Freethrows</string>
+    <string name="getroffene_freiwuerfe">Made Freethrows</string>
+    <string name="spielid">Game ID</string>
+    <string name="punkte">Points</string>
+    <string name="punkte_ges">Points(all)</string>
+    <string name="Datum_auswählen">choose date</string>
+    <string name="Spieler_auswählen">choose Players</string>
+    <string name="Saison">Season</string>
+    <string name="abbrechen">Cancel</string>
+    <string name="punkte_pro_spiel">Points per Game</string>
+    <string name="neues_spiel_hinzufuegen">Neues Spiel hinzufügen</string>
+    <string name="hier_stats_eintragen">Hier Stats eintragen.</string>
+    <string name="datum">Datum</string>
+    <string name="gegner">Opponent</string>
+    <string name="Gegner_hint">Schreibe den Ort.</string>
+    <string name="gamecount">Spielanzahl</string>
+    <string name="ende">endcard_text</string>
 </resources>

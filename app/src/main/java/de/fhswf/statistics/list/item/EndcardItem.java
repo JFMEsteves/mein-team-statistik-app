@@ -3,7 +3,7 @@ package de.fhswf.statistics.list.item;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public class EndaddGameListItem implements ListItem {
+public class EndcardItem implements ListItem {
     public static final int TYPE = 10;
 
     private @Nullable
@@ -19,7 +19,7 @@ public class EndaddGameListItem implements ListItem {
         return onEndListener;
     }
 
-    public EndaddGameListItem setOnEndListener(
+    public EndcardItem setOnEndListener(
             @Nullable OnEndClickListener onEndListener) {
         this.onEndListener = onEndListener;
         return this;
@@ -36,7 +36,7 @@ public class EndaddGameListItem implements ListItem {
      * Interface Listener für Umfrage-Beenden-Button auf EndQuestion Item.
      */
     public interface OnEndClickListener {
-        void onEndButtonClick(@NonNull EndaddGameListItem item);
+        void onEndButtonClick(@NonNull EndcardItem item);
     }
 
 }

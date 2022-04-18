@@ -10,7 +10,6 @@ public class SpielerListItem implements ListItem, SpielerInterfaceListItem {
     private final Spieler spieler;
     private OnSpielerListener onSpielerListener;
 
-    //TODO Listener
 
 
     public SpielerListItem(Spieler spieler) {

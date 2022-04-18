@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">4te Herren Statistiken</string>
+    <string name="punkte">Punkte</string>
+    <string name="spielid">Spiel ID</string>
+    <string name="getroffene_freiwuerfe">getroffene Freiwürfe</string>
+    <string name="geworfene_freiwuerfe">geworfene Freiwürfe</string>
+    <string name="freiwurfquote">Freiwurfquote</string>
+    <string name="threes_made">3PM</string>
+    <string name="fouls">Fouls</string>
+    <string name="punkte_pro_spiel">Punkte pro Spiel</string>
+    <string name="punkte_ges">Punkte(ges.)</string>
+    <string name="name">Name</string>
+    <string name="spiel_liste">Spiele</string>
+    <string name="Datum_auswählen">Datum auswählen</string>
+    <string name="Spieler_auswählen">Spieler auswählen</string>
+    <string name="Saison">Saison</string>
+    <string name="abbrechen">Abbrechen</string>
+    <string name="ok">OK</string>
+    <string name="exit">Verlassen</string>
+    <string name="retry">Erneut versuchen</string>
+    <string name="dialog_title_error">Fehler</string>
+    <string name="neues_spiel_hinzufuegen">Neues Spiel hinzufügen</string>
+    <string name="hier_stats_eintragen">Hier Stats eintragen.</string>
+    <string name="datum">Datum</string>
+    <string name="gegner">Gegner</string>
+    <string name="Gegner_hint">Schreibe den Ort.</string>
+    <string name="gamecount">Spielanzahl</string>
+    <string name="dialog_message_error">Der folgende Error entstand während des Sammelns oder Auswerten von Daten:  %s</string>
+    <string name="ende">endcard_text</string>
+</resources>

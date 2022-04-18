@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Neues Spiel hinzufügen"
+            android:text="@string/neues_spiel_hinzufuegen"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/white"
             android:textSize="30sp"
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
             android:layout_marginTop="@dimen/default_marginTop"
-            android:text="Hier Stats eintragen."
+            android:text="@string/hier_stats_eintragen"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="@color/light_grey"
             android:textSize="18sp"
@@ -59,7 +59,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Datum"
+                        android:text="@string/datum"
                         android:textColor="@color/white"
                         android:textSize="30sp"
                         tools:text="Datum" />
@@ -71,7 +71,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="60dp"
                         android:paddingHorizontal="@dimen/default_padding"
-                        android:text="@string/Datumauswählen"
+                        android:text="@string/Datum_auswählen"
                         android:textColor="@color/white"
                         android:textSize="20sp"
                         tools:text="01 JAN 2022" />
@@ -90,7 +90,7 @@
                     android:id="@+id/name_input"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Schreibe den Ort."
+                    android:hint="@string/Gegner_hint"
                     android:inputType="text"
                     android:paddingHorizontal="@dimen/default_padding"
                     android:paddingVertical="1dp"
@@ -112,7 +112,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Punkte"
+                            android:text="@string/punkte"
                             android:textColor="@color/white"
                             android:textSize="30sp"
                             tools:text="Punkte" />
@@ -150,7 +150,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Gegner"
+                            android:text="@string/gegner"
                             android:textColor="@color/white"
                             android:textSize="30sp"
                             tools:text="Gegner" />

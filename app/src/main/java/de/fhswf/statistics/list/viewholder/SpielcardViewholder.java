@@ -14,18 +14,22 @@ import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 
+import java.util.Date;
+
 import de.fhswf.statistics.R;
-import de.fhswf.statistics.list.item.SpielListItem;
-import de.fhswf.statistics.list.item.SpielercardItem;
+import de.fhswf.statistics.list.item.SpielcardItem;
 import de.fhswf.statistics.util.StatCalculator;
 
-public class SpielViewholder extends BaseViewHolder<SpielListItem> {
+public class SpielcardViewholder extends BaseViewHolder<SpielcardItem> {
 
+    @NonNull
     private DatePickerDialog datePickerDialog;
+    @NonNull
     private final Button dateButton;
+    @NonNull
     private final EditText nameInput,myteamInput,enemyteamInput;
 
-    public SpielViewholder(@NonNull View itemView) {
+    public SpielcardViewholder(@NonNull View itemView) {
         super(itemView);
         this.dateButton = itemView.findViewById(R.id.date_button);
         this.nameInput = itemView.findViewById(R.id.name_input);
@@ -36,16 +40,14 @@ public class SpielViewholder extends BaseViewHolder<SpielListItem> {
 
 
     @Override
-    public void bind(SpielListItem item) {
+    public void bind(SpielcardItem item) {
         initDatePicker(item);
         dateButton.setText(StatCalculator.getTodaysDate());
-        dateButton.setOnClickListener(v -> {
-            datePickerDialog.show();
-        });
+        dateButton.setOnClickListener(v -> datePickerDialog.show());
 
     }
-
-    private void initTextWatcher(SpielListItem item) {
+//TODO 3 Unterschiedliche Textwatcher ?
+    private void initTextWatcher(SpielcardItem item) {
         TextWatcher textWatcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -57,7 +59,7 @@ public class SpielViewholder extends BaseViewHolder<SpielListItem> {
 
             }
 
-            @Override // Delimter ; um daten nachher zu trennen
+            @Override
             public void afterTextChanged(Editable s) {
                 item.setUserInput(s.toString() + ";");
             }
@@ -80,17 +82,14 @@ public class SpielViewholder extends BaseViewHolder<SpielListItem> {
     /**
      * Initialisiere DatePicker Listener; Ändere den Text des Buttons zum ausgewählten Datum, Setze den Listener
      */
-    private void initDatePicker(SpielListItem item) {
+    private void initDatePicker(SpielcardItem item) {
         //Initialisiere OnDateSetListener
-        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                month += 1;
-                String date = makeDateString(dayOfMonth, month, year);
-                Log.d(TAG, "onDateSet: " + date);
-                dateButton.setText(date);
-                item.setUserInput(date + ";");
-            }
+        DatePickerDialog.OnDateSetListener dateSetListener = (view, year, month, dayOfMonth) -> {
+            month += 1;
+            String date = makeDateString(dayOfMonth, month, year);
+            Log.d(TAG, "onDateSet: " + date);
+            dateButton.setText(date);
+            item.setUserInput(date + ";");
         };
         datePickerDialog.setOnDateSetListener(dateSetListener);
 

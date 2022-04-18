@@ -14,14 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.fhswf.statistics.api.service.SpielerService;
-import de.fhswf.statistics.list.ListAdapter;
-import de.fhswf.statistics.list.item.EndaddGameListItem;
-import de.fhswf.statistics.list.item.SpielListItem;
+import de.fhswf.statistics.list.Adapter.ListAdapter;
+import de.fhswf.statistics.list.item.EndcardItem;
+import de.fhswf.statistics.list.item.SpielcardItem;
 import de.fhswf.statistics.list.item.SpielercardItem;
-import de.fhswf.statistics.model.Spiel;
 import de.fhswf.statistics.model.Spieler;
 
-public class NewGameActivity extends AppCompatActivity implements EndaddGameListItem.OnEndClickListener {
+public class NewGameActivity extends AppCompatActivity implements EndcardItem.OnEndClickListener {
     public static final String EXTRA_SPIELER_IDLIST = "spieler_ids";
     
     private boolean busy;
@@ -62,7 +61,6 @@ public class NewGameActivity extends AppCompatActivity implements EndaddGameList
         this.busy = false;
         refreshContent();
 
-        //TODO Liste von Spielern hier annehmen und weiterverarbeiten. / Liste von SPielern hier sammeln
     }
     private void refreshContent(){
         if(!busy){
@@ -82,8 +80,10 @@ public class NewGameActivity extends AppCompatActivity implements EndaddGameList
 
         //Adapter säubern
         adapter.clear();
-        adapter.add(new SpielListItem());
+        // Spielkarte hinzufügen
+        adapter.add(new SpielcardItem());
 
+        //Spieler hinzufügen
         for(int c : spielerIds) {
             for(Spieler s : result) {
                 if(s.getId() == c) {
@@ -93,11 +93,11 @@ public class NewGameActivity extends AppCompatActivity implements EndaddGameList
         }
 
         //End-Card einfügen
-        adapter.add(new EndaddGameListItem().setOnEndListener(this));
+        adapter.add(new EndcardItem().setOnEndListener(this));
     }
 
     @Override
-    public void onEndButtonClick(@NonNull EndaddGameListItem item) {
+    public void onEndButtonClick(@NonNull EndcardItem item) {
         //TODO API Kommunikation hier
     }
 }

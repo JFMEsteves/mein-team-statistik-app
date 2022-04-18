@@ -17,6 +17,6 @@ public class SpielSpielerListItem  implements ListItem {
 
     @Override
     public int getType() {
-        return 0;
+        return TYPE;
     }
 }
