@@ -22,7 +22,7 @@ import de.fhswf.statistics.model.Spieler;
 
 public class NewGameActivity extends AppCompatActivity implements EndcardItem.OnEndClickListener {
     public static final String EXTRA_SPIELER_IDLIST = "spieler_ids";
-    
+
     private boolean busy;
     private ArrayList<Integer> spielerIds;
     private SpielerService spielerService;
@@ -34,11 +34,12 @@ public class NewGameActivity extends AppCompatActivity implements EndcardItem.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //TODO TextEdits  Eingabe reihenfolge flexibel machen
         //Intent stuff
         Intent mainActivityIntent = getIntent();
         this.spielerIds = mainActivityIntent.getIntegerArrayListExtra(EXTRA_SPIELER_IDLIST);
 
-        if(spielerIds == null) {
+        if (spielerIds == null) {
             throw new RuntimeException("Keine Spieler ausgewählt!");
         }
 
@@ -62,8 +63,9 @@ public class NewGameActivity extends AppCompatActivity implements EndcardItem.On
         refreshContent();
 
     }
-    private void refreshContent(){
-        if(!busy){
+
+    private void refreshContent() {
+        if (!busy) {
             this.busy = true;
             spielerService.fetchSpielerList(
                     this::addSpielercardToList,
@@ -84,9 +86,9 @@ public class NewGameActivity extends AppCompatActivity implements EndcardItem.On
         adapter.add(new SpielcardItem());
 
         //Spieler hinzufügen
-        for(int c : spielerIds) {
-            for(Spieler s : result) {
-                if(s.getId() == c) {
+        for (int c : spielerIds) {
+            for (Spieler s : result) {
+                if (s.getId() == c) {
                     adapter.add(new SpielercardItem(s));
                 }
             }

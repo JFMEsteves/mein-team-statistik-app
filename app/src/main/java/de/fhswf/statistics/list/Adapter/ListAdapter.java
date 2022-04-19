@@ -46,7 +46,7 @@ public class ListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         //1
             case SpielerListItem.TYPE:
                 return new SpielerListViewHolder(
-                        inflater.inflate(R.layout.item_header_layout, parent, false));
+                        inflater.inflate(R.layout.item_list_layout, parent, false));
 
 
         //4

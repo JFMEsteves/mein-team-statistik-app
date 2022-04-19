@@ -22,11 +22,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:text="Spieler Name"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/white"
             android:textSize="30sp"
-            tools:text="Spieler Name"
-            android:text="Spieler Name"/>
+            tools:text="Spieler Name" />
 
         <TextView
             android:id="@+id/description"
@@ -34,11 +34,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
             android:layout_marginTop="@dimen/default_marginTop"
+            android:text="Hier Stats eintragen."
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="@color/light_grey"
             android:textSize="18sp"
-            tools:text="Hier Stats eintragen."
-            android:text="Hier Stats eintragen."/>
+            tools:text="Hier Stats eintragen." />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -46,142 +46,141 @@
             android:layout_marginTop="@dimen/default_marginTop">
 
 
-                <TableLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                    <TableRow android:layout_marginBottom="@dimen/default_marginTop">
+                <TableRow android:layout_marginBottom="@dimen/default_marginTop">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/white"
-                            android:textSize="30sp"
-                            tools:text="Punkte"
-                            android:text="Punkte"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Punkte"
+                        android:textColor="@color/white"
+                        android:textSize="30sp"
+                        tools:text="Punkte" />
 
-                        <EditText
-                            android:id="@+id/punkteInput"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="100dp"
-                            android:background="@drawable/black_border"
-                            android:paddingHorizontal="@dimen/default_padding"
-                            android:textAlignment="center"
-                            android:textSize="28sp"
-                            android:inputType="number"
-                            android:ems="2"
-                            android:maxLength="3"
-                            android:textColor="@color/black"
+                    <EditText
+                        android:id="@+id/punkteInput"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="100dp"
+                        android:background="@drawable/black_border"
+                        android:ems="2"
+                        android:inputType="number"
+                        android:maxLength="3"
+                        android:paddingHorizontal="@dimen/default_padding"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="28sp"
 
-                            tools:text="50" />
-                    </TableRow>
+                        tools:text="50" />
+                </TableRow>
 
-                    <TableRow android:layout_marginBottom="@dimen/default_marginTop">
+                <TableRow android:layout_marginBottom="@dimen/default_marginTop">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/white"
-                            android:textSize="30sp"
-                            tools:text="3PM"
-                            android:text="3PM"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3PM"
+                        android:textColor="@color/white"
+                        android:textSize="30sp"
+                        tools:text="3PM" />
 
-                        <EditText
-                            android:id="@+id/threes_input"
-                            android:inputType="number"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="100dp"
-                            android:background="@drawable/black_border"
-                            android:paddingHorizontal="@dimen/default_padding"
-                            android:textAlignment="center"
-                            android:textSize="28sp"
-                            android:ems="2"
-                            android:maxLength="2"
+                    <EditText
+                        android:id="@+id/threes_input"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="100dp"
+                        android:background="@drawable/black_border"
+                        android:ems="2"
+                        android:inputType="number"
+                        android:maxLength="2"
+                        android:paddingHorizontal="@dimen/default_padding"
+                        android:textAlignment="center"
+                        android:textSize="28sp"
 
-                            tools:text="50" />
-                    </TableRow>
+                        tools:text="50" />
+                </TableRow>
 
-                    <TableRow android:layout_marginBottom="@dimen/default_marginTop">
+                <TableRow android:layout_marginBottom="@dimen/default_marginTop">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/white"
-                            android:textSize="30sp"
-                            tools:text="FTM"
-                            android:text="FTM"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="FTM"
+                        android:textColor="@color/white"
+                        android:textSize="30sp"
+                        tools:text="FTM" />
 
-                        <EditText
-                            android:id="@+id/freethrows_made_input"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="100dp"
-                            android:background="@drawable/black_border"
-                            android:paddingHorizontal="@dimen/default_padding"
-                            android:textAlignment="center"
-                            android:inputType="number"
-                            android:textSize="28sp"
-                            android:ems="2"
-                            android:maxLength="2"
+                    <EditText
+                        android:id="@+id/freethrows_made_input"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="100dp"
+                        android:background="@drawable/black_border"
+                        android:ems="2"
+                        android:inputType="number"
+                        android:maxLength="2"
+                        android:paddingHorizontal="@dimen/default_padding"
+                        android:textAlignment="center"
+                        android:textSize="28sp"
 
-                            tools:text="35" />
-                    </TableRow>
+                        tools:text="35" />
+                </TableRow>
 
-                    <TableRow android:layout_marginBottom="@dimen/default_marginTop">
+                <TableRow android:layout_marginBottom="@dimen/default_marginTop">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/white"
-                            android:textSize="30sp"
-                            tools:text="FTA"
-                            android:text="FTA"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="FTA"
+                        android:textColor="@color/white"
+                        android:textSize="30sp"
+                        tools:text="FTA" />
 
-                        <EditText
-                            android:id="@+id/freethrows_thrown_input"
-                            android:inputType="number"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="100dp"
-                            android:background="@drawable/black_border"
-                            android:paddingHorizontal="@dimen/default_padding"
-                            android:textAlignment="center"
-                            android:textSize="28sp"
-                            android:ems="2"
-                            android:maxLength="2"
+                    <EditText
+                        android:id="@+id/freethrows_thrown_input"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="100dp"
+                        android:background="@drawable/black_border"
+                        android:ems="2"
+                        android:inputType="number"
+                        android:maxLength="2"
+                        android:paddingHorizontal="@dimen/default_padding"
+                        android:textAlignment="center"
+                        android:textSize="28sp"
 
-                            tools:text="8" />
-                    </TableRow>
+                        tools:text="8" />
+                </TableRow>
 
-                    <TableRow android:layout_marginBottom="@dimen/default_marginTop">
+                <TableRow android:layout_marginBottom="@dimen/default_marginTop">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/white"
-                            android:textSize="30sp"
-                            tools:text="Fouls"
-                            android:text="Fouls"
-                            />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fouls"
+                        android:textColor="@color/white"
+                        android:textSize="30sp"
+                        tools:text="Fouls" />
 
-                        <EditText
-                            android:id="@+id/fouls_input"
-                            android:inputType="number"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="100dp"
-                            android:background="@drawable/black_border"
-                            android:paddingHorizontal="@dimen/default_padding"
-                            android:textAlignment="center"
-                            android:textSize="28sp"
-                            android:ems="1"
-                            android:maxLength="1"
+                    <EditText
+                        android:id="@+id/fouls_input"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="100dp"
+                        android:background="@drawable/black_border"
+                        android:ems="1"
+                        android:inputType="number"
+                        android:maxLength="1"
+                        android:paddingHorizontal="@dimen/default_padding"
+                        android:textAlignment="center"
+                        android:textSize="28sp"
 
-                            tools:text="0" />
-                    </TableRow>
-                </TableLayout>
+                        tools:text="0" />
+                </TableRow>
+            </TableLayout>
 
 
         </ScrollView>

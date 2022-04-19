@@ -32,7 +32,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/gamecount"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/header_textsize"
                     android:textStyle="bold"
                     tools:text="Spielanzahl" />
 
@@ -43,7 +43,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/punkte_ges"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/header_textsize"
                     android:textStyle="bold" />
 
                 <TextView
@@ -53,7 +53,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/punkte_pro_spiel"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/header_textsize"
                     android:textStyle="bold" />
 
                 <TextView
@@ -64,7 +64,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/threes_made"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/header_textsize"
                     android:textStyle="bold"
                     tools:text="3 Punkte Würfe" />
 
@@ -75,7 +75,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/freiwurfquote"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/header_textsize"
                     android:textStyle="bold" />
 
                 <TextView
@@ -86,7 +86,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/geworfene_freiwuerfe"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/header_textsize"
                     android:textStyle="bold"
                     tools:text="geworfene Freiwürfe" />
 
@@ -98,7 +98,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/getroffene_freiwuerfe"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/header_textsize"
                     android:textStyle="bold"
                     tools:text="getroffene Freiwürfe" />
 
@@ -110,7 +110,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/fouls"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/header_textsize"
                     android:textStyle="bold"
                     tools:text="Fouls" />
 

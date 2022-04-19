@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements SpielerListItem.O
 
     private Button dateButton, closeButton, createButton, playerButton;
     //TODO Refactor between activites of SpielerService
+    // Bei Bildschirm drehen lädt er neu statt aktuellen Inhalt zu behalten
     private SpielerService SpielService;
     private boolean busy;
     private ConstraintLayout constraintLayout;

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingVertical="@dimen/default_vertical_padding"
     android:weightSum="7">
 
     <TextView
@@ -13,7 +14,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="@string/spielid"
-        android:textSize="16sp"
+        android:textSize="@dimen/stat_textsize"
         android:textStyle="bold"
         tools:text="SpielID" />
 
@@ -24,7 +25,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="@string/punkte"
-        android:textSize="16sp"
+        android:textSize="@dimen/stat_textsize"
         android:textStyle="bold" />
 
     <TextView
@@ -35,7 +36,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="@string/getroffene_freiwuerfe"
-        android:textSize="16sp"
+        android:textSize="@dimen/stat_textsize"
         android:textStyle="bold"
         tools:text="getroffene Freiwürfe" />
 
@@ -47,7 +48,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="@string/geworfene_freiwuerfe"
-        android:textSize="16sp"
+        android:textSize="@dimen/stat_textsize"
         android:textStyle="bold"
         tools:text="geworfene Freiwürfe" />
 
@@ -58,7 +59,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="@string/freiwurfquote"
-        android:textSize="16sp"
+        android:textSize="@dimen/stat_textsize"
         android:textStyle="bold" />
 
     <TextView
@@ -69,7 +70,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="@string/threes_made"
-        android:textSize="16sp"
+        android:textSize="@dimen/stat_textsize"
         android:textStyle="bold"
         tools:text="3 Punkte Würfe" />
 
@@ -81,7 +82,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="@string/fouls"
-        android:textSize="16sp"
+        android:textSize="@dimen/stat_textsize"
         android:textStyle="bold"
         tools:text="Fouls" />
 

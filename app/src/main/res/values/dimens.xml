@@ -3,4 +3,7 @@
     <dimen name="list_padding">8dp</dimen>
     <dimen name="default_marginTop">10dp</dimen>
     <dimen name="default_padding">10dp</dimen>
+    <dimen name="default_vertical_padding">8dp</dimen>
+    <dimen name="header_textsize">18sp</dimen>
+    <dimen name="stat_textsize">16sp</dimen>
 </resources>
