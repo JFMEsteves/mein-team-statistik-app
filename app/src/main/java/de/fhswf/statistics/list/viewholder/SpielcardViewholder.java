@@ -14,10 +14,12 @@ import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 
+import java.text.ParseException;
 import java.util.Date;
 
 import de.fhswf.statistics.R;
 import de.fhswf.statistics.list.item.SpielcardItem;
+import de.fhswf.statistics.util.DateConverter;
 import de.fhswf.statistics.util.StatCalculator;
 
 public class SpielcardViewholder extends BaseViewHolder<SpielcardItem> {
@@ -46,9 +48,9 @@ public class SpielcardViewholder extends BaseViewHolder<SpielcardItem> {
         dateButton.setOnClickListener(v -> datePickerDialog.show());
 
     }
-//TODO 3 Unterschiedliche Textwatcher ?
+//TODO 3 Unterschiedliche Textwatcher ? Besseres Coding ?
     private void initTextWatcher(SpielcardItem item) {
-        TextWatcher textWatcher = new TextWatcher() {
+        TextWatcher textWatcherName = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -61,12 +63,44 @@ public class SpielcardViewholder extends BaseViewHolder<SpielcardItem> {
 
             @Override
             public void afterTextChanged(Editable s) {
-                item.setUserInput(s.toString() + ";");
+                item.getSpiel().setTeamname(s.toString());
             }
         };
-        nameInput.addTextChangedListener(textWatcher);
-        enemyteamInput.addTextChangedListener(textWatcher);
-        myteamInput.addTextChangedListener(textWatcher);
+        TextWatcher textWatcherEnemyInput = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                item.getSpiel().setGastPunkte(Integer.parseInt(s.toString()));
+            }
+        };
+        TextWatcher textWatcherUnserTeamInput = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                item.getSpiel().setHeimPunkte(Integer.parseInt(s.toString()));
+            }
+        };
+        nameInput.addTextChangedListener(textWatcherName);
+        enemyteamInput.addTextChangedListener(textWatcherEnemyInput);
+        myteamInput.addTextChangedListener(textWatcherUnserTeamInput);
 
     }
 
@@ -87,9 +121,16 @@ public class SpielcardViewholder extends BaseViewHolder<SpielcardItem> {
         DatePickerDialog.OnDateSetListener dateSetListener = (view, year, month, dayOfMonth) -> {
             month += 1;
             String date = makeDateString(dayOfMonth, month, year);
-            Log.d(TAG, "onDateSet: " + date);
             dateButton.setText(date);
-            item.setUserInput(date + ";");
+            Date datum = null;
+            try {
+                datum = DateConverter.StringtoDate(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            if(datum != null) {
+                item.getSpiel().setDatum(datum);
+            }
         };
         datePickerDialog.setOnDateSetListener(dateSetListener);
 

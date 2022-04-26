@@ -61,8 +61,7 @@ public final class StatCalculator {
 
         int punkte = gesamtpunkteCalc(spieler);
         int attendedGames = attendedGamesCalc(spieler);
-        double result = punkte / attendedGames;
-        return result;
+        return punkte / attendedGames;
     }
 
     public static int dreierCalc(@NonNull Spieler spieler) {
@@ -77,17 +76,15 @@ public final class StatCalculator {
     }
 
     public static String freiwurfquoteCalc(@NonNull Spieler spieler) {
-        double result = 0;
-        double geworfen = 0;
-        double getroffen = 0;
+        double result;
+        double geworfen;
+        double getroffen;
         geworfen = geworfeneFreiwuerfeCalc(spieler);
         getroffen = getroffeneFreiwuerfeCalc(spieler);
         result = getroffen / geworfen * 100;
         double roundresult = Math.round(result * 10.0) / 10.0;
 
-        String Quote = String.valueOf(roundresult + "%");
-        return Quote;
-        //  return String.format(Locale.getDefault(),"%d %%",result);
+        return String.valueOf(roundresult + "%");
     }
 
     public static int geworfeneFreiwuerfeCalc(@NonNull Spieler spieler) {
@@ -124,7 +121,9 @@ public final class StatCalculator {
     }
 
     public static String makeDateString(int dayOfMonth, int month, int year) {
-        return dayOfMonth + " " + getMonthFormat(month) + " " + year;
+    //    return dayOfMonth + " " + getMonthFormat(month) + " " + year;
+      //  return dayOfMonth + "-" + getMonthFormat(month) + "-" + year;
+        return dayOfMonth + "." + month + "." + year;
     }
 
     public static String getMonthFormat(int month) {
@@ -148,9 +147,8 @@ public final class StatCalculator {
     public static String getTodaysDate() {
         Date currentdate = Calendar.getInstance().getTime();
         SimpleDateFormat format = new SimpleDateFormat("dd.MMM.yyyy");
-        String formattedDate = format.format(currentdate);
 
-        return formattedDate;
+        return format.format(currentdate);
     }
 
     public static String getChosenString(ArrayList<Spieler> list) {

@@ -28,6 +28,14 @@ public class SpielSpieler {
         this.Fouls = Fouls;
     }
 
+    public SpielSpieler(int spielerId, int spielId) {
+        this.SpielerId = spielerId;
+        this.SpielId = spielId;
+    }
+
+    public SpielSpieler() {
+    }
+
     public int getSpielerId() {
         return SpielerId;
     }

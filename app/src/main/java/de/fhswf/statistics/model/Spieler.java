@@ -21,6 +21,9 @@ public class Spieler {
         this.name = name;
     }
 
+    public Spieler() {
+    }
+
     public int getId() {
         return id;
     }
