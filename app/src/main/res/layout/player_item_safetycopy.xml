@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cardviewspieler"
+    android:id="@+id/cardview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
@@ -10,7 +10,6 @@
     card_view:cardCornerRadius="20dp"
     card_view:cardElevation="8dp"
     card_view:contentPadding="8dp"
-
     >
 
     <LinearLayout
@@ -69,13 +68,15 @@
                         android:layout_marginStart="100dp"
                         android:background="@drawable/black_border"
                         android:ems="2"
-                        android:imeOptions="actionNext"
                         android:inputType="number"
                         android:maxLength="3"
-                        android:nextFocusDown="@+id/threes_input"
                         android:paddingHorizontal="@dimen/default_padding"
+                        android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="28sp"
+                        android:imeOptions="actionNext"
+                        android:nextFocusForward="@+id/threes_input"
+
                         tools:text="50" />
                 </TableRow>
 
@@ -96,12 +97,13 @@
                         android:layout_marginStart="100dp"
                         android:background="@drawable/black_border"
                         android:ems="2"
-                        android:imeOptions="actionNext"
                         android:inputType="number"
                         android:maxLength="2"
-                        android:nextFocusDown="@+id/freethrows_made_input"
                         android:paddingHorizontal="@dimen/default_padding"
+                        android:textAlignment="center"
                         android:textSize="28sp"
+                        android:imeOptions="actionNext"
+                        android:nextFocusForward="@+id/freethrows_made_input"
 
                         tools:text="50" />
                 </TableRow>
@@ -123,12 +125,13 @@
                         android:layout_marginStart="100dp"
                         android:background="@drawable/black_border"
                         android:ems="2"
-                        android:imeOptions="actionNext"
                         android:inputType="number"
                         android:maxLength="2"
-                        android:nextFocusDown="@+id/freethrows_thrown_input"
                         android:paddingHorizontal="@dimen/default_padding"
+                        android:textAlignment="center"
                         android:textSize="28sp"
+                        android:imeOptions="actionNext"
+                        android:nextFocusForward="@+id/freethrows_thrown_input"
                         tools:text="35" />
                 </TableRow>
 
@@ -149,12 +152,13 @@
                         android:layout_marginStart="100dp"
                         android:background="@drawable/black_border"
                         android:ems="2"
-                        android:imeOptions="actionNext"
                         android:inputType="number"
                         android:maxLength="2"
-                        android:nextFocusDown="@+id/fouls_input"
                         android:paddingHorizontal="@dimen/default_padding"
+                        android:textAlignment="center"
                         android:textSize="28sp"
+                        android:imeOptions="actionNext"
+                        android:nextFocusForward="@+id/fouls_input"
                         tools:text="8" />
                 </TableRow>
 
@@ -178,11 +182,17 @@
                         android:inputType="number"
                         android:maxLength="1"
                         android:paddingHorizontal="@dimen/default_padding"
+                        android:textAlignment="center"
                         android:textSize="28sp"
-                        tools:text="0" />
+                        android:imeOptions="actionNext"
+                        android:nextFocusForward="@+id/punkteInput"
 
+                        tools:text="0" />
                 </TableRow>
             </TableLayout>
+
+
         </ScrollView>
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>

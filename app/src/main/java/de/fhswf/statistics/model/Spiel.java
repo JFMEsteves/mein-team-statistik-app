@@ -22,7 +22,7 @@ public class Spiel {
     @Nullable
     private List<SpielSpieler> stats;
 
-    public Spiel(int id, Date datum, int HeimPunkte, int GastPunkte,String Teamname) {
+    public Spiel(int id, Date datum, int HeimPunkte, int GastPunkte, String Teamname) {
         this.id = id;
         this.datum = datum;
         this.HeimPunkte = HeimPunkte;
@@ -30,7 +30,7 @@ public class Spiel {
         this.Teamname = Teamname;
     }
 
-    public Spiel(int id,Date datum) {
+    public Spiel(int id, Date datum) {
         this.id = id;
         this.datum = datum;
     }
@@ -101,4 +101,5 @@ public class Spiel {
 
         return this;
     }
+
 }

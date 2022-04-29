@@ -2,7 +2,7 @@ package de.fhswf.statistics.list.item;
 
 import de.fhswf.statistics.model.SpielSpieler;
 
-public class SpielSpielerListItem  implements ListItem {
+public class SpielSpielerListItem implements ListItem {
     public static final int TYPE = 3;
 
     private final SpielSpieler stats;

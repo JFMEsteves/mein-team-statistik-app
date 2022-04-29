@@ -1,31 +1,26 @@
 package de.fhswf.statistics.list.viewholder;
 
-import static android.content.ContentValues.TAG;
-
 import android.graphics.Color;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 
-import java.util.Locale;
-
 import de.fhswf.statistics.R;
 import de.fhswf.statistics.list.item.SpielerListItem;
-import de.fhswf.statistics.model.SpielSpieler;
-import de.fhswf.statistics.model.Spieler;
 import de.fhswf.statistics.util.StatCalculator;
 
 public class SpielerListViewHolder extends BaseViewHolder<SpielerListItem>
-implements View.OnClickListener {
+        implements View.OnClickListener {
 
-    private static final @ColorInt int BG_1 = Color.WHITE;
-    private static final @ColorInt int BG_2 = 0x22000000;
+    private static final @ColorInt
+    int BG_1 = Color.WHITE;
+    private static final @ColorInt
+    int BG_2 = 0x22000000;
 
     private SpielerListItem currentSpieler;
-    private final TextView name,gesamtpunkte,punkteProSpiel,freiwurfquote;
+    private final TextView name, gesamtpunkte, punkteProSpiel, freiwurfquote;
 
     public SpielerListViewHolder(@NonNull View itemView) {
         super(itemView);

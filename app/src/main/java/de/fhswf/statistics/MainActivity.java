@@ -19,6 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.fhswf.statistics.api.service.RemoteSpielerService;
 import de.fhswf.statistics.api.service.SpielerService;
 import de.fhswf.statistics.dialog.SpielerAuswahlDialog;
 import de.fhswf.statistics.list.Adapter.ListAdapter;
@@ -29,24 +30,16 @@ import de.fhswf.statistics.util.StatCalculator;
 public class MainActivity extends AppCompatActivity implements SpielerListItem.OnSpielerListener {
 
     private ListAdapter adapter;
-    private Context context;
-    private StatCalculator calculator;
-
-    private Button dateButton, closeButton, createButton, playerButton;
-    //TODO Refactor between activites of SpielerService
-    private SpielerService SpielService;
+    private SpielerService SpielerService;
     private boolean busy;
-    private ConstraintLayout constraintLayout;
-    private ArrayList<Spieler> chosenplayer,Allplayers;
-    private List<Spieler> testing;
+    private ArrayList<Spieler> playerList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        constraintLayout = findViewById(R.id.constraint_container);
-        Allplayers = new ArrayList<>();
-        this.chosenplayer = new ArrayList<>();
+
+        playerList = new ArrayList<>();
 
 
         RecyclerView container = findViewById(R.id.container);
@@ -59,14 +52,17 @@ public class MainActivity extends AppCompatActivity implements SpielerListItem.O
         container.setAdapter(adapter);
 
 
-        //Add Game Button
+        //Neues Spiel hinzufügen Button mit AuswahlDialog
         FloatingActionButton addGame = findViewById(R.id.addGameBtn);
         addGame.setOnClickListener(v -> {
-            new SpielerAuswahlDialog(this, Allplayers);
+            new SpielerAuswahlDialog(this, playerList);
         });
 
         // init Service
-        this.SpielService = new MockService(false);
+        //this.SpielService = new MockService(false);
+        this.SpielerService = new RemoteSpielerService(this);
+
+
         // Daten von Service laden
         this.busy = false;
         refreshContent();
@@ -77,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements SpielerListItem.O
     private void refreshContent() {
         if (!busy) {
             this.busy = true;
-            SpielService.fetchSpielerList(
+            SpielerService.fetchSpielerList(
                     this::addSpielerToList,
                     this::showErrorDialog
             );
@@ -95,12 +91,18 @@ public class MainActivity extends AppCompatActivity implements SpielerListItem.O
         this.busy = false;
         adapter.clear();
 
-            for (Spieler c : result) {
-                Allplayers.add(c);
-                adapter.add(new SpielerListItem(c).setOnSpielerListener(this));
-            }
+        for (Spieler c : result) {
+            playerList.add(c);
+            adapter.add(new SpielerListItem(c).setOnSpielerListener(this));
+        }
     }
 
+    /**
+     * Reagiert auf den Click auf 1 SpielerListItem indem ein Intent die Acitvity PlayerActivity startet
+     *
+     * @param item clicked item
+     * @see PlayerActivity
+     */
     @Override
     public void onSpielerClick(@NonNull SpielerListItem item) {
         //Intent zu Player Activity, TO BE BUILT

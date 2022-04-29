@@ -5,12 +5,10 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
-
 
 import de.fhswf.statistics.api.OnFailureListener;
 import de.fhswf.statistics.api.OnSuccessListener;
@@ -30,7 +28,7 @@ public class RemoteSpielerService implements SpielerService {
     /**
      * Basis-URL des Remote-Backends (ohne abschließendes '/').
      */
-    public static final String BASE_URL = "http://167.86.108.121:9084/SurveyBackend/api";
+    public static final String BASE_URL = "http://213.136.76.136:9084/api";
 
     private final @NonNull
     Context context;
@@ -82,16 +80,15 @@ public class RemoteSpielerService implements SpielerService {
     }
 
     @Override
-    public void submitSpiel( int id, @NonNull JSONArray results,
+    public void submitSpiel( @NonNull JSONObject content,
                             @Nullable OnSuccessListener<Void> onSuccessListener,
                             @Nullable OnFailureListener onFailureListener) {
         try {
             new RemoteRequest<>(
                     context,
-                    BASE_URL + "/spiel/submit",
+                    BASE_URL + "/spiel/add",
                     new JSONObject()
-                            .put("id", id)
-                            .put("spiel", results),
+                            .put("spiel", content),
                     null,
                     onSuccessListener,
                     onFailureListener

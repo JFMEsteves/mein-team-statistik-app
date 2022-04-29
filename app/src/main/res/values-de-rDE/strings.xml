@@ -27,5 +27,5 @@
     <string name="Gegner_hint">Schreibe den Ort.</string>
     <string name="gamecount">Spielanzahl</string>
     <string name="dialog_message_error">Der folgende Error entstand während des Sammelns oder Auswerten von Daten:  %s</string>
-    <string name="ende">endcard_text</string>
+    <string name="ende">Ende, Drücke den Basketball um Daten zu Senden !</string>
 </resources>

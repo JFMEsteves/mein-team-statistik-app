@@ -63,4 +63,13 @@ public class Spieler {
 
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "Spieler{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", stats=" + stats +
+                '}';
+    }
 }

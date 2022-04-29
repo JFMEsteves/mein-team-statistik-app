@@ -1,15 +1,12 @@
 package de.fhswf.statistics.list.viewholder;
 
-import static android.content.ContentValues.TAG;
 import static de.fhswf.statistics.util.StatCalculator.makeDateString;
 
 import android.app.DatePickerDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
@@ -20,6 +17,7 @@ import java.util.Date;
 import de.fhswf.statistics.R;
 import de.fhswf.statistics.list.item.SpielcardItem;
 import de.fhswf.statistics.util.DateConverter;
+import de.fhswf.statistics.util.SimpleUpdateTextWatcher;
 import de.fhswf.statistics.util.StatCalculator;
 
 public class SpielcardViewholder extends BaseViewHolder<SpielcardItem> {
@@ -29,7 +27,7 @@ public class SpielcardViewholder extends BaseViewHolder<SpielcardItem> {
     @NonNull
     private final Button dateButton;
     @NonNull
-    private final EditText nameInput,myteamInput,enemyteamInput;
+    private final EditText nameInput, myteamInput, enemyteamInput;
 
     public SpielcardViewholder(@NonNull View itemView) {
         super(itemView);
@@ -44,11 +42,13 @@ public class SpielcardViewholder extends BaseViewHolder<SpielcardItem> {
     @Override
     public void bind(SpielcardItem item) {
         initDatePicker(item);
+        initTextWatcher(item);
         dateButton.setText(StatCalculator.getTodaysDate());
         dateButton.setOnClickListener(v -> datePickerDialog.show());
 
     }
-//TODO 3 Unterschiedliche Textwatcher ? Besseres Coding ?
+
+
     private void initTextWatcher(SpielcardItem item) {
         TextWatcher textWatcherName = new TextWatcher() {
             @Override
@@ -66,51 +66,33 @@ public class SpielcardViewholder extends BaseViewHolder<SpielcardItem> {
                 item.getSpiel().setTeamname(s.toString());
             }
         };
-        TextWatcher textWatcherEnemyInput = new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
+        /**
+         * Die Folgenden ifs sind zur "Wiederherstellung" der Nutzereingaben. Da eine Recyclerview nicht
+         * alle children gleichzeitig persistiert müssen daten zugewiesen werden wenn sie erneut persistiert
+         * werden nachdem man dort schon etwas eingegeben hat.
+         */
+        if (item.getSpiel().getTeamname() != null) {
+            nameInput.setText(item.getSpiel().getTeamname());
+        }
+        nameInput.addTextChangedListener(new SimpleUpdateTextWatcher(
+                t -> item.getSpiel().setTeamname(t)));
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-            }
+        if (item.getSpiel().getGastPunkte() != 0) {
+            enemyteamInput.setText(item.getSpiel().getGastPunkte());
+        }
+        enemyteamInput.addTextChangedListener(new SimpleUpdateTextWatcher(
+                t -> item.getSpiel().setGastPunkte(Integer.parseInt(t))));
 
-            @Override
-            public void afterTextChanged(Editable s) {
-                item.getSpiel().setGastPunkte(Integer.parseInt(s.toString()));
-            }
-        };
-        TextWatcher textWatcherUnserTeamInput = new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                item.getSpiel().setHeimPunkte(Integer.parseInt(s.toString()));
-            }
-        };
-        nameInput.addTextChangedListener(textWatcherName);
-        enemyteamInput.addTextChangedListener(textWatcherEnemyInput);
-        myteamInput.addTextChangedListener(textWatcherUnserTeamInput);
+        if (item.getSpiel().getHeimPunkte() != 0) {
+            myteamInput.setText(item.getSpiel().getHeimPunkte());
+        }
+        myteamInput.addTextChangedListener(new SimpleUpdateTextWatcher(
+                t -> item.getSpiel().setHeimPunkte(Integer.parseInt(t))));
 
     }
-
-
-
-
-
-
-
-
 
 
     /**
@@ -121,14 +103,19 @@ public class SpielcardViewholder extends BaseViewHolder<SpielcardItem> {
         DatePickerDialog.OnDateSetListener dateSetListener = (view, year, month, dayOfMonth) -> {
             month += 1;
             String date = makeDateString(dayOfMonth, month, year);
-            dateButton.setText(date);
+            //Nutzereingabe "wiederherstellen"
+            if (item.getSpiel().getDatum() != null) {
+                dateButton.setText(DateConverter.DateToString(item.getSpiel().getDatum()));
+            } else {
+                dateButton.setText(date);
+            }
             Date datum = null;
             try {
                 datum = DateConverter.StringtoDate(date);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            if(datum != null) {
+            if (datum != null) {
                 item.getSpiel().setDatum(datum);
             }
         };

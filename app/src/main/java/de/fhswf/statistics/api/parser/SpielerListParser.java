@@ -1,5 +1,7 @@
 package de.fhswf.statistics.api.parser;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import org.json.JSONArray;
@@ -26,6 +28,7 @@ public class SpielerListParser
             for(int i = 0; i < array.length(); i++){
                 kader.add(parser.parse(array.getJSONObject(i)));
             }
+            Log.d("SpielerListparser--------------------", "parse: " + kader.toString());
             return kader;
         } catch (JSONException e) {
             // Dieser Fall sollte nur auftreten, wenn das Feld für die Liste von Surveys nicht

@@ -40,39 +40,39 @@ public class ListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 
-        //TODO Alle möglichen TYPEs hinzufügen mit ihrem dazugehörigem Viewholder und Layout
+
         switch (viewType) {
 
-        //1
+            //1
             case SpielerListItem.TYPE:
                 return new SpielerListViewHolder(
                         inflater.inflate(R.layout.item_list_layout, parent, false));
 
 
-        //4
+            //4
             case SpielercardItem.TYPE:
                 return new SpielercardViewholder(
                         inflater.inflate(R.layout.player_item, parent, false));
 
-        //10
+            //10
             case EndcardItem.TYPE:
                 return new EndcardViewholder(
                         inflater.inflate(R.layout.player_end_item, parent, false));
 
-        //2
+            //2
             case SpielcardItem.TYPE:
                 return new SpielcardViewholder(
                         inflater.inflate(R.layout.game_item, parent, false));
 
-        //3
+            //3
             case SpielSpielerListItem.TYPE:
                 return new SpielSpielerViewHolder(
-                        inflater.inflate(R.layout.player_games_item,parent,false));
-
+                        inflater.inflate(R.layout.player_games_item, parent, false));
+            //8
             case SpielerSaisonListItem.TYPE:
-                return new SpielerSaisonViewholder(inflater.inflate(R.layout.player_season_item,parent,false));
+                return new SpielerSaisonViewholder(inflater.inflate(R.layout.player_season_item, parent, false));
 
-                default:
+            default:
                 throw new RuntimeException("Unsupported item-type: " + viewType);
 
 
@@ -81,7 +81,7 @@ public class ListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-       // Log.d(TAG, "getItemViewType: Checking position :" + position);
+        // Log.d(TAG, "getItemViewType: Checking position :" + position);
         return items.get(position).getType();
     }
 
@@ -114,11 +114,15 @@ public class ListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         items.clear();
         notifyItemRangeRemoved(0, count);
     }
+
     public ArrayList<ListItem> getItems() {
         return items;
     }
-//TODO Fragment
+/*
+    //TODO Fragment
     public void addFragment(Fragment fragment) {
         fragmentArrayList.add(fragment);
     }
+
+ */
 }

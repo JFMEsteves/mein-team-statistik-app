@@ -55,6 +55,14 @@ public class SpielercardItem implements ListItem, SpielerInterfaceListItem, Spie
     @Nullable
     @Override
     public JSONObject getResult() throws JSONException {
-       return null;
+        JSONObject kader = new JSONObject();
+        kader.put("spielerId", getSpielSpieler().getSpielerId())
+                .put("spielId", spielSpieler == null ? 0 : spielSpieler.getSpielId())
+                .put("punkte", getSpielSpieler().getPunkte())
+                .put("geworfeneFreiwuerfe", getSpielSpieler().getGeworfeneFreiwuerfe())
+                .put("getroffeneFreiwuerfe", getSpielSpieler().getGetroffeneFreiwuerfe())
+                .put("dreiPunkteTreffer", getSpielSpieler().getDreiPunkteTreffer())
+                .put("fouls", getSpielSpieler().getFouls());
+        return kader;
     }
 }

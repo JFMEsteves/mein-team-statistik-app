@@ -1,7 +1,5 @@
 package de.fhswf.statistics;
 
-import static android.content.ContentValues.TAG;
-
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
@@ -9,7 +7,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -26,6 +24,11 @@ import de.fhswf.statistics.model.Spiel;
 import de.fhswf.statistics.model.SpielSpieler;
 import de.fhswf.statistics.model.Spieler;
 
+/**
+ * Test-Service um das Frontend getrennt vom Backend entwickeln zu können. Implementiert Mock Klassen & Daten.
+ *
+ * @see de.fhswf.statistics.api.service.SpielerService
+ */
 public class MockService implements SpielerService {
     public static final int DELAY = 2000;
     private final Handler handler = new Handler(Looper.getMainLooper());
@@ -52,7 +55,9 @@ public class MockService implements SpielerService {
         return generateNegativeResponses;
     }
 
-
+    /**
+     * Testdaten die eine Antwort List<Spieler> vom call an das Backend simulieren
+     */
     private void fillExampleSpieler() {
         spielerList.add(new Spieler(1, "Marcel").addstats(new SpielSpieler(1, 1, 13, 5, 2, 6, 1)
         ).addstats(new SpielSpieler(1, 2, 9, 3, 3, 1, 4)
@@ -71,14 +76,14 @@ public class MockService implements SpielerService {
         spielerList.add(new Spieler(12, "Jonas").addstats(new SpielSpieler(12, 1, 14, 2, 2, 3, 1)));
     }
 
-    private void fillExampleSpiele(){
+    private void fillExampleSpiele() {
         DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
         try {
-            spielelist.add(new Spiel(1,df.parse("12-02-2010"),1,2,"Holzkeks"));
-            spielelist.add(new Spiel(2,df.parse("13-05-2013"),5,2,"Verlieren"));
-            spielelist.add(new Spiel(3,df.parse("14-10-2015"),4,2,"Siegen"));
-            spielelist.add(new Spiel(4,df.parse("27-11-2016"),2,2,"Steckenpferd"));
-            spielelist.add(new Spiel(5,df.parse("25-04-2017"),1,2,"Baumrolle"));
+            spielelist.add(new Spiel(1, df.parse("12-02-2010"), 1, 2, "Holzkeks"));
+            spielelist.add(new Spiel(2, df.parse("13-05-2013"), 5, 2, "Verlieren"));
+            spielelist.add(new Spiel(3, df.parse("14-10-2015"), 4, 2, "Siegen"));
+            spielelist.add(new Spiel(4, df.parse("27-11-2016"), 2, 2, "Steckenpferd"));
+            spielelist.add(new Spiel(5, df.parse("25-04-2017"), 1, 2, "Baumrolle"));
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -96,16 +101,16 @@ public class MockService implements SpielerService {
     }
 
     @Override
-    public void fetchSpielList(@Nullable OnSuccessListener<List<Spiel>> onSuccessListener, @Nullable OnFailureListener  onFailureListener){
+    public void fetchSpielList(@Nullable OnSuccessListener<List<Spiel>> onSuccessListener, @Nullable OnFailureListener onFailureListener) {
         if (isGenerateNegativeResponses()) {
             errorCall("FetchSpielList", onFailureListener);
         } else if (onSuccessListener != null) {
-            handler.postDelayed(() -> onSuccessListener.onSuccess(Collections.unmodifiableList(spielelist)),DELAY);
+            handler.postDelayed(() -> onSuccessListener.onSuccess(Collections.unmodifiableList(spielelist)), DELAY);
         }
     }
 
     @Override
-    public void submitSpiel( int id, @NonNull JSONArray responses, @Nullable OnSuccessListener<Void> onSuccessListener, @Nullable OnFailureListener onFailureListener) {
+    public void submitSpiel(@NonNull JSONObject content, @Nullable OnSuccessListener<Void> onSuccessListener, @Nullable OnFailureListener onFailureListener) {
         if (isGenerateNegativeResponses()) {
             errorCall("SubmitSpiel", onFailureListener);
         } else if (onSuccessListener != null) {

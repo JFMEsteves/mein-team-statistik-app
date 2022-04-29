@@ -1,7 +1,5 @@
 package de.fhswf.statistics.list.viewholder;
 
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -10,10 +8,11 @@ import androidx.annotation.NonNull;
 
 import de.fhswf.statistics.R;
 import de.fhswf.statistics.list.item.SpielercardItem;
+import de.fhswf.statistics.util.SimpleUpdateTextWatcher;
 
 public class SpielercardViewholder extends BaseViewHolder<SpielercardItem> {
     private final TextView name, decription;
-    private final EditText punkteInput, dreierInput, geworfeneFreiwuerfeInput, getroffeneFreiwuerfeInput, foulsInput;
+    private EditText punkteInput, dreierInput, geworfeneFreiwuerfeInput, getroffeneFreiwuerfeInput, foulsInput;
 
     public SpielercardViewholder(@NonNull View itemView) {
         super(itemView);
@@ -28,7 +27,6 @@ public class SpielercardViewholder extends BaseViewHolder<SpielercardItem> {
 
     @Override
     public void bind(SpielercardItem item) {
-        //TODO Testing
         initTextWatcher(item);
         item.getSpielSpieler().setSpielerId(item.getSpieler().getId());
         name.setText(item.getSpieler().getName());
@@ -36,98 +34,17 @@ public class SpielercardViewholder extends BaseViewHolder<SpielercardItem> {
 
     }
 
-    //TODO Unterschiedliche Textwatcher ?
     private void initTextWatcher(SpielercardItem item) {
-        TextWatcher textWatcherPunkte = new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override // Delimter ; um daten nachher zu trennen
-            public void afterTextChanged(Editable s) {
-                //  item.setUserInput(s.toString() + ";");
-                item.getSpielSpieler().setPunkte(Integer.parseInt(s.toString()));
-            }
-        };
-        TextWatcher textWatcherDreier = new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override // Delimter ; um daten nachher zu trennen
-            public void afterTextChanged(Editable s) {
-                //  item.setUserInput(s.toString() + ";");
-                item.getSpielSpieler().setDreiPunkteTreffer(Integer.parseInt(s.toString()));
-            }
-        };
-        TextWatcher textWatchergtFreiwuerfeInput = new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override // Delimter ; um daten nachher zu trennen
-            public void afterTextChanged(Editable s) {
-                //  item.setUserInput(s.toString() + ";");
-                item.getSpielSpieler().setGetroffeneFreiwuerfe(Integer.parseInt(s.toString()));
-            }
-        };
-        TextWatcher textWatchergwFreiwuerfeInputPunkte = new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override // Delimter ; um daten nachher zu trennen
-            public void afterTextChanged(Editable s) {
-                //  item.setUserInput(s.toString() + ";");
-                item.getSpielSpieler().setGeworfeneFreiwuerfe(Integer.parseInt(s.toString()));
-            }
-        };
-        TextWatcher textWatcherFouls = new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override // Delimter ; um daten nachher zu trennen
-            public void afterTextChanged(Editable s) {
-                //  item.setUserInput(s.toString() + ";");
-                item.getSpielSpieler().setFouls(Integer.parseInt(s.toString()));
-            }
-        };
-        punkteInput.addTextChangedListener(textWatcherPunkte);
-        dreierInput.addTextChangedListener(textWatcherDreier);
-        getroffeneFreiwuerfeInput.addTextChangedListener(textWatchergtFreiwuerfeInput);
-        geworfeneFreiwuerfeInput.addTextChangedListener(textWatchergwFreiwuerfeInputPunkte);
-        foulsInput.addTextChangedListener(textWatcherFouls);
+        punkteInput.addTextChangedListener(new SimpleUpdateTextWatcher(
+                t -> item.getSpielSpieler().setPunkte(Integer.parseInt(t))));
+        dreierInput.addTextChangedListener(new SimpleUpdateTextWatcher(
+                t -> item.getSpielSpieler().setDreiPunkteTreffer(Integer.parseInt(t))));
+        getroffeneFreiwuerfeInput.addTextChangedListener(new SimpleUpdateTextWatcher(
+                t -> item.getSpielSpieler().setGetroffeneFreiwuerfe(Integer.parseInt(t))));
+        geworfeneFreiwuerfeInput.addTextChangedListener(new SimpleUpdateTextWatcher(
+                t -> item.getSpielSpieler().setGeworfeneFreiwuerfe(Integer.parseInt(t))));
+        foulsInput.addTextChangedListener(new SimpleUpdateTextWatcher(
+                t -> item.getSpielSpieler().setFouls(Integer.parseInt(t))));
 
     }
 }

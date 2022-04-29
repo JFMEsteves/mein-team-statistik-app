@@ -18,7 +18,7 @@ public class StatParser implements ResponseParser<SpielSpieler> {
         try {
 
 
-            SpielSpieler stat = new SpielSpieler(data.optInt("spielerid"), data.optInt("spielid"));
+            SpielSpieler stat = new SpielSpieler(data.optInt("spielerId"), data.optInt("spielId"));
             stat.setPunkte(data.optInt("punkte"));
             stat.setGeworfeneFreiwuerfe(data.optInt("geworfeneFreiwuerfe"));
             stat.setGetroffeneFreiwuerfe(data.optInt("getroffeneFreiwuerfe"));

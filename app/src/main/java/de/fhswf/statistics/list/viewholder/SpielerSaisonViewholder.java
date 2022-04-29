@@ -7,11 +7,9 @@ import androidx.annotation.NonNull;
 
 import de.fhswf.statistics.R;
 import de.fhswf.statistics.list.item.SpielerSaisonListItem;
-import de.fhswf.statistics.list.item.SpielercardItem;
 import de.fhswf.statistics.util.StatCalculator;
 
 public class SpielerSaisonViewholder extends BaseViewHolder<SpielerSaisonListItem> {
-    private SpielercardItem currentSpieler;
     private final TextView attendGames, gesamtpunkte, punkteProSpiel, dreier, freiwurfquote, gwfreiwuerfe, gtfreiwuerfe, fouls;
 
     public SpielerSaisonViewholder(@NonNull View itemView) {
@@ -25,7 +23,6 @@ public class SpielerSaisonViewholder extends BaseViewHolder<SpielerSaisonListIte
         this.gtfreiwuerfe = itemView.findViewById(R.id.freethrows_made_season);
         this.fouls = itemView.findViewById(R.id.fouls_season);
     }
-    //TODO Erstellen
 
 
     @Override

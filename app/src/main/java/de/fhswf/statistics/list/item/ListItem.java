@@ -1,12 +1,8 @@
 package de.fhswf.statistics.list.item;
 
-import android.view.ViewGroup;
-
 /**
- * Interface für List-Items, welche durch den {@link de.fhswf}
+ * Interface für List-Items, welche durch den {@link de.fhswf.statistics.list.Adapter.ListAdapter}
  * verwaltet werden.
- *
- * @see de.fhswf
  */
 public interface ListItem {
 

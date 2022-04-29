@@ -12,6 +12,7 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.util.Locale;
 
+import de.fhswf.statistics.api.service.RemoteSpielerService;
 import de.fhswf.statistics.api.service.SpielerService;
 import de.fhswf.statistics.list.Adapter.SectionsPagerAdapter;
 import de.fhswf.statistics.list.Adapter.ListAdapter;
@@ -26,9 +27,8 @@ public class PlayerActivity extends AppCompatActivity {
     private int spielerID;
     private Spieler spieler;
     private SpielerService spielerService;
-    private SpielSpieler spielliste;
     private boolean busy;
-  private TabLayout tabLayout;
+    private TabLayout tabLayout;
 
 
     @Override
@@ -41,20 +41,23 @@ public class PlayerActivity extends AppCompatActivity {
         Intent mainActivityIntent = getIntent();
         spielerID = mainActivityIntent.getIntExtra(EXTRA_SPIELER_ID, -1);
 
-        Log.d("INTENT", "onCreate: Value of ID" + spielerID);
-        this.spielerService = new MockService(false);
+
+        //Init Service
+        //  this.spielerService = new MockService(false);
+        this.spielerService = new RemoteSpielerService(this);
         this.busy = false;
         fetchSpielerDetails();
 
 
-
     }
 
+    /**
+     * ViewPager vorbereiten
+     */
     private void preparePager() {
-        // ViewPager vorbereiten
         setTitle(spieler.getName());
         SectionsPagerAdapter sectionsPagerAdapter =
-                new SectionsPagerAdapter(this,getSupportFragmentManager(),spieler);
+                new SectionsPagerAdapter(this, getSupportFragmentManager(), spieler);
         ViewPager viewPager = findViewById(R.id.viewpager);
         viewPager.setAdapter(sectionsPagerAdapter);
 
@@ -77,6 +80,7 @@ public class PlayerActivity extends AppCompatActivity {
             );
         }
     }
+
     /**
      * Aufgerufen, wenn der SpielerService die Survey erfolgreich abgerufen hat.
      *
@@ -86,7 +90,6 @@ public class PlayerActivity extends AppCompatActivity {
         this.busy = false;
         this.spieler = result;
 
-        Log.d("SuccessofService", "handleSpielerResult: ..................");
         if (spieler.getStats() == null) {
             handleSpielerDetailsError(new RuntimeException("Spielerdaten konnten nicht gefunden werden!"));
             return;
@@ -94,8 +97,9 @@ public class PlayerActivity extends AppCompatActivity {
 
         preparePager();
     }
+
     /**
-     * Fehler-Behandlung für das Abrufen der Survey-Details.
+     * Fehler-Behandlung für das Abrufen der Spieler-Details.
      * <p>
      * Da ein Versagen hier bedeutet, dass die Activity nicht weiter genutzt werden kann, gibt
      * es hier lediglich die Möglichkeit, es erneut zu versuchen, oder die Activity zu beenden.
@@ -114,6 +118,7 @@ public class PlayerActivity extends AppCompatActivity {
                 .setCancelable(true).setOnCancelListener(di -> finish())
                 .show();
     }
+
     /**
      * Zeige einen Fehler-Dialog für allgemeine Fehler (insbesondere bei der Übermittlung
      * der Ergebnisse).

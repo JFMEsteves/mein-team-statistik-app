@@ -13,8 +13,10 @@ import de.fhswf.statistics.list.item.SpielSpielerListItem;
 public class SpielSpielerViewHolder extends BaseViewHolder<SpielSpielerListItem> {
 
     private SpielSpielerListItem currentSpiel;
-    private static final @ColorInt int BG_1 = Color.WHITE;
-    private static final @ColorInt int BG_2 = 0x22000000;
+    private static final @ColorInt
+    int BG_1 = Color.WHITE;
+    private static final @ColorInt
+    int BG_2 = 0x22000000;
     private final TextView spielid, punkte, madeFreethrows, shotFreethrows, freethrowPercantage, threePointmades, fouls;
 
     //TODO Testing

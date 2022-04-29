@@ -11,7 +11,6 @@ public class SpielerListItem implements ListItem, SpielerInterfaceListItem {
     private OnSpielerListener onSpielerListener;
 
 
-
     public SpielerListItem(Spieler spieler) {
         this.spieler = spieler;
     }

@@ -2,7 +2,6 @@ package de.fhswf.statistics.list.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import de.fhswf.statistics.R;
 import de.fhswf.statistics.list.Adapter.ListAdapter;
-import de.fhswf.statistics.list.item.EndcardItem;
 import de.fhswf.statistics.list.item.SpielerSaisonListItem;
 import de.fhswf.statistics.model.Spieler;
 
-//TODO Fragmente richtig fertigstellen
+
 public class SeasonFragment extends Fragment {
 
     private Spieler spieler;

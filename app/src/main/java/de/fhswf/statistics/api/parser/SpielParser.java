@@ -18,12 +18,10 @@ public class SpielParser implements ResponseParser<Spiel>{
     @Override
     public Spiel parse(@NotNull JSONObject data) throws ParsingException{
         try{
-        //TODO FIX DATE Is it fixed ?
         Spiel spiel = new Spiel(data.optInt("id"), DateConverter.StringtoDate(data.optString("datum")));
         spiel.setGastPunkte(data.optInt("gegenerPunkte"));
         spiel.setHeimPunkte(data.optInt("unserePunkte"));
 
-        //TODO DUPLICATED CODE auslagern
         JSONArray array = data.getJSONArray("stats");
 
         ArrayList<SpielSpieler> stats = new ArrayList<>();

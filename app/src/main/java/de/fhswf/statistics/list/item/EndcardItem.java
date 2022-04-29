@@ -33,7 +33,7 @@ public class EndcardItem implements ListItem {
 
 
     /**
-     * Interface Listener für Umfrage-Beenden-Button auf EndQuestion Item.
+     * Interface Listener für Spiel hinzufügen Button der EndCardItem.
      */
     public interface OnEndClickListener {
         void onEndButtonClick(@NonNull EndcardItem item);

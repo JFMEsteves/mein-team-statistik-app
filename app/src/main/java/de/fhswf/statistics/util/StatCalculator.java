@@ -1,25 +1,14 @@
 package de.fhswf.statistics.util;
 
-import static android.content.ContentValues.TAG;
-
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-
-import de.fhswf.statistics.list.item.SpielerListItem;
-import de.fhswf.statistics.list.viewholder.BaseViewHolder;
-import de.fhswf.statistics.model.SpielSpieler;
-import de.fhswf.statistics.model.Spieler;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
-import java.util.Objects;
+
+import de.fhswf.statistics.model.SpielSpieler;
+import de.fhswf.statistics.model.Spieler;
 
 
 public final class StatCalculator {
@@ -61,6 +50,7 @@ public final class StatCalculator {
 
         int punkte = gesamtpunkteCalc(spieler);
         int attendedGames = attendedGamesCalc(spieler);
+        if (punkte == 0 && attendedGames == 0) return 0;
         return punkte / attendedGames;
     }
 
@@ -81,10 +71,13 @@ public final class StatCalculator {
         double getroffen;
         geworfen = geworfeneFreiwuerfeCalc(spieler);
         getroffen = getroffeneFreiwuerfeCalc(spieler);
+        if (geworfen == 0) {
+            return 0 + "%";
+        }
         result = getroffen / geworfen * 100;
         double roundresult = Math.round(result * 10.0) / 10.0;
 
-        return String.valueOf(roundresult + "%");
+        return roundresult + "%";
     }
 
     public static int geworfeneFreiwuerfeCalc(@NonNull Spieler spieler) {
@@ -121,28 +114,9 @@ public final class StatCalculator {
     }
 
     public static String makeDateString(int dayOfMonth, int month, int year) {
-    //    return dayOfMonth + " " + getMonthFormat(month) + " " + year;
-      //  return dayOfMonth + "-" + getMonthFormat(month) + "-" + year;
         return dayOfMonth + "." + month + "." + year;
     }
 
-    public static String getMonthFormat(int month) {
-        if (month == 1) return "JAN";
-        if (month == 2) return "FEB";
-        if (month == 3) return "MÄR";
-        if (month == 4) return "APR";
-        if (month == 5) return "MAI";
-        if (month == 6) return "JUN";
-        if (month == 7) return "JUL";
-        if (month == 8) return "AUG";
-        if (month == 9) return "SEP";
-        if (month == 10) return "OKT";
-        if (month == 11) return "NOV";
-        if (month == 12) return "DEZ";
-
-        //default ---- shouldnt ever happen
-        return "JAN";
-    }
 
     public static String getTodaysDate() {
         Date currentdate = Calendar.getInstance().getTime();
@@ -156,8 +130,6 @@ public final class StatCalculator {
         for (Spieler c : list) {
             stringlist.concat(c.getId() + ";");
         }
-        Log.d(TAG, "getChosenString: " + stringlist);
-
         return stringlist;
 
     }

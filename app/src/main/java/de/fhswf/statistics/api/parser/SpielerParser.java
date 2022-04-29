@@ -1,8 +1,7 @@
 package de.fhswf.statistics.api.parser;
 
 
-import de.fhswf.statistics.model.SpielSpieler;
-import de.fhswf.statistics.model.Spieler;
+import android.util.Log;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
@@ -10,6 +9,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+
+import de.fhswf.statistics.model.SpielSpieler;
+import de.fhswf.statistics.model.Spieler;
 
 /**
  * Parser für eine einzelnen Spieler.
@@ -46,6 +48,7 @@ public class SpielerParser implements ResponseParser<Spieler> {
             }
         }
 
+        Log.d("SpielerParser-------------", "parse: " + spieler);
         return spieler;
     }
 }

@@ -2,7 +2,6 @@ package de.fhswf.statistics.list.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,20 +10,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-
 import de.fhswf.statistics.R;
 import de.fhswf.statistics.list.Adapter.ListAdapter;
-import de.fhswf.statistics.list.item.EndcardItem;
 import de.fhswf.statistics.list.item.SpielSpielerListItem;
-import de.fhswf.statistics.list.item.SpielerSaisonListItem;
 import de.fhswf.statistics.model.SpielSpieler;
 import de.fhswf.statistics.model.Spieler;
 
 public class GamesFragment extends Fragment {
     private Spieler spieler;
-    private ArrayList<SpielSpieler> spieleliste;
-    private SpielSpieler spielSpieler;
     private ListAdapter adapter;
 
     @Override
@@ -48,21 +41,6 @@ public class GamesFragment extends Fragment {
     }
 
     private void fetchSpieleListe() {
-/*
-        for(SpielSpieler c : spieler.getStats()){
-            spielSpieler.setSpielerId(c.getSpielerId());
-            spielSpieler.setSpielId(c.getSpielId());
-            spielSpieler.setPunkte(c.getPunkte());
-            spielSpieler.setGeworfeneFreiwuerfe(c.getGeworfeneFreiwuerfe());
-            spielSpieler.setGetroffeneFreiwuerfe(c.getGetroffeneFreiwuerfe());
-            spielSpieler.setDreiPunkteTreffer(c.getDreiPunkteTreffer());
-            spielSpieler.setFouls(c.getFouls());
-            adapter.add(new SpielSpielerListItem(spielSpieler));
-        }
-
-
- */
-
 
         if (spieler.getStats() != null) {
             for (SpielSpieler c : spieler.getStats()) {
