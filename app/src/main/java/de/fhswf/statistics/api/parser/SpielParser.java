@@ -4,14 +4,11 @@ import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 
 import de.fhswf.statistics.model.Spiel;
 import de.fhswf.statistics.model.SpielSpieler;
 import de.fhswf.statistics.util.DateConverter;
-
-
-import java.util.Date;
-import java.util.ArrayList;
 
 public class SpielParser implements ResponseParser<Spiel>{
     @NotNull
@@ -19,9 +16,9 @@ public class SpielParser implements ResponseParser<Spiel>{
     public Spiel parse(@NotNull JSONObject data) throws ParsingException{
         try{
         Spiel spiel = new Spiel(data.optInt("id"), DateConverter.StringtoDate(data.optString("datum")));
-        spiel.setGastPunkte(data.optInt("gegenerPunkte"));
+        spiel.setGastPunkte(data.optInt("gegnerPunkte"));
         spiel.setHeimPunkte(data.optInt("unserePunkte"));
-
+        spiel.setTeamname(data.optString("name"));
         JSONArray array = data.getJSONArray("stats");
 
         ArrayList<SpielSpieler> stats = new ArrayList<>();

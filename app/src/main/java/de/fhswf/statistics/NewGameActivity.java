@@ -127,7 +127,6 @@ public class NewGameActivity extends AppCompatActivity implements EndcardItem.On
         try {
             if (busy) return;
             this.busy = true;
-
             // Einzelne Spieler ("stats")
             JSONArray stats = new JSONArray();
 
@@ -135,10 +134,15 @@ public class NewGameActivity extends AppCompatActivity implements EndcardItem.On
                 if(c instanceof SpielerSubmitItem)
                     stats.put(((SpielerSubmitItem) c).getResult());
             }
+            for(ListItem c: adapter.getItems()){
+                if(c instanceof SpielercardItem){
+                    ((SpielercardItem) c).getSpielSpieler().setSpielId(id);
+                }
+            }
 
             // Spiel-Objekt
             JSONObject jSpiel = new JSONObject()
-                    //.put("id", spiel.getId())
+                    .put("id", id)
                     .put("name", spiel.getTeamname())
                     .put("datum", DateConverter.DateToString(spiel.getDatum()))
                     .put("gegnerPunkte", spiel.getGastPunkte())
@@ -155,8 +159,12 @@ public class NewGameActivity extends AppCompatActivity implements EndcardItem.On
     }
 
     public void getFreeSpielId(@NonNull List<Spiel> result) {
+        id= 1;
         for (Spiel c : result) {
-            if (c.getId() >= id) id = c.getId() + 1;
+            if (c.getId() >= id) {
+                id = c.getId();
+                id++;
+            }
         }
 
     }
