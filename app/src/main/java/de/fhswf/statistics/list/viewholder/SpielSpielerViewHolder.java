@@ -36,10 +36,14 @@ public class SpielSpielerViewHolder extends BaseViewHolder<SpielSpielerListItem>
         this.currentSpiel = item;
         spielid.setText(String.valueOf(item.getStats().getSpielId()));
         punkte.setText(String.valueOf(item.getStats().getPunkte()));
-        madeFreethrows.setText(String.valueOf(item.getStats().getGetroffeneFreiwuerfe()));
         shotFreethrows.setText(String.valueOf(item.getStats().getGeworfeneFreiwuerfe()));
-        String placeholder = item.getStats().getGetroffeneFreiwuerfe() / item.getStats().getGeworfeneFreiwuerfe() * 100 + "%";
-        freethrowPercantage.setText(placeholder);
+        madeFreethrows.setText(String.valueOf(item.getStats().getGetroffeneFreiwuerfe()));
+        if(item.getStats().getGeworfeneFreiwuerfe() != 0) {
+            String placeholder = item.getStats().getGetroffeneFreiwuerfe() / item.getStats().getGeworfeneFreiwuerfe() * 100 + "%";
+            freethrowPercantage.setText(placeholder);
+        } else {
+            freethrowPercantage.setText("0%");
+        }
         threePointmades.setText(String.valueOf(item.getStats().getDreiPunkteTreffer()));
         fouls.setText(String.valueOf(item.getStats().getFouls()));
 

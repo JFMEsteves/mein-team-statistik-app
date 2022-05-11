@@ -1,18 +1,13 @@
 package de.fhswf.statistics;
 
+import android.content.Intent;
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.DatePickerDialog;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.Button;
-import android.widget.PopupWindow;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -25,13 +20,13 @@ import de.fhswf.statistics.dialog.SpielerAuswahlDialog;
 import de.fhswf.statistics.list.Adapter.ListAdapter;
 import de.fhswf.statistics.list.item.SpielerListItem;
 import de.fhswf.statistics.model.Spieler;
-import de.fhswf.statistics.util.StatCalculator;
 
 public class MainActivity extends AppCompatActivity implements SpielerListItem.OnSpielerListener {
 
     private ListAdapter adapter;
     private SpielerService SpielerService;
     private boolean busy;
+
     private ArrayList<Spieler> playerList;
 
     @Override
@@ -65,10 +60,17 @@ public class MainActivity extends AppCompatActivity implements SpielerListItem.O
 
         // Daten von Service laden
         this.busy = false;
+
         refreshContent();
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        playerList = new ArrayList<>();
+        refreshContent();
+    }
 
     private void refreshContent() {
         if (!busy) {
@@ -93,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements SpielerListItem.O
 
         for (Spieler c : result) {
             playerList.add(c);
+
             adapter.add(new SpielerListItem(c).setOnSpielerListener(this));
         }
     }

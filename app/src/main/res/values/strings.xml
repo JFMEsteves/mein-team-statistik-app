@@ -26,5 +26,6 @@
     <string name="gegner">Opponent</string>
     <string name="Gegner_hint">Schreibe den Ort.</string>
     <string name="gamecount">Spielanzahl</string>
-    <string name="ende">endcard_text</string>
+    <string name="ende">Finished ! You can now upload the Data via the Basketball icon.</string>
+    <string name="send_description">Press to send Data to Server</string>
 </resources>

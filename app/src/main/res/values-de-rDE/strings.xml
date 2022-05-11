@@ -28,4 +28,5 @@
     <string name="gamecount">Spielanzahl</string>
     <string name="dialog_message_error">Der folgende Error entstand während des Sammelns oder Auswerten von Daten:  %s</string>
     <string name="ende">Ende, Drücke den Basketball um Daten zu Senden !</string>
+    <string name="send_description">Drücke auf den Ball um Das Spiel hochzuladen</string>
 </resources>

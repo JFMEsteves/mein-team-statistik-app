@@ -49,17 +49,6 @@
                     android:textSize="@dimen/header_textsize"
                     android:textStyle="bold" />
 
-                <TextView
-
-                    android:id="@+id/freethrows_made"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@string/getroffene_freiwuerfe"
-                    android:textSize="@dimen/header_textsize"
-                    android:textStyle="bold"
-                    tools:text="getroffene Freiwürfe" />
 
                 <TextView
 
@@ -72,6 +61,17 @@
                     android:textSize="@dimen/header_textsize"
                     android:textStyle="bold"
                     tools:text="geworfene Freiwürfe" />
+                <TextView
+
+                    android:id="@+id/freethrows_made"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/getroffene_freiwuerfe"
+                    android:textSize="@dimen/header_textsize"
+                    android:textStyle="bold"
+                    tools:text="getroffene Freiwürfe" />
 
                 <TextView
                     android:id="@+id/HeaderFreethrows"
