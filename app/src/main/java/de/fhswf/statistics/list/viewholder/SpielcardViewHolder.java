@@ -3,8 +3,6 @@ package de.fhswf.statistics.list.viewholder;
 import static de.fhswf.statistics.util.StatCalculator.makeDateString;
 
 import android.app.DatePickerDialog;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,7 +18,10 @@ import de.fhswf.statistics.util.DateConverter;
 import de.fhswf.statistics.util.SimpleUpdateTextWatcher;
 import de.fhswf.statistics.util.StatCalculator;
 
-public class SpielcardViewholder extends BaseViewHolder<SpielcardItem> {
+/**
+ * Viewholder von @link {@link SpielcardItem}
+ */
+public class SpielcardViewHolder extends BaseViewHolder<SpielcardItem> {
 
     @NonNull
     private DatePickerDialog datePickerDialog;
@@ -29,7 +30,7 @@ public class SpielcardViewholder extends BaseViewHolder<SpielcardItem> {
     @NonNull
     private final EditText nameInput, myteamInput, enemyteamInput;
 
-    public SpielcardViewholder(@NonNull View itemView) {
+    public SpielcardViewHolder(@NonNull View itemView) {
         super(itemView);
         this.dateButton = itemView.findViewById(R.id.date_button);
         this.nameInput = itemView.findViewById(R.id.name_input);
@@ -48,26 +49,14 @@ public class SpielcardViewholder extends BaseViewHolder<SpielcardItem> {
 
     }
 
-
+    /**
+     * initialisiert die nötigen TextWatcher und füllt das item bei Eingaben über diesen
+     *
+     * @param item
+     */
     private void initTextWatcher(SpielcardItem item) {
-        TextWatcher textWatcherName = new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                item.getSpiel().setTeamname(s.toString());
-            }
-        };
-
-        /**
+        /*
          * Die Folgenden ifs sind zur "Wiederherstellung" der Nutzereingaben. Da eine Recyclerview nicht
          * alle children gleichzeitig persistiert müssen daten zugewiesen werden wenn sie erneut persistiert
          * werden nachdem man dort schon etwas eingegeben hat.

@@ -122,6 +122,11 @@ public class NewGameActivity extends AppCompatActivity implements EndcardItem.On
         adapter.add(new EndcardItem().setOnEndListener(this));
     }
 
+    /**
+     * Erzeugt ein JSON Objekt, füllt es mit den Nutzereingaben und sendet es zum Backend
+     *
+     * @param item
+     */
     @Override
     public void onEndButtonClick(@NonNull EndcardItem item) {
         try {
@@ -130,12 +135,12 @@ public class NewGameActivity extends AppCompatActivity implements EndcardItem.On
             // Einzelne Spieler ("stats")
             JSONArray stats = new JSONArray();
 
-            for(ListItem c : adapter.getItems()) {
-                if(c instanceof SpielerSubmitItem)
+            for (ListItem c : adapter.getItems()) {
+                if (c instanceof SpielerSubmitItem)
                     stats.put(((SpielerSubmitItem) c).getResult());
             }
-            for(ListItem c: adapter.getItems()){
-                if(c instanceof SpielercardItem){
+            for (ListItem c : adapter.getItems()) {
+                if (c instanceof SpielercardItem) {
                     ((SpielercardItem) c).getSpielSpieler().setSpielId(id);
                 }
             }
@@ -159,7 +164,7 @@ public class NewGameActivity extends AppCompatActivity implements EndcardItem.On
     }
 
     public void getFreeSpielId(@NonNull List<Spiel> result) {
-        id= 1;
+        id = 1;
         for (Spiel c : result) {
             if (c.getId() >= id) {
                 id = c.getId();
@@ -169,6 +174,9 @@ public class NewGameActivity extends AppCompatActivity implements EndcardItem.On
 
     }
 
+    /**
+     * Wird nach erfolgreichem Senden zum Backend ausgeführt um die Ansicht zu schließen
+     */
     public void backToMain() {
         this.busy = false;
         finish();

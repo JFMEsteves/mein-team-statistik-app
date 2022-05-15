@@ -10,11 +10,14 @@ import de.fhswf.statistics.R;
 import de.fhswf.statistics.list.item.SpielercardItem;
 import de.fhswf.statistics.util.SimpleUpdateTextWatcher;
 
-public class SpielercardViewholder extends BaseViewHolder<SpielercardItem> {
+/**
+ * Viewholder von @link {@link SpielercardItem}
+ */
+public class SpielercardViewHolder extends BaseViewHolder<SpielercardItem> {
     private final TextView name, decription;
     private EditText punkteInput, dreierInput, geworfeneFreiwuerfeInput, getroffeneFreiwuerfeInput, foulsInput;
 
-    public SpielercardViewholder(@NonNull View itemView) {
+    public SpielercardViewHolder(@NonNull View itemView) {
         super(itemView);
         this.name = itemView.findViewById(R.id.player_name);
         this.decription = itemView.findViewById(R.id.description);
@@ -34,6 +37,11 @@ public class SpielercardViewholder extends BaseViewHolder<SpielercardItem> {
 
     }
 
+    /**
+     * initialisiert die nötigen TextWatcher und füllt das item bei Eingaben über diesen
+     *
+     * @param item
+     */
     private void initTextWatcher(SpielercardItem item) {
         punkteInput.addTextChangedListener(new SimpleUpdateTextWatcher(
                 t -> item.getSpielSpieler().setPunkte(Integer.parseInt(t))));

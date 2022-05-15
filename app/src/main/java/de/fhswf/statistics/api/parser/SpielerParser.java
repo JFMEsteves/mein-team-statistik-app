@@ -1,8 +1,6 @@
 package de.fhswf.statistics.api.parser;
 
 
-import android.util.Log;
-
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,9 +26,8 @@ public class SpielerParser implements ResponseParser<Spieler> {
                 data.optString("name", ""));
 
 
-
         // Stats sind optional
-        if(data.has("stats")) {
+        if (data.has("stats")) {
             try {
                 JSONArray array = data.getJSONArray("stats");
 
@@ -48,7 +45,6 @@ public class SpielerParser implements ResponseParser<Spieler> {
             }
         }
 
-        Log.d("SpielerParser-------------", "parse: " + spieler);
         return spieler;
     }
 }

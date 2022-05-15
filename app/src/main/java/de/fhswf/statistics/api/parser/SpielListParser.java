@@ -11,18 +11,23 @@ import java.util.List;
 
 import de.fhswf.statistics.model.Spiel;
 
+/**
+ * Implementierung des ResponseParser Interfaces für Listen von Spiel-Objekten
+ *
+ * @see ResponseParser
+ */
 public class SpielListParser implements ResponseParser<List<Spiel>> {
 
     @NonNull
     @Override
     public List<Spiel> parse(@NonNull JSONObject data) throws ParsingException {
-        try{
+        try {
             JSONArray array = data.getJSONArray("spiel");
 
             ArrayList<Spiel> kader = new ArrayList<>();
             SpielParser parser = new SpielParser();
 
-            for(int i = 0; i < array.length(); i++){
+            for (int i = 0; i < array.length(); i++) {
                 kader.add(parser.parse(array.getJSONObject(i)));
             }
             return kader;

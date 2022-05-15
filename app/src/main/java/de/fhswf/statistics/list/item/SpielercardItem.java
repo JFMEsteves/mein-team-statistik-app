@@ -9,14 +9,20 @@ import org.json.JSONObject;
 import de.fhswf.statistics.model.SpielSpieler;
 import de.fhswf.statistics.model.Spieler;
 
-public class SpielercardItem implements ListItem, SpielerInterfaceListItem, SpielerSubmitItem {
+/**
+ * Klasse für die Spielerkarte
+ * Viewholder:
+ *
+ * @see de.fhswf.statistics.list.viewholder.SpielercardViewHolder
+ */
+public class SpielercardItem implements SpielerInterfaceListItem, SpielerSubmitItem {
     public static final int TYPE = 4;
 
     @Nullable
     private final Spieler spieler;
     @Nullable
     private SpielSpieler spielSpieler;
-    private String userInput;
+
 
     public SpielercardItem(@NonNull Spieler spieler) {
         this.spieler = spieler;
@@ -27,12 +33,6 @@ public class SpielercardItem implements ListItem, SpielerInterfaceListItem, Spie
         this.spielSpieler = spielSpieler;
     }
 
-    public String getUserInput() {
-        return userInput;
-    }
-    public void setUserInput(String userInput) {
-        this.userInput = userInput;
-    }
     @Override
     public Spieler getSpieler() {
         return spieler;

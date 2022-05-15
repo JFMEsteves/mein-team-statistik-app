@@ -2,6 +2,9 @@ package de.fhswf.statistics.model;
 
 import java.util.Objects;
 
+/**
+ * Datenmodell SpielSpieler-Objekt
+ */
 public class SpielSpieler {
 
     private int SpielerId;

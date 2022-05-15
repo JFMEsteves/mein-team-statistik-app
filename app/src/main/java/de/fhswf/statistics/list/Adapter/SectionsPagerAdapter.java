@@ -1,7 +1,6 @@
 package de.fhswf.statistics.list.Adapter;
 
 import android.content.Context;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,8 +16,7 @@ import de.fhswf.statistics.model.Spieler;
 
 
 /**
- * A [FragmentPagerAdapter] that returns a fragment corresponding to
- * one of the sections/tabs/pages.
+ * Ein [FragmentPagerAdapter]  der ein fragment returned zusammenhängend mit einen der sections/tabs/pages.
  */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
@@ -41,9 +39,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         this.seasonFragment = new SeasonFragment();
         seasonFragment.setSpieler(spieler);
-        String TAG = "BLABLA";
-        Log.d(TAG, "SectionsPagerAdapter: Spieler gesetzt für SeasonFragment");
-
         this.gamesFragment = new GamesFragment();
         gamesFragment.setSpieler(spieler);
     }
@@ -60,7 +55,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             case 1:
                 return gamesFragment;
         }
-        //TODO -.--
         throw new RuntimeException();
     }
 

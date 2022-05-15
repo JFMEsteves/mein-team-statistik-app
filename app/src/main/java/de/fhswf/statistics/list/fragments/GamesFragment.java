@@ -16,6 +16,9 @@ import de.fhswf.statistics.list.item.SpielSpielerListItem;
 import de.fhswf.statistics.model.SpielSpieler;
 import de.fhswf.statistics.model.Spieler;
 
+/**
+ * Zuständig für die Spieleübersicht
+ */
 public class GamesFragment extends Fragment {
     private Spieler spieler;
     private ListAdapter adapter;

@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 
 /**
  * Einfaches Interface, das für negative Service-Callbacks genutzt wird.
- * <p>
+ *
  * (Es sollte immer sichergestellt werden, dass der Aufruf der {@link this#onFailure(Throwable)}
  * Methode immer im Main-Thread stattfindet.)
  */

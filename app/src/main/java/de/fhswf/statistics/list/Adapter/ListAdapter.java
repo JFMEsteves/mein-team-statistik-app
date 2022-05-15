@@ -18,12 +18,12 @@ import de.fhswf.statistics.list.item.SpielerListItem;
 import de.fhswf.statistics.list.item.SpielerSaisonListItem;
 import de.fhswf.statistics.list.item.SpielercardItem;
 import de.fhswf.statistics.list.viewholder.BaseViewHolder;
-import de.fhswf.statistics.list.viewholder.EndcardViewholder;
+import de.fhswf.statistics.list.viewholder.EndcardViewHolder;
 import de.fhswf.statistics.list.viewholder.SpielSpielerViewHolder;
-import de.fhswf.statistics.list.viewholder.SpielcardViewholder;
+import de.fhswf.statistics.list.viewholder.SpielcardViewHolder;
 import de.fhswf.statistics.list.viewholder.SpielerListViewHolder;
-import de.fhswf.statistics.list.viewholder.SpielerSaisonViewholder;
-import de.fhswf.statistics.list.viewholder.SpielercardViewholder;
+import de.fhswf.statistics.list.viewholder.SpielerSaisonViewHolder;
+import de.fhswf.statistics.list.viewholder.SpielercardViewHolder;
 
 public class ListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
@@ -51,17 +51,17 @@ public class ListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
             //4
             case SpielercardItem.TYPE:
-                return new SpielercardViewholder(
+                return new SpielercardViewHolder(
                         inflater.inflate(R.layout.player_item, parent, false));
 
             //10
             case EndcardItem.TYPE:
-                return new EndcardViewholder(
+                return new EndcardViewHolder(
                         inflater.inflate(R.layout.player_end_item, parent, false));
 
             //2
             case SpielcardItem.TYPE:
-                return new SpielcardViewholder(
+                return new SpielcardViewHolder(
                         inflater.inflate(R.layout.game_item, parent, false));
 
             //3
@@ -70,7 +70,7 @@ public class ListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                         inflater.inflate(R.layout.player_games_item, parent, false));
             //8
             case SpielerSaisonListItem.TYPE:
-                return new SpielerSaisonViewholder(inflater.inflate(R.layout.player_season_item, parent, false));
+                return new SpielerSaisonViewHolder(inflater.inflate(R.layout.player_season_item, parent, false));
 
             default:
                 throw new RuntimeException("Unsupported item-type: " + viewType);
@@ -118,11 +118,4 @@ public class ListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     public ArrayList<ListItem> getItems() {
         return items;
     }
-/*
-    //TODO Fragment
-    public void addFragment(Fragment fragment) {
-        fragmentArrayList.add(fragment);
-    }
-
- */
 }

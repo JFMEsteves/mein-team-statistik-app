@@ -65,6 +65,9 @@ public class MainActivity extends AppCompatActivity implements SpielerListItem.O
 
     }
 
+    /**
+     * Wenn Nutzer zurück zur MainActivity geht werden die Daten aktualisiert
+     */
     @Override
     protected void onResume() {
         super.onResume();

@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Datenmodell Spieler-Objekt
+ */
 public class Spieler {
 
     private int id;
@@ -64,6 +67,7 @@ public class Spieler {
         return this;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Spieler{" +

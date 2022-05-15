@@ -9,7 +9,7 @@ import de.fhswf.statistics.list.item.ListItem;
 
 /**
  * Grundlegende {@link RecyclerView.ViewHolder}-Implementierung
- * für den {@link de.fhswf}.
+ * für den {@link de.fhswf.statistics.list.Adapter.ListAdapter}.
  * <p>
  * Der ViewHolder ist typisiert für alle {@link ListItem}.
  * <p>

@@ -15,7 +15,9 @@ import de.fhswf.statistics.list.Adapter.ListAdapter;
 import de.fhswf.statistics.list.item.SpielerSaisonListItem;
 import de.fhswf.statistics.model.Spieler;
 
-
+/**
+ * Zuständig für die Gesamtstatübersicht
+ */
 public class SeasonFragment extends Fragment {
 
     private Spieler spieler;

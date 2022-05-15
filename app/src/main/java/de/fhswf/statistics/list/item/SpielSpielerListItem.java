@@ -2,6 +2,11 @@ package de.fhswf.statistics.list.item;
 
 import de.fhswf.statistics.model.SpielSpieler;
 
+/**
+ * Viewholder:
+ *
+ * @see de.fhswf.statistics.list.viewholder.SpielSpielerViewHolder
+ */
 public class SpielSpielerListItem implements ListItem {
     public static final int TYPE = 3;
 

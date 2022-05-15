@@ -2,7 +2,6 @@ package de.fhswf.statistics;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,10 +14,6 @@ import java.util.Locale;
 import de.fhswf.statistics.api.service.RemoteSpielerService;
 import de.fhswf.statistics.api.service.SpielerService;
 import de.fhswf.statistics.list.Adapter.SectionsPagerAdapter;
-import de.fhswf.statistics.list.Adapter.ListAdapter;
-import de.fhswf.statistics.list.item.ListItem;
-import de.fhswf.statistics.list.item.SpielSpielerListItem;
-import de.fhswf.statistics.model.SpielSpieler;
 import de.fhswf.statistics.model.Spieler;
 
 public class PlayerActivity extends AppCompatActivity {
@@ -119,20 +114,4 @@ public class PlayerActivity extends AppCompatActivity {
                 .show();
     }
 
-    /**
-     * Zeige einen Fehler-Dialog für allgemeine Fehler (insbesondere bei der Übermittlung
-     * der Ergebnisse).
-     *
-     * @param e Details.
-     */
-    private void handleCommonError(Throwable e) {
-        this.busy = false;
-
-        new AlertDialog.Builder(this, R.style.ErrorDialogTheme)
-                .setTitle(R.string.dialog_title_error)
-                .setMessage(String.format(Locale.getDefault(),
-                        getString(R.string.dialog_message_error), e.getMessage()))
-                .setPositiveButton(R.string.ok, null)
-                .show();
-    }
 }

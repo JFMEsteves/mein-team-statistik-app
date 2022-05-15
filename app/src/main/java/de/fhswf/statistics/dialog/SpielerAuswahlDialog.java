@@ -15,11 +15,19 @@ import de.fhswf.statistics.NewGameActivity;
 import de.fhswf.statistics.model.Spieler;
 
 public class SpielerAuswahlDialog {
-    private final @NonNull Context context;
-    private final @NonNull List<Spieler> spielerList;
+    private final @NonNull
+    Context context;
+    private final @NonNull
+    List<Spieler> spielerList;
     private final AlertDialog dialog;
     private final Map<Integer, Boolean> auswahl = new HashMap<>();
 
+    /**
+     * Dialog Fenster um eine Liste von auswählbaren Spielern darzustellen um es dem Nutzer zu ermöglichen Teilnehmer eines Spieles gezielt auszuwählen.
+     *
+     * @param context
+     * @param spielerList Liste von aller Spieler die existieren.
+     */
     public SpielerAuswahlDialog(@NonNull Context context, @NonNull List<Spieler> spielerList) {
         this.context = context;
         this.spielerList = spielerList;
@@ -47,13 +55,10 @@ public class SpielerAuswahlDialog {
         dialog.show();
     }
 
-    /**
-     * TODO
-     */
     private void handleClick() {
         ArrayList<Integer> spielerIds = new ArrayList<>();
         auswahl.forEach((k, v) -> {
-            if(v) spielerIds.add(spielerList.get(k).getId());
+            if (v) spielerIds.add(spielerList.get(k).getId());
         });
 
         Intent launchIntent = new Intent(context, NewGameActivity.class);

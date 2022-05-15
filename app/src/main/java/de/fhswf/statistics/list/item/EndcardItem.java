@@ -3,6 +3,12 @@ package de.fhswf.statistics.list.item;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+/**
+ * Endkarte der NewGameActivity
+ * Viewholder:
+ *
+ * @see de.fhswf.statistics.list.viewholder.EndcardViewHolder
+ */
 public class EndcardItem implements ListItem {
     public static final int TYPE = 10;
 

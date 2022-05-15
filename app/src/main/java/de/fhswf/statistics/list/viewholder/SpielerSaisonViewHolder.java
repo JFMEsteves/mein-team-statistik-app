@@ -9,10 +9,13 @@ import de.fhswf.statistics.R;
 import de.fhswf.statistics.list.item.SpielerSaisonListItem;
 import de.fhswf.statistics.util.StatCalculator;
 
-public class SpielerSaisonViewholder extends BaseViewHolder<SpielerSaisonListItem> {
+/**
+ * Viewholder von @link {@link SpielerSaisonListItem}
+ */
+public class SpielerSaisonViewHolder extends BaseViewHolder<SpielerSaisonListItem> {
     private final TextView attendGames, gesamtpunkte, punkteProSpiel, dreier, freiwurfquote, gwfreiwuerfe, gtfreiwuerfe, fouls;
 
-    public SpielerSaisonViewholder(@NonNull View itemView) {
+    public SpielerSaisonViewHolder(@NonNull View itemView) {
         super(itemView);
         this.attendGames = itemView.findViewById(R.id.attended_Games);
         this.gesamtpunkte = itemView.findViewById(R.id.all_points_season);

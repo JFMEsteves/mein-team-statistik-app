@@ -8,12 +8,15 @@ import androidx.annotation.NonNull;
 import de.fhswf.statistics.R;
 import de.fhswf.statistics.list.item.EndcardItem;
 
-public class EndcardViewholder extends BaseViewHolder<EndcardItem> {
+/**
+ * Viewholder von @link {@link EndcardItem}
+ */
+public class EndcardViewHolder extends BaseViewHolder<EndcardItem> {
 
     @NonNull
     private final ImageButton submit;
 
-    public EndcardViewholder(@NonNull View itemView) {
+    public EndcardViewHolder(@NonNull View itemView) {
         super(itemView);
         this.submit = itemView.findViewById(R.id.submit);
     }

@@ -11,6 +11,9 @@ import de.fhswf.statistics.R;
 import de.fhswf.statistics.list.item.SpielerListItem;
 import de.fhswf.statistics.util.StatCalculator;
 
+/**
+ * Viewholder von @link {@link SpielerListItem}
+ */
 public class SpielerListViewHolder extends BaseViewHolder<SpielerListItem>
         implements View.OnClickListener {
 

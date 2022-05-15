@@ -10,6 +10,9 @@ import androidx.annotation.NonNull;
 import de.fhswf.statistics.R;
 import de.fhswf.statistics.list.item.SpielSpielerListItem;
 
+/**
+ * Viewholder von @link {@link SpielSpielerListItem}
+ */
 public class SpielSpielerViewHolder extends BaseViewHolder<SpielSpielerListItem> {
 
     private SpielSpielerListItem currentSpiel;
@@ -38,7 +41,7 @@ public class SpielSpielerViewHolder extends BaseViewHolder<SpielSpielerListItem>
         punkte.setText(String.valueOf(item.getStats().getPunkte()));
         shotFreethrows.setText(String.valueOf(item.getStats().getGeworfeneFreiwuerfe()));
         madeFreethrows.setText(String.valueOf(item.getStats().getGetroffeneFreiwuerfe()));
-        if(item.getStats().getGeworfeneFreiwuerfe() != 0) {
+        if (item.getStats().getGeworfeneFreiwuerfe() != 0) {
             String placeholder = item.getStats().getGetroffeneFreiwuerfe() / item.getStats().getGeworfeneFreiwuerfe() * 100 + "%";
             freethrowPercantage.setText(placeholder);
         } else {

@@ -4,6 +4,11 @@ import androidx.annotation.NonNull;
 
 import de.fhswf.statistics.model.Spieler;
 
+/**
+ * Viewholder:
+ *
+ * @see de.fhswf.statistics.list.viewholder.SpielerListViewHolder
+ */
 public class SpielerListItem implements ListItem, SpielerInterfaceListItem {
     public static final int TYPE = 1;
 

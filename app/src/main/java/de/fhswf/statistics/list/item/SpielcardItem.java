@@ -5,6 +5,12 @@ import androidx.annotation.Nullable;
 
 import de.fhswf.statistics.model.Spiel;
 
+/**
+ * Klasse für die Spielkarte
+ * Viewholder:
+ *
+ * @see de.fhswf.statistics.list.viewholder.SpielcardViewHolder
+ */
 public class SpielcardItem implements ListItem {
     public static final int TYPE = 2;
 

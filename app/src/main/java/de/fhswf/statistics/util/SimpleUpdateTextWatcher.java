@@ -5,9 +5,13 @@ import android.text.TextWatcher;
 
 import androidx.annotation.NonNull;
 
+/**
+ * Auslagerung zur Reduzierung von redundantem Code
+ */
 public class SimpleUpdateTextWatcher implements TextWatcher {
 
-    private final @NonNull OnTextUpdateListener onTextUpdateListener;
+    private final @NonNull
+    OnTextUpdateListener onTextUpdateListener;
 
     public SimpleUpdateTextWatcher(@NonNull OnTextUpdateListener onTextUpdateListener) {
         this.onTextUpdateListener = onTextUpdateListener;

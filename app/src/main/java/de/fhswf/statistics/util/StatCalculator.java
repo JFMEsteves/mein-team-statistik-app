@@ -10,7 +10,9 @@ import java.util.Date;
 import de.fhswf.statistics.model.SpielSpieler;
 import de.fhswf.statistics.model.Spieler;
 
-
+/**
+ * Enthält alle mathematischen Formeln zur Auswertung der Werte
+ */
 public final class StatCalculator {
 
     private StatCalculator() {

@@ -2,7 +2,6 @@ package de.fhswf.statistics;
 
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -137,8 +136,6 @@ public class MockService implements SpielerService {
                     onFailureListener.onFailure(new RuntimeException("Spieler not found! (mock)"));
             }, DELAY);
         }
-        if (onSuccessListener == null)
-            Log.d("FAILURE", "Listener Null for some reason ------------------------ ");
     }
 
     private void errorCall(String source, @Nullable OnFailureListener onFailureListener) {
