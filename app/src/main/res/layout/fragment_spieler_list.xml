@@ -5,7 +5,8 @@
     android:id="@+id/constraint_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".list.fragments.SpielerListFragment"
+    >
 
 
     <HorizontalScrollView
@@ -78,7 +79,7 @@
                 android:id="@+id/container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:listitem="@layout/item_list_layout" />
+                tools:listitem="@layout/item_spieler_list_layout" />
 
         </LinearLayout>
     </HorizontalScrollView>
@@ -92,7 +93,7 @@
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/horizontalView"
-        app:srcCompat="@drawable/ic_addgame" />
-
+        app:srcCompat="@drawable/ic_addgame"
+        android:contentDescription="Add Game Button"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

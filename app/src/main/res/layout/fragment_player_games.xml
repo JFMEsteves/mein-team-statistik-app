@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context=".PlayerActivity">
+    tools:context=".MainActivity">
 
 
     <HorizontalScrollView
@@ -115,7 +115,7 @@
                 android:id="@+id/container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:listitem="@layout/player_games_item" />
+                tools:listitem="@layout/item_spieler_spieleliste" />
 
         </LinearLayout>
     </HorizontalScrollView>

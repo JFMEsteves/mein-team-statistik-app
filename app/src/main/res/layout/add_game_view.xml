@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="parent"
-        tools:listitem="@layout/player_item"
+        tools:listitem="@layout/item_addgame_spieler"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

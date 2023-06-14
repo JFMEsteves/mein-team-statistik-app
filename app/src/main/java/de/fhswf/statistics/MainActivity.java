@@ -1,142 +1,51 @@
 package de.fhswf.statistics;
 
-import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 
-import java.util.ArrayList;
-import java.util.List;
+public class MainActivity extends AppCompatActivity {
 
-import de.fhswf.statistics.api.service.RemoteSpielerService;
-import de.fhswf.statistics.api.service.SpielerService;
-import de.fhswf.statistics.dialog.SpielerAuswahlDialog;
-import de.fhswf.statistics.list.Adapter.ListAdapter;
-import de.fhswf.statistics.list.item.SpielerListItem;
-import de.fhswf.statistics.model.Spieler;
-
-public class MainActivity extends AppCompatActivity implements SpielerListItem.OnSpielerListener {
-
-    private ListAdapter adapter;
-    private SpielerService SpielerService;
-    private boolean busy;
-
-    private ArrayList<Spieler> playerList;
+    private AppBarConfiguration mAppBarConfiguration;
+    private NavController navController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_activity_drawer);
 
-        playerList = new ArrayList<>();
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
 
+        mAppBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.nav_home, R.id.nav_games)
+                .setOpenableLayout(drawer)
+                .build();
 
-        RecyclerView container = findViewById(R.id.container);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(
-                this, LinearLayoutManager.VERTICAL, false);
-        container.setLayoutManager(layoutManager);
-
-        //Set Adapter for Recyclerview
-        adapter = new ListAdapter();
-        container.setAdapter(adapter);
-
-
-        //Neues Spiel hinzufügen Button mit AuswahlDialog
-        FloatingActionButton addGame = findViewById(R.id.addGameBtn);
-        addGame.setOnClickListener(v -> {
-            new SpielerAuswahlDialog(this, playerList);
-        });
-
-        // init Service
-        //this.SpielService = new MockService(false);
-        this.SpielerService = new RemoteSpielerService(this);
-
-
-        // Daten von Service laden
-        this.busy = false;
-
-        refreshContent();
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+        NavigationUI.setupWithNavController(navigationView, navController);
 
     }
 
-    /**
-     * Wenn Nutzer zurück zur MainActivity geht werden die Daten aktualisiert
-     */
     @Override
-    protected void onResume() {
-        super.onResume();
-        playerList = new ArrayList<>();
-        refreshContent();
-    }
+    public boolean onSupportNavigateUp() {
 
-    private void refreshContent() {
-        if (!busy) {
-            this.busy = true;
-            SpielerService.fetchSpielerList(
-                    this::addSpielerToList,
-                    this::showErrorDialog
-            );
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                || super.onSupportNavigateUp();
 
-        }
-    }
 
-    /**
-     * Kapselt die erhaltenen Spieler und fügt sie dem Adapter
-     * hinzu.
-     *
-     * @param result Ergebnis des Services.
-     */
-    private void addSpielerToList(List<Spieler> result) {
-        this.busy = false;
-        adapter.clear();
+        // navController.navigateUp();
+        //  NavigationUI.navigateUp(navController,mAppBarConfiguration);
+        //   return super.onSupportNavigateUp();
 
-        for (Spieler c : result) {
-            playerList.add(c);
-
-            adapter.add(new SpielerListItem(c).setOnSpielerListener(this));
-        }
-    }
-
-    /**
-     * Reagiert auf den Click auf 1 SpielerListItem indem ein Intent die Acitvity PlayerActivity startet
-     *
-     * @param item clicked item
-     * @see PlayerActivity
-     */
-    @Override
-    public void onSpielerClick(@NonNull SpielerListItem item) {
-        //Intent zu Player Activity, TO BE BUILT
-        Intent intent = new Intent(this, PlayerActivity.class);
-        intent.putExtra(PlayerActivity.EXTRA_SPIELER_ID, item.getSpieler().getId());
-        startActivity(intent);
-    }
-
-    /**
-     * Zeigt einen Fehler-Dialog an.
-     * <p>
-     * Da die Anwendung bei einem Service-Fehler nutzlos ist, gibt es entweder die Option, es
-     * direkt erneut zu versuchen, oder die App wird beendet.
-     *
-     * @param e Fehler-Details.
-     */
-    private void showErrorDialog(Throwable e) {
-        this.busy = false;
-
-        new AlertDialog.Builder(this, R.style.ErrorDialogTheme)
-                .setTitle(R.string.dialog_title_error)
-                .setMessage(String.format(
-                        getString(R.string.dialog_message_error), e.getMessage()))
-                .setPositiveButton(R.string.retry, (dialog, which) -> refreshContent())
-                .setNegativeButton(R.string.exit, (dialog, which) -> finish())
-                .setCancelable(true)
-                .setOnCancelListener(dialog -> finish())
-                .show();
     }
 
 }

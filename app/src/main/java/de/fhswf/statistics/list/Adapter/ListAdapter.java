@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import de.fhswf.statistics.R;
 import de.fhswf.statistics.list.item.EndcardItem;
 import de.fhswf.statistics.list.item.ListItem;
+import de.fhswf.statistics.list.item.SpielListItem;
 import de.fhswf.statistics.list.item.SpielSpielerListItem;
 import de.fhswf.statistics.list.item.SpielcardItem;
 import de.fhswf.statistics.list.item.SpielerListItem;
@@ -19,6 +20,7 @@ import de.fhswf.statistics.list.item.SpielerSaisonListItem;
 import de.fhswf.statistics.list.item.SpielercardItem;
 import de.fhswf.statistics.list.viewholder.BaseViewHolder;
 import de.fhswf.statistics.list.viewholder.EndcardViewHolder;
+import de.fhswf.statistics.list.viewholder.SpielListViewHolder;
 import de.fhswf.statistics.list.viewholder.SpielSpielerViewHolder;
 import de.fhswf.statistics.list.viewholder.SpielcardViewHolder;
 import de.fhswf.statistics.list.viewholder.SpielerListViewHolder;
@@ -46,31 +48,34 @@ public class ListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             //1
             case SpielerListItem.TYPE:
                 return new SpielerListViewHolder(
-                        inflater.inflate(R.layout.item_list_layout, parent, false));
+                        inflater.inflate(R.layout.item_spieler_list_layout, parent, false));
 
 
             //4
             case SpielercardItem.TYPE:
                 return new SpielercardViewHolder(
-                        inflater.inflate(R.layout.player_item, parent, false));
+                        inflater.inflate(R.layout.item_addgame_spieler, parent, false));
 
             //10
             case EndcardItem.TYPE:
                 return new EndcardViewHolder(
-                        inflater.inflate(R.layout.player_end_item, parent, false));
+                        inflater.inflate(R.layout.item_addgame_end, parent, false));
 
             //2
             case SpielcardItem.TYPE:
                 return new SpielcardViewHolder(
-                        inflater.inflate(R.layout.game_item, parent, false));
+                        inflater.inflate(R.layout.item_addgame_spiel, parent, false));
 
             //3
             case SpielSpielerListItem.TYPE:
                 return new SpielSpielerViewHolder(
-                        inflater.inflate(R.layout.player_games_item, parent, false));
+                        inflater.inflate(R.layout.item_spieler_spieleliste, parent, false));
             //8
             case SpielerSaisonListItem.TYPE:
-                return new SpielerSaisonViewHolder(inflater.inflate(R.layout.player_season_item, parent, false));
+                return new SpielerSaisonViewHolder(inflater.inflate(R.layout.item_spieler_saisonliste, parent, false));
+            //5
+            case SpielListItem.TYPE:
+                return new SpielListViewHolder(inflater.inflate(R.layout.item_spiel_list_layout,parent,false));
 
             default:
                 throw new RuntimeException("Unsupported item-type: " + viewType);

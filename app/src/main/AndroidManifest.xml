@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="de.fhswf.statistics">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -30,9 +29,6 @@
         <activity
             android:name=".NewGameActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".PlayerActivity"
-            android:configChanges="orientation|screenSize|uiMode" />
     </application>
 
 </manifest>

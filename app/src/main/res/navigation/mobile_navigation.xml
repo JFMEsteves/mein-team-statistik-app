@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="de.fhswf.statistics.list.fragments.SpielerListFragment"
+        android:label="4te Herren Spieler"
+        tools:layout="@layout/fragment_spieler_list" >
+        <action
+            android:id="@+id/action_nav_home_to_nav_player"
+            app:destination="@id/nav_player" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_games"
+        android:name="de.fhswf.statistics.list.fragments.SpieleListFragment"
+        android:label="4te Herren Spiele"
+        tools:layout="@layout/fragment_spiele_list" />
+    <fragment
+        android:id="@+id/nav_player"
+        android:name="de.fhswf.statistics.list.fragments.SpielerFragment"
+        tools:layout="@layout/fragment_player_games"
+        android:label="{Playername}">
+        <argument
+            android:name="ID"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <argument
+            android:name="Playername"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_nav_player_to_nav_home"
+            app:destination="@id/nav_home"
+            app:popUpTo="@id/nav_home"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>
