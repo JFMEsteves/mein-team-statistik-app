@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
             android:layout_marginTop="@dimen/default_marginTop"
-            android:text="Hier Stats eintragen."
+            android:text="@string/hier_stats_eintragen"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="@color/light_grey"
             android:textSize="18sp"
@@ -57,7 +57,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Punkte"
+                        android:text="@string/punkte"
                         android:textColor="@color/white"
                         android:textSize="30sp"
                         tools:text="Punkte" />
@@ -84,7 +84,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="3PM"
+                        android:text="@string/threes_made"
                         android:textColor="@color/white"
                         android:textSize="30sp"
                         tools:text="3PM" />
@@ -163,7 +163,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Fouls"
+                        android:text="@string/fouls"
                         android:textColor="@color/white"
                         android:textSize="30sp"
                         tools:text="Fouls" />

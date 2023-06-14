@@ -1,37 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingVertical="@dimen/default_vertical_padding"
-    android:weightSum="7">
+    android:weightSum="8"
+    android:paddingVertical="@dimen/default_vertical_padding">
 
     <TextView
-        android:id="@+id/GameID"
+        android:id="@+id/attended_Games"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="@string/spielid"
+        android:minWidth="250dp"
+        android:text="@string/gamecount"
         android:textSize="@dimen/stat_textsize"
         android:textStyle="bold"
-        tools:text="SpielID" />
+        tools:text="Spielanzahl" />
 
     <TextView
-        android:id="@+id/Points"
+        android:id="@+id/all_points_season"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="@string/punkte"
+        android:text="@string/punkte_ges"
         android:textSize="@dimen/stat_textsize"
         android:textStyle="bold" />
 
+    <TextView
+        android:id="@+id/points_per_game_season"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/punkte_pro_spiel"
+        android:textSize="@dimen/stat_textsize"
+        android:textStyle="bold" />
 
     <TextView
 
-        android:id="@+id/freethrows_thrown"
+        android:id="@+id/threes_made_season"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/threes_made"
+        android:textSize="@dimen/stat_textsize"
+        android:textStyle="bold"
+        tools:text="3 Punkte Würfe" />
+
+    <TextView
+        android:id="@+id/freethrows_percentage_season"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/freiwurfquote"
+        android:textSize="@dimen/stat_textsize"
+        android:textStyle="bold" />
+
+    <TextView
+
+        android:id="@+id/freethrows_thrown_season"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -43,7 +74,7 @@
 
     <TextView
 
-        android:id="@+id/freethrows_made"
+        android:id="@+id/freethrows_made_season"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -54,30 +85,8 @@
         tools:text="getroffene Freiwürfe" />
 
     <TextView
-        android:id="@+id/freethrows_percentage"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="@string/freiwurfquote"
-        android:textSize="@dimen/stat_textsize"
-        android:textStyle="bold" />
 
-    <TextView
-
-        android:id="@+id/threes_made"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="@string/threes_made"
-        android:textSize="@dimen/stat_textsize"
-        android:textStyle="bold"
-        tools:text="3 Punkte Würfe" />
-
-    <TextView
-
-        android:id="@+id/fouls"
+        android:id="@+id/fouls_season"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
