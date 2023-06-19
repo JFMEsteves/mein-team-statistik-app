@@ -34,10 +34,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="@string/teamname"
+                    android:text="@string/player"
                     android:textSize="@dimen/header_textsize"
                     android:textStyle="bold"
-                    tools:text="SpielID" />
+                    tools:text="Spieler" />
 
                 <TextView
                     android:id="@+id/Points"

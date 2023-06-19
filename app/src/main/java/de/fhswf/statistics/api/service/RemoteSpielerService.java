@@ -29,7 +29,7 @@ public class RemoteSpielerService implements SpielerService {
     /**
      * Basis-URL des Remote-Backends (ohne abschließendes '/').
      */
-    public static final String BASE_URL = "http://213.136.76.136:9084/api";
+    public static final String BASE_URL = "http://213.136.76.136:9080/api";
 
     private final @NonNull
     Context context;

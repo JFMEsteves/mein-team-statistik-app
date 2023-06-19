@@ -22,6 +22,14 @@ public class SpielParser implements ResponseParser<Spiel> {
             spiel.setGastPunkte(data.optInt("gegnerPunkte"));
             spiel.setHeimPunkte(data.optInt("unserePunkte"));
             spiel.setTeamname(data.optString("name"));
+            spiel.setErstesViertelTeam(data.optInt("erstesViertelTeam"));
+            spiel.setZweitesViertelTeam(data.optInt("zweitesViertelTeam"));
+            spiel.setDrittesViertelTeam(data.optInt("drittesViertelTeam"));
+            spiel.setViertesViertelTeam(data.optInt("viertesViertelTeam"));
+            spiel.setErstesViertelGegner(data.optInt("erstesViertelGegner"));
+            spiel.setZweitesViertelGegner(data.optInt("zweitesViertelGegner"));
+            spiel.setDrittesViertelGegner(data.optInt("drittesViertelGegner"));
+            spiel.setViertesViertelGegner(data.optInt("viertesViertelGegner"));
             JSONArray array = data.getJSONArray("stats");
 
             ArrayList<SpielSpieler> stats = new ArrayList<>();

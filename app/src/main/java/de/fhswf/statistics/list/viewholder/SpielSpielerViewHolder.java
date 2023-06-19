@@ -37,7 +37,9 @@ public class SpielSpielerViewHolder extends BaseViewHolder<SpielSpielerListItem>
     @Override
     public void bind(@NonNull SpielSpielerListItem item) {
         this.currentSpiel = item;
-        spielid.setText(String.valueOf(item.getStats().getSpielId()));
+       // spielid.setText(String.valueOf(item.getStats().getSpielId()));
+        //TODO experiment
+        spielid.setText(item.getStats().getSpiel().getTeamname());
         punkte.setText(String.valueOf(item.getStats().getPunkte()));
         shotFreethrows.setText(String.valueOf(item.getStats().getGeworfeneFreiwuerfe()));
         madeFreethrows.setText(String.valueOf(item.getStats().getGetroffeneFreiwuerfe()));

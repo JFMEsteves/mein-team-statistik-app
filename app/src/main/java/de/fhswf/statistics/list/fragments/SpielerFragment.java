@@ -46,11 +46,11 @@ public class SpielerFragment  extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         // Entnimmt die ID aus dem Argument
         spielerID = SpielerFragmentArgs.fromBundle(getArguments()).getID();
-        //  this.spielerService = new MockService(false);
+       //   this.spielerService = new MockService(false);
         this.spielerService = new RemoteSpielerService(getActivity());
         this.busy = false;
         viewPager2 = view.findViewById(R.id.viewpager2);
-        tabLayout = view.findViewById(R.id.tabs2);
+        tabLayout = view.findViewById(R.id.tabs_spiel);
         fetchSpielerDetails();
     }
 

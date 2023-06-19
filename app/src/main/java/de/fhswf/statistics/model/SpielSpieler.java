@@ -1,5 +1,7 @@
 package de.fhswf.statistics.model;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.Objects;
 
 /**
@@ -21,6 +23,17 @@ public class SpielSpieler {
 
     private int Fouls;
 
+
+
+    //TODO Warning Experimentel, selbst eingefügt und zu testen
+    @Nullable
+    public Spiel spiel;
+
+
+
+    @Nullable
+    public Spieler spieler;
+
     public SpielSpieler(int spielerId, int spielId, int punkte, int geworfeneFreiwuerfe, int getroffeneFreiwuerfe, int dreiPunkteTreffer, int Fouls) {
         this.SpielerId = spielerId;
         this.SpielId = spielId;
@@ -30,6 +43,19 @@ public class SpielSpieler {
         this.dreiPunkteTreffer = dreiPunkteTreffer;
         this.Fouls = Fouls;
     }
+
+    public SpielSpieler(int spielerId, int spielId, int punkte, int geworfeneFreiwuerfe, int getroffeneFreiwuerfe, int dreiPunkteTreffer, int Fouls,Spiel spiel, Spieler spieler) {
+        this.SpielerId = spielerId;
+        this.SpielId = spielId;
+        this.punkte = punkte;
+        this.geworfeneFreiwuerfe = geworfeneFreiwuerfe;
+        this.getroffeneFreiwuerfe = getroffeneFreiwuerfe;
+        this.dreiPunkteTreffer = dreiPunkteTreffer;
+        this.Fouls = Fouls;
+        this.spiel= spiel;
+        this.spieler = spieler;
+    }
+
 
     public SpielSpieler(int spielerId, int spielId) {
         this.SpielerId = spielerId;
@@ -95,7 +121,21 @@ public class SpielSpieler {
         Fouls = fouls;
     }
 
+    public Spiel getSpiel() {
+        return spiel;
+    }
 
+    public void setSpiel(Spiel spiel) {
+        this.spiel = spiel;
+    }
+
+    public Spieler getSpieler() {
+        return spieler;
+    }
+
+    public void setSpieler(Spieler spieler) {
+        this.spieler = spieler;
+    }
     @Override
     public int hashCode() {
         return Objects.hash(SpielerId, SpielId, geworfeneFreiwuerfe, getroffeneFreiwuerfe, dreiPunkteTreffer);
@@ -111,6 +151,14 @@ public class SpielSpieler {
                 ", getroffeneFreiwuerfe=" + getroffeneFreiwuerfe +
                 ", dreiPunkteTreffer=" + dreiPunkteTreffer +
                 ", Fouls=" + Fouls +
+                "Spiel{" +
+                "SpielId=" + getSpiel().getId() +
+                "Spielname=" + getSpiel().getTeamname() +
+                '}' +
+                "Spieler{" +
+                "SpielerId=" + getSpieler().getId() +
+                "Spielername=" + getSpieler().getName() +
+                '}' +
                 '}';
     }
 }
