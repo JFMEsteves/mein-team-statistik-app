@@ -24,10 +24,13 @@ import de.fhswf.statistics.list.Adapter.ListAdapter;
 import de.fhswf.statistics.list.item.EndcardItem;
 import de.fhswf.statistics.list.item.ListItem;
 import de.fhswf.statistics.list.item.SpielcardItem;
+import de.fhswf.statistics.list.item.SpieldetailsSubmitItem;
+import de.fhswf.statistics.list.item.SpieldetailscardItem;
 import de.fhswf.statistics.list.item.SpielerSubmitItem;
 import de.fhswf.statistics.list.item.SpielercardItem;
 import de.fhswf.statistics.model.Spiel;
 import de.fhswf.statistics.model.SpielSpieler;
+import de.fhswf.statistics.model.Spieldetails;
 import de.fhswf.statistics.model.Spieler;
 import de.fhswf.statistics.util.DateConverter;
 
@@ -42,6 +45,8 @@ public class NewGameActivity extends AppCompatActivity implements EndcardItem.On
     private int id;
     private Spiel spiel;
     private SpielcardItem spielcardItem;
+    private SpieldetailscardItem spieldetailscardItemEnemy;
+    private SpieldetailscardItem spieldetailscardItemMyteam;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +112,13 @@ public class NewGameActivity extends AppCompatActivity implements EndcardItem.On
         // Spielkarte hinzufügen
         this.spiel = new Spiel(id);
         this.spielcardItem = new SpielcardItem(spiel);
+        this.spieldetailscardItemMyteam = new SpieldetailscardItem(spiel, new Spieldetails(id, 0), false);
+        this.spieldetailscardItemEnemy = new SpieldetailscardItem(spiel, new Spieldetails(id, 1), true);
         adapter.add(spielcardItem);
+        //Details hinzufügen
+        adapter.add(spieldetailscardItemMyteam);
+        adapter.add(spieldetailscardItemEnemy);
+
 
         //Spieler hinzufügen
         for (int c : spielerIds) {
@@ -134,6 +145,7 @@ public class NewGameActivity extends AppCompatActivity implements EndcardItem.On
             this.busy = true;
             // Einzelne Spieler ("stats")
             JSONArray stats = new JSONArray();
+            JSONArray details = new JSONArray();
 
             for (ListItem c : adapter.getItems()) {
                 if (c instanceof SpielerSubmitItem)
@@ -144,6 +156,12 @@ public class NewGameActivity extends AppCompatActivity implements EndcardItem.On
                     ((SpielercardItem) c).getSpielSpieler().setSpielId(id);
                 }
             }
+            //TODO look hier viertel
+            for (ListItem c : adapter.getItems()) {
+                if (c instanceof SpieldetailsSubmitItem) {
+                    details.put(((SpieldetailsSubmitItem) c).getResult());
+                }
+            }
 
             // Spiel-Objekt
             JSONObject jSpiel = new JSONObject()
@@ -152,6 +170,7 @@ public class NewGameActivity extends AppCompatActivity implements EndcardItem.On
                     .put("datum", DateConverter.DateToString(spiel.getDatum()))
                     .put("gegnerPunkte", spiel.getGastPunkte())
                     .put("unserePunkte", spiel.getHeimPunkte())
+                    .put("viertel", details)
                     .put("stats", stats);
 
             //Ergebnisse übermittlen

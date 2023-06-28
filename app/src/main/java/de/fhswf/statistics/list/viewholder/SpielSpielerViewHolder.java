@@ -15,14 +15,14 @@ import de.fhswf.statistics.list.item.SpielSpielerListItem;
  */
 public class SpielSpielerViewHolder extends BaseViewHolder<SpielSpielerListItem> {
 
-    private SpielSpielerListItem currentSpiel;
     private static final @ColorInt
     int BG_1 = Color.WHITE;
+    private static final @ColorInt
+    int BG_3 = Color.GRAY;
     private static final @ColorInt
     int BG_2 = 0x22000000;
     private final TextView spielid, punkte, madeFreethrows, shotFreethrows, freethrowPercantage, threePointmades, fouls;
 
-    //TODO Testing
     public SpielSpielerViewHolder(@NonNull View itemView) {
         super(itemView);
         this.spielid = itemView.findViewById(R.id.GameID);
@@ -36,13 +36,14 @@ public class SpielSpielerViewHolder extends BaseViewHolder<SpielSpielerListItem>
 
     @Override
     public void bind(@NonNull SpielSpielerListItem item) {
-        this.currentSpiel = item;
-       // spielid.setText(String.valueOf(item.getStats().getSpielId()));
-        //TODO experiment
-        spielid.setText(item.getStats().getSpiel().getTeamname());
+        if (item.isSpiel()) {
+            spielid.setText(item.getStats().getSpieler().getName());
+        } else if (!item.isSpiel()) {
+            spielid.setText(item.getStats().getSpiel().getTeamname());
+        }
         punkte.setText(String.valueOf(item.getStats().getPunkte()));
-        shotFreethrows.setText(String.valueOf(item.getStats().getGeworfeneFreiwuerfe()));
         madeFreethrows.setText(String.valueOf(item.getStats().getGetroffeneFreiwuerfe()));
+        shotFreethrows.setText(String.valueOf(item.getStats().getGeworfeneFreiwuerfe()));
         if (item.getStats().getGeworfeneFreiwuerfe() != 0) {
             String placeholder = item.getStats().getGetroffeneFreiwuerfe() / item.getStats().getGeworfeneFreiwuerfe() * 100 + "%";
             freethrowPercantage.setText(placeholder);
@@ -53,6 +54,12 @@ public class SpielSpielerViewHolder extends BaseViewHolder<SpielSpielerListItem>
         fouls.setText(String.valueOf(item.getStats().getFouls()));
 
         // Alternierender Hintergrund
-        itemView.setBackgroundColor((getAdapterPosition() % 2 == 0) ? BG_1 : BG_2);
+        int nightModeFlags = itemView.getContext().getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK;
+        if (nightModeFlags == android.content.res.Configuration.UI_MODE_NIGHT_YES) {
+            itemView.setBackgroundColor((getAdapterPosition() % 2 == 0) ? BG_3 : BG_2);
+        } else {
+            itemView.setBackgroundColor((getAdapterPosition() % 2 == 0) ? BG_1 : BG_2);
+        }
+        // itemView.setBackgroundColor((getAdapterPosition() % 2 == 0) ? BG_1 : BG_2);
     }
 }

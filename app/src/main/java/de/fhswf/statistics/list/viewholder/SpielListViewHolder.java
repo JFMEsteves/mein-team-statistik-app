@@ -21,6 +21,8 @@ public class SpielListViewHolder extends BaseViewHolder<SpielListItem>
     private static final @ColorInt
     int BG_1 = Color.WHITE;
     private static final @ColorInt
+    int BG_3 = Color.GRAY;
+    private static final @ColorInt
     int BG_2 = 0x22000000;
 
     private SpielListItem currentSpiel;
@@ -53,7 +55,14 @@ public class SpielListViewHolder extends BaseViewHolder<SpielListItem>
 
 
         // Alternierender Hintergrund
-        itemView.setBackgroundColor((getAdapterPosition() % 2 == 0) ? BG_1 : BG_2);
+        // Alternierender Hintergrund
+        int nightModeFlags = itemView.getContext().getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK;
+        if (nightModeFlags == android.content.res.Configuration.UI_MODE_NIGHT_YES) {
+            itemView.setBackgroundColor((getAdapterPosition() % 2 == 0) ? BG_3 : BG_2);
+        } else {
+            itemView.setBackgroundColor((getAdapterPosition() % 2 == 0) ? BG_1 : BG_2);
+        }
+        // itemView.setBackgroundColor((getAdapterPosition() % 2 == 0) ? BG_1 : BG_2);
 
     }
 }

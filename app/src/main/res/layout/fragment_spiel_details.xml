@@ -4,18 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".MainActivity">
-
 
     <HorizontalScrollView
         android:id="@+id/horizontalView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -25,88 +23,73 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="7">
+                android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/GameID"
+                    android:id="@+id/team"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="@string/teamname"
+                    android:text="@string/team"
                     android:textSize="@dimen/header_textsize"
                     android:textStyle="bold"
-                    tools:text="SpielID" />
+                    tools:text="Team" />
 
                 <TextView
-                    android:id="@+id/Points"
+                    android:id="@+id/gesamtpunkte"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="@string/punkte"
+                    android:minWidth="500dp"
+                    android:text="@string/punkte_ges"
                     android:textSize="@dimen/header_textsize"
                     android:textStyle="bold" />
 
-
                 <TextView
-
-                    android:id="@+id/freethrows_thrown"
+                    android:id="@+id/viertel1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="@string/geworfene_freiwuerfe"
+                    android:text="@string/viertel1"
                     android:textSize="@dimen/header_textsize"
                     android:textStyle="bold"
-                    tools:text="geworfene Freiwürfe" />
-                <TextView
+                    tools:text="1.Viertel" />
 
-                    android:id="@+id/freethrows_made"
+                <TextView
+                    android:id="@+id/viertel2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="@string/getroffene_freiwuerfe"
+                    android:text="@string/viertel2"
                     android:textSize="@dimen/header_textsize"
                     android:textStyle="bold"
-                    tools:text="getroffene Freiwürfe" />
+                    tools:text="2.Viertel" />
 
                 <TextView
-                    android:id="@+id/HeaderFreethrows"
+                    android:id="@+id/viertel3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:minWidth="290dp"
-                    android:text="@string/freiwurfquote"
+                    android:text="@string/viertel3"
                     android:textSize="@dimen/header_textsize"
                     android:textStyle="bold" />
 
                 <TextView
 
-                    android:id="@+id/threes_made"
+                    android:id="@+id/viertel4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="@string/threes_made"
+                    android:text="@string/viertel4"
                     android:textSize="@dimen/header_textsize"
                     android:textStyle="bold"
-                    tools:text="3 Punkte Würfe" />
-
-                <TextView
-
-                    android:id="@+id/fouls"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@string/fouls"
-                    android:textSize="@dimen/header_textsize"
-                    android:textStyle="bold"
-                    tools:text="Fouls" />
+                    tools:text="4.Viertel" />
 
 
             </LinearLayout>
@@ -115,10 +98,10 @@
                 android:id="@+id/container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:listitem="@layout/item_spieler_spieleliste" />
+                tools:listitem="@layout/item_spieldetails_layout" />
 
         </LinearLayout>
-    </HorizontalScrollView>
 
+    </HorizontalScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

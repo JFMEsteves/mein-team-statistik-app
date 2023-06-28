@@ -28,13 +28,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:weightSum="5">
+                >
 
                 <TextView
                     android:id="@+id/HeaderName"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.25"
+                    android:layout_weight="1"
                     android:gravity="center"
                     android:minWidth="250dp"
                     android:text="@string/name"
@@ -45,7 +45,7 @@
                     android:id="@+id/HeaderAllPoints"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.25"
+                    android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/punkte_ges"
                     android:textSize="@dimen/header_textsize"
@@ -56,7 +56,7 @@
                     android:id="@+id/HeaderPointsPerGame"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.25"
+                    android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/punkte_pro_spiel"
                     android:textSize="@dimen/header_textsize"
@@ -66,7 +66,7 @@
                     android:id="@+id/HeaderFreethrows"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.25"
+                    android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/freiwurfquote"
                     android:textSize="@dimen/header_textsize"
@@ -94,6 +94,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/horizontalView"
         app:srcCompat="@drawable/ic_addgame"
-        android:contentDescription="Add Game Button"/>
+        android:contentDescription="@string/button_hint" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,7 @@
 package de.fhswf.statistics.api.parser;
 
+import android.util.Log;
+
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -8,6 +10,7 @@ import java.util.ArrayList;
 
 import de.fhswf.statistics.model.Spiel;
 import de.fhswf.statistics.model.SpielSpieler;
+import de.fhswf.statistics.model.Spieldetails;
 import de.fhswf.statistics.util.DateConverter;
 
 /**
@@ -18,19 +21,22 @@ public class SpielParser implements ResponseParser<Spiel> {
     @Override
     public Spiel parse(@NotNull JSONObject data) throws ParsingException {
         try {
+            Log.d("PARSING", "Start of parsing Spiel");
             Spiel spiel = new Spiel(data.optInt("id"), DateConverter.StringtoDate(data.optString("datum")));
             spiel.setGastPunkte(data.optInt("gegnerPunkte"));
             spiel.setHeimPunkte(data.optInt("unserePunkte"));
             spiel.setTeamname(data.optString("name"));
-            spiel.setErstesViertelTeam(data.optInt("erstesViertelTeam"));
-            spiel.setZweitesViertelTeam(data.optInt("zweitesViertelTeam"));
-            spiel.setDrittesViertelTeam(data.optInt("drittesViertelTeam"));
-            spiel.setViertesViertelTeam(data.optInt("viertesViertelTeam"));
-            spiel.setErstesViertelGegner(data.optInt("erstesViertelGegner"));
-            spiel.setZweitesViertelGegner(data.optInt("zweitesViertelGegner"));
-            spiel.setDrittesViertelGegner(data.optInt("drittesViertelGegner"));
-            spiel.setViertesViertelGegner(data.optInt("viertesViertelGegner"));
             JSONArray array = data.getJSONArray("stats");
+            JSONArray detailsarray = data.getJSONArray("viertel");
+
+            ArrayList<Spieldetails> details = new ArrayList<>();
+            DetailsParser detailsParser = new DetailsParser();
+            for (int i = 0; i < detailsarray.length(); i++) {
+                details.add(detailsParser.parse(detailsarray.getJSONObject(i)));
+                Log.d("PARSING DETAILS", "parse: " + detailsarray.getJSONObject(i));
+            }
+            spiel.setDetails(details);
+
 
             ArrayList<SpielSpieler> stats = new ArrayList<>();
             StatParser parser = new StatParser();
@@ -38,6 +44,7 @@ public class SpielParser implements ResponseParser<Spiel> {
             for (int i = 0; i < array.length(); i++) {
                 stats.add(parser.parse(array.getJSONObject(i)));
             }
+
 
             spiel.setStats(stats);
 

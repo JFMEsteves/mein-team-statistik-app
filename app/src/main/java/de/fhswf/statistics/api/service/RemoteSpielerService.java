@@ -13,6 +13,7 @@ import java.util.List;
 import de.fhswf.statistics.api.OnFailureListener;
 import de.fhswf.statistics.api.OnSuccessListener;
 import de.fhswf.statistics.api.parser.SpielListParser;
+import de.fhswf.statistics.api.parser.SpielParser;
 import de.fhswf.statistics.api.parser.SpielerListParser;
 import de.fhswf.statistics.api.parser.SpielerParser;
 import de.fhswf.statistics.api.remote.RemoteRequest;
@@ -66,6 +67,25 @@ public class RemoteSpielerService implements SpielerService {
                     BASE_URL + "/spieler/details",
                     new JSONObject().put("id", id),
                     new SpielerParser(),
+                    onSuccessListener,
+                    onFailureListener
+            ).execute();
+        } catch (JSONException e) {
+            if (onFailureListener != null)
+                onFailureListener.onFailure(e);
+        }
+    }
+
+    @Override
+    public void fetchSpielDetails(int id,
+                                  @Nullable OnSuccessListener<Spiel> onSuccessListener,
+                                  @Nullable OnFailureListener onFailureListener) {
+        try {
+            new RemoteRequest<>(
+                    context,
+                    BASE_URL + "/spiel/details",
+                    new JSONObject().put("id", id),
+                    new SpielParser(),
                     onSuccessListener,
                     onFailureListener
             ).execute();

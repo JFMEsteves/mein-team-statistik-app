@@ -18,14 +18,22 @@
         android:id="@+id/nav_games"
         android:name="de.fhswf.statistics.list.fragments.SpieleListFragment"
         android:label="4te Herren Spiele"
-        tools:layout="@layout/fragment_spiele_list" />
+        tools:layout="@layout/fragment_spiele_list">
+        <action
+            android:id="@+id/action_nav_games_to_nav_game"
+            app:destination="@id/nav_game">
+            <argument
+                android:name="spielID"
+                android:defaultValue="-1" />
+        </action>
+    </fragment>
     <fragment
         android:id="@+id/nav_player"
-        android:name="de.fhswf.statistics.list.fragments.SpielerFragment"
-        tools:layout="@layout/fragment_player_games"
+        android:name="de.fhswf.statistics.list.fragments.SpielerTabFragment"
+        tools:layout="@layout/fragment_spiel_spielerlist"
         android:label="{Playername}">
         <argument
-            android:name="ID"
+            android:name="spielerID"
             app:argType="integer"
             android:defaultValue="-1" />
         <argument
@@ -35,6 +43,24 @@
             android:id="@+id/action_nav_player_to_nav_home"
             app:destination="@id/nav_home"
             app:popUpTo="@id/nav_home"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_game"
+        android:name="de.fhswf.statistics.list.fragments.SpielTabFragment"
+        tools:layout="@layout/fragment_spiel_details"
+        android:label="{Enemyname}">
+        <argument
+            android:name="Enemyname"
+            app:argType="string" />
+        <argument
+            android:name="spielID"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <action
+            android:id="@+id/action_nav_game_to_nav_games"
+            app:destination="@id/nav_games"
+            app:popUpTo="@id/nav_games"
             app:popUpToInclusive="true" />
     </fragment>
 </navigation>

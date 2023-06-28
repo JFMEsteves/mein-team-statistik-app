@@ -1,6 +1,7 @@
 package de.fhswf.statistics.list.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,7 @@ public class SpielerListFragment extends Fragment implements SpielerListItem.OnS
         View root = inflater.inflate(R.layout.fragment_spieler_list, container, false);
 
         playerList = new ArrayList<>();
+        Log.d("CHECKING ON GETACTIVITY", "onCreateView: " + getActivity());
 
         //Setup Recyclerview
         RecyclerView recyclerView = root.findViewById(R.id.container);
@@ -58,9 +60,7 @@ public class SpielerListFragment extends Fragment implements SpielerListItem.OnS
 
         //Neues Spiel hinzufügen Button mit AuswahlDialog
         FloatingActionButton addGame = root.findViewById(R.id.addGameBtn);
-        addGame.setOnClickListener(v -> {
-            new SpielerAuswahlDialog(getActivity(), playerList);
-        });
+        addGame.setOnClickListener(v -> new SpielerAuswahlDialog(getActivity(), playerList));
 
 
         return root;
@@ -69,6 +69,7 @@ public class SpielerListFragment extends Fragment implements SpielerListItem.OnS
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
 
         //setup Navigation Controller
         navController = Navigation.findNavController(view);
@@ -127,14 +128,15 @@ public class SpielerListFragment extends Fragment implements SpielerListItem.OnS
      * an das Ziel Fragment übergeben wird. Der Name wird in der ActionBar als Titel verwendet, die ID zum Abruf spezifischer Daten.
      *
      * @param item clicked item
-     * @see SpielerFragment
+     * @see SpielerTabFragment
      */
     @Override
     public void onSpielerClick(@NonNull SpielerListItem item) {
         // Mithilfe von Safe Args wird hier die ID des ausgewählten Spielers an das Ziel Fragment übergeben.
         // Dieses Fragment nutzt die ID dann um die Spieler Einzelansicht aufzubauen
         // Übergibt auch den Namen als Titel  Für die ActionBar
-        NavDirections action = SpielerListFragmentDirections.actionNavHomeToNavPlayer(item.getSpieler().getName()).setID(item.getSpieler().getId());
+        //TODO HIER ÄNDERN
+        NavDirections action = SpielerListFragmentDirections.actionNavHomeToNavPlayer(item.getSpieler().getName()).setSpielerID(item.getSpieler().getId());
         navController.navigate(action);
     }
 

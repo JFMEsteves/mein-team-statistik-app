@@ -21,7 +21,7 @@ import de.fhswf.statistics.api.service.SpielerService;
 import de.fhswf.statistics.list.Adapter.FragmentPageAdapter;
 import de.fhswf.statistics.model.Spieler;
 
-public class SpielerFragment  extends Fragment {
+public class SpielerTabFragment extends Fragment {
 
     private int spielerID;
     private Spieler spieler;
@@ -35,17 +35,15 @@ public class SpielerFragment  extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
-        View root = inflater.inflate(R.layout.fragment_spieler,container,false);
 
-
-        return inflater.inflate(R.layout.fragment_spieler,container,false);
+        return inflater.inflate(R.layout.fragment_spieler_tab, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // Entnimmt die ID aus dem Argument
-        spielerID = SpielerFragmentArgs.fromBundle(getArguments()).getID();
+        spielerID = SpielerTabFragmentArgs.fromBundle(getArguments()).getSpielerID();
        //   this.spielerService = new MockService(false);
         this.spielerService = new RemoteSpielerService(getActivity());
         this.busy = false;

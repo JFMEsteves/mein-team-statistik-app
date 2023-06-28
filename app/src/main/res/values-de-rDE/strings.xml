@@ -9,7 +9,7 @@
     <string name="threes_made">3PM</string>
     <string name="fouls">Fouls</string>
     <string name="punkte_pro_spiel">Punkte pro Spiel</string>
-    <string name="punkte_ges">Punkte(ges.)</string>
+    <string name="punkte_ges">Gesamtpunkte</string>
     <string name="name">Name</string>
     <string name="spiel_liste">Spiele</string>
     <string name="Datum_auswählen">Datum auswählen</string>
@@ -38,4 +38,11 @@
     <string name="player">Spieler</string>
     <string name="teamname">Teamname</string>
     <string name="game">Spiel</string>
+    <string name="viertel1">1.Viertel</string>
+    <string name="viertel2">2.Viertel</string>
+    <string name="viertel3">3.Viertel</string>
+    <string name="viertel4">4.Viertel</string>
+    <string name="team">Team</string>
+    <string name="herren">4te Herren</string>
+    <string name="button_hint">Neues Spiel hinzufügen</string>
 </resources>

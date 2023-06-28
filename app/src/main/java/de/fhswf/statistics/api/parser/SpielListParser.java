@@ -1,5 +1,7 @@
 package de.fhswf.statistics.api.parser;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import org.json.JSONArray;
@@ -29,6 +31,7 @@ public class SpielListParser implements ResponseParser<List<Spiel>> {
 
             for (int i = 0; i < array.length(); i++) {
                 kader.add(parser.parse(array.getJSONObject(i)));
+                Log.d("TESTING PARSING", "parse: " + array.getJSONObject(i));
             }
             return kader;
         } catch (JSONException e) {

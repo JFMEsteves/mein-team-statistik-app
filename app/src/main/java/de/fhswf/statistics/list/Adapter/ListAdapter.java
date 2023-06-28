@@ -12,14 +12,18 @@ import java.util.ArrayList;
 import de.fhswf.statistics.R;
 import de.fhswf.statistics.list.item.EndcardItem;
 import de.fhswf.statistics.list.item.ListItem;
+import de.fhswf.statistics.list.item.SpielDetailsItem;
 import de.fhswf.statistics.list.item.SpielListItem;
 import de.fhswf.statistics.list.item.SpielSpielerListItem;
 import de.fhswf.statistics.list.item.SpielcardItem;
+import de.fhswf.statistics.list.item.SpieldetailscardItem;
 import de.fhswf.statistics.list.item.SpielerListItem;
 import de.fhswf.statistics.list.item.SpielerSaisonListItem;
 import de.fhswf.statistics.list.item.SpielercardItem;
 import de.fhswf.statistics.list.viewholder.BaseViewHolder;
 import de.fhswf.statistics.list.viewholder.EndcardViewHolder;
+import de.fhswf.statistics.list.viewholder.SpielDetailcardViewHolder;
+import de.fhswf.statistics.list.viewholder.SpielDetailsViewHolder;
 import de.fhswf.statistics.list.viewholder.SpielListViewHolder;
 import de.fhswf.statistics.list.viewholder.SpielSpielerViewHolder;
 import de.fhswf.statistics.list.viewholder.SpielcardViewHolder;
@@ -65,18 +69,25 @@ public class ListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             case SpielcardItem.TYPE:
                 return new SpielcardViewHolder(
                         inflater.inflate(R.layout.item_addgame_spiel, parent, false));
-
+            //Reduzierung Redundanter Code
             //3
             case SpielSpielerListItem.TYPE:
                 return new SpielSpielerViewHolder(
                         inflater.inflate(R.layout.item_spieler_spieleliste, parent, false));
+
             //8
             case SpielerSaisonListItem.TYPE:
                 return new SpielerSaisonViewHolder(inflater.inflate(R.layout.item_spieler_saisonliste, parent, false));
+            //9
+            case SpieldetailscardItem.TYPE:
+                return new SpielDetailcardViewHolder(inflater.inflate(R.layout.item_addgame_spieldetails, parent, false));
             //5
             case SpielListItem.TYPE:
-                return new SpielListViewHolder(inflater.inflate(R.layout.item_spiel_list_layout,parent,false));
+                return new SpielListViewHolder(inflater.inflate(R.layout.item_spiel_list_layout, parent, false));
 
+            //6
+            case SpielDetailsItem.TYPE:
+                return new SpielDetailsViewHolder(inflater.inflate(R.layout.item_spieldetails_layout, parent, false));
             default:
                 throw new RuntimeException("Unsupported item-type: " + viewType);
 

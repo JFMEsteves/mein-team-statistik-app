@@ -90,11 +90,11 @@ public class MockService implements SpielerService {
     private void fillExampleSpiele() {
         DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
         try {
-            spielelist.add(new Spiel(1, df.parse("12-02-2010"), 1, 2, 1,2,3,4,1,2,3,4, "Holzkeks"));
-            spielelist.add(new Spiel(2, df.parse("13-05-2013"), 5, 2,2,3,4,5,2,3,4,5, "Verlieren"));
-            spielelist.add(new Spiel(3, df.parse("14-10-2015"), 4, 2,10,10,10,10,20,20,20,20, "Siegen"));
-            spielelist.add(new Spiel(4, df.parse("27-11-2016"), 2, 2,13,14,15,15,16,12,13,15, "Steckenpferd"));
-            spielelist.add(new Spiel(5, df.parse("25-04-2017"), 1, 2,0,0,0,1,0,0,2,1, "Baumrolle"));
+            spielelist.add(new Spiel(1, df.parse("12-02-2010"), 1, 2, "Holzkeks"));
+            spielelist.add(new Spiel(2, df.parse("13-05-2013"), 5, 2, "Verlieren"));
+            spielelist.add(new Spiel(3, df.parse("14-10-2015"), 4, 2, "Siegen"));
+            spielelist.add(new Spiel(4, df.parse("27-11-2016"), 2, 2, "Steckenpferd"));
+            spielelist.add(new Spiel(5, df.parse("25-04-2017"), 1, 2, "Baumrolle"));
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -138,6 +138,27 @@ public class MockService implements SpielerService {
 
             handler.postDelayed(() -> {
                 for (Spieler c : spielerList) {
+                    if (c.getId() == id) {
+                        onSuccessListener.onSuccess(c);
+                        return;
+                    }
+                }
+
+                if (onFailureListener != null)
+                    onFailureListener.onFailure(new RuntimeException("Spieler not found! (mock)"));
+            }, DELAY);
+        }
+    }
+
+    @Override
+    public void fetchSpielDetails(int id,
+                                  @Nullable OnSuccessListener<Spiel> onSuccessListener, @Nullable OnFailureListener onFailureListener) {
+        if (isGenerateNegativeResponses()) {
+            errorCall("FetchSpielerDetails", onFailureListener);
+        } else if (onSuccessListener != null) {
+
+            handler.postDelayed(() -> {
+                for (Spiel c : spielelist) {
                     if (c.getId() == id) {
                         onSuccessListener.onSuccess(c);
                         return;

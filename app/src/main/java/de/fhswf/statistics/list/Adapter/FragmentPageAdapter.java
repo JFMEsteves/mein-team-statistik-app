@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import de.fhswf.statistics.list.fragments.GamesFragment;
+import de.fhswf.statistics.list.fragments.SpielerSpielListFragment;
 import de.fhswf.statistics.list.fragments.SeasonFragment;
 import de.fhswf.statistics.model.Spieler;
 
@@ -15,7 +15,7 @@ public class FragmentPageAdapter extends FragmentStateAdapter {
 
 
     private final SeasonFragment seasonFragment;
-    private final GamesFragment gamesFragment;
+    private final SpielerSpielListFragment spielerSpielListFragment;
     private final Spieler spieler;
 
     public FragmentPageAdapter(@NonNull Context mContext,
@@ -26,8 +26,8 @@ public class FragmentPageAdapter extends FragmentStateAdapter {
 
         this.seasonFragment = new SeasonFragment();
         seasonFragment.setSpieler(spieler);
-        this.gamesFragment = new GamesFragment();
-        gamesFragment.setSpieler(spieler);
+        this.spielerSpielListFragment = new SpielerSpielListFragment();
+        spielerSpielListFragment.setSpieler(spieler);
     }
 
 
@@ -38,7 +38,7 @@ public class FragmentPageAdapter extends FragmentStateAdapter {
             case 0:
                 return seasonFragment;
             case 1:
-                return gamesFragment;
+                return spielerSpielListFragment;
             default:
                 return seasonFragment;
         }

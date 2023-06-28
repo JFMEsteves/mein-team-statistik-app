@@ -34,6 +34,17 @@ public interface SpielerService {
                              @Nullable OnFailureListener onFailureListener);
 
     /**
+     * Frage die Details (alle Statistiken) eines bestimmten Spiels ab.
+     *
+     * @param id                ID des abzufragenden Spiels.
+     * @param onSuccessListener Erfolg-Callback, enthält ein einzelnes Spiel-Objekt.
+     * @param onFailureListener Fehler-Callback
+     */
+    void fetchSpielDetails(int id,
+                           @Nullable OnSuccessListener<Spiel> onSuccessListener,
+                           @Nullable OnFailureListener onFailureListener);
+
+    /**
      * Frage die Liste aller Spiele ab (mit ihren Statistiken)
      *
      * @param onSuccessListener Erfolg-Callback, enthält eine Liste von Spieler-Objekten.

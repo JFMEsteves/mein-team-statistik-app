@@ -38,4 +38,11 @@
     <string name="player">Player</string>
     <string name="teamname">Team Name</string>
     <string name="game">Game</string>
+    <string name="viertel1">1st Quarter</string>
+    <string name="viertel2">2nd Quarter</string>
+    <string name="viertel3">3rd Quarter</string>
+    <string name="viertel4">4th Quarter</string>
+    <string name="team">Team</string>
+    <string name="herren">4te Herren</string>
+    <string name="button_hint">Add new Game</string>
 </resources>

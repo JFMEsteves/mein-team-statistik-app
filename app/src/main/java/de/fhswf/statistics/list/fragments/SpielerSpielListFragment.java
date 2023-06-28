@@ -19,14 +19,14 @@ import de.fhswf.statistics.model.Spieler;
 /**
  * Zuständig für die Spieleübersicht
  */
-public class GamesFragment extends Fragment {
+public class SpielerSpielListFragment extends Fragment {
     private Spieler spieler;
     private ListAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_player_games, parent, false);
+        View view = inflater.inflate(R.layout.fragment_spiel_spielerlist, parent, false);
         Context context = inflater.getContext();
 
         // Set the adapter
@@ -48,7 +48,7 @@ public class GamesFragment extends Fragment {
         if (spieler.getStats() != null) {
             for (SpielSpieler c : spieler.getStats()) {
                 if (c.getSpielerId() == spieler.getId())
-                    adapter.add(new SpielSpielerListItem(c));
+                    adapter.add(new SpielSpielerListItem(c, false));
             }
 
         }
