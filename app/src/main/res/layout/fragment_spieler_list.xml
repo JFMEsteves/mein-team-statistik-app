@@ -96,4 +96,17 @@
         app:srcCompat="@drawable/ic_addgame"
         android:contentDescription="@string/button_hint" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addPictureBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/horizontalView"
+        app:srcCompat="@drawable/ic_addpicture"
+        android:contentDescription="@string/button_hint" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

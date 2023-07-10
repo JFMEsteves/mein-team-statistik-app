@@ -32,6 +32,7 @@ import de.fhswf.statistics.model.Spieler;
 public class SpielerListFragment extends Fragment implements SpielerListItem.OnSpielerListener {
 
     private ListAdapter adapter;
+    private static final int REQUEST_IMAGE_PICK = 1;
     private SpielerService SpielerService;
     private boolean busy;
 
@@ -62,6 +63,13 @@ public class SpielerListFragment extends Fragment implements SpielerListItem.OnS
         FloatingActionButton addGame = root.findViewById(R.id.addGameBtn);
         addGame.setOnClickListener(v -> new SpielerAuswahlDialog(getActivity(), playerList));
 
+        // Bild einlesen für Cloud vision API
+        FloatingActionButton addImage = root.findViewById(R.id.addPictureBtn);
+        addImage.setOnClickListener(v -> {
+            NavDirections action2 = SpielerListFragmentDirections.actionNavHomeToNavApi();
+            navController.navigate(action2);
+        });
+
 
         return root;
     }
@@ -84,6 +92,7 @@ public class SpielerListFragment extends Fragment implements SpielerListItem.OnS
 
         refreshContent();
     }
+
 
     /**
      * Wenn Nutzer zurück zur MainActivity geht werden die Daten aktualisiert
