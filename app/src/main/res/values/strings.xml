@@ -32,8 +32,6 @@
     <string name="CloseDrawer">Close navigation drawer</string>
     <string name="gegner_punkte">Opponent Points</string>
     <string name="unsere_punkte">Team Points</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="games">Games</string>
     <string name="player">Player</string>
     <string name="teamname">Team Name</string>

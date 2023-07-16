@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import de.fhswf.statistics.R;
 import de.fhswf.statistics.list.item.SpielListItem;
@@ -25,7 +26,12 @@ public class SpielListViewHolder extends BaseViewHolder<SpielListItem>
     int BG_3 = Color.GRAY;
     private static final @ColorInt
     int BG_2 = 0x22000000;
-
+    private final @ColorInt
+    int colorOrange = ContextCompat.getColor(itemView.getContext(), R.color.orange);
+    private final @ColorInt
+    int colorGreen = ContextCompat.getColor(itemView.getContext(), R.color.light_green);
+    private final @ColorInt
+    int colorRed = ContextCompat.getColor(itemView.getContext(), R.color.redish);
     private SpielListItem currentSpiel;
     private final TextView datum, name, unserePunkte, gegnerPunkte, punkteDifferenz, teamfouls;
 
@@ -55,10 +61,17 @@ public class SpielListViewHolder extends BaseViewHolder<SpielListItem>
         name.setText(item.getSpiel().getTeamname());
         unserePunkte.setText(String.valueOf(item.getSpiel().getHeimPunkte()));
         gegnerPunkte.setText(String.valueOf(item.getSpiel().getGastPunkte()));
-        punkteDifferenz.setText(String.valueOf(item.getSpiel().getHeimPunkte() - item.getSpiel().getGastPunkte()));
+        int differenz = item.getSpiel().getHeimPunkte() - item.getSpiel().getGastPunkte();
+        punkteDifferenz.setText(String.valueOf(differenz));
         teamfouls.setText(String.valueOf(StatCalculator.foulsCalcSpiel(item.getSpiel())));
 
-
+        if (differenz > 10) {
+            punkteDifferenz.setTextColor(colorGreen);
+        } else if (differenz > -10 && differenz < 0) {
+            punkteDifferenz.setTextColor(colorOrange);
+        } else if (differenz < -15) {
+            punkteDifferenz.setTextColor(colorRed);
+        }
         // Alternierender Hintergrund
         // Alternierender Hintergrund
         int nightModeFlags = itemView.getContext().getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK;

@@ -4,7 +4,6 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -31,11 +30,13 @@ import de.fhswf.statistics.list.viewholder.SpielerListViewHolder;
 import de.fhswf.statistics.list.viewholder.SpielerSaisonViewHolder;
 import de.fhswf.statistics.list.viewholder.SpielercardViewHolder;
 
+/**
+ * Adapter für die RecyclerView
+ */
 public class ListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
 
     private final ArrayList<ListItem> items;
-    private final ArrayList<Fragment> fragmentArrayList = new ArrayList<>();
 
     public ListAdapter() {
         this.items = new ArrayList<>();
@@ -54,33 +55,21 @@ public class ListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 return new SpielerListViewHolder(
                         inflater.inflate(R.layout.item_spieler_list_layout, parent, false));
 
+            //2
+            case SpielcardItem.TYPE:
+                return new SpielcardViewHolder(
+                        inflater.inflate(R.layout.item_addgame_spiel, parent, false));
+
+            //3
+            case SpielSpielerListItem.TYPE:
+                return new SpielSpielerViewHolder(
+                        inflater.inflate(R.layout.item_spieler_spieleliste, parent, false));
 
             //4
             case SpielercardItem.TYPE:
                 return new SpielercardViewHolder(
                         inflater.inflate(R.layout.item_addgame_spieler, parent, false));
 
-            //10
-            case EndcardItem.TYPE:
-                return new EndcardViewHolder(
-                        inflater.inflate(R.layout.item_addgame_end, parent, false));
-
-            //2
-            case SpielcardItem.TYPE:
-                return new SpielcardViewHolder(
-                        inflater.inflate(R.layout.item_addgame_spiel, parent, false));
-            //Reduzierung Redundanter Code
-            //3
-            case SpielSpielerListItem.TYPE:
-                return new SpielSpielerViewHolder(
-                        inflater.inflate(R.layout.item_spieler_spieleliste, parent, false));
-
-            //8
-            case SpielerSaisonListItem.TYPE:
-                return new SpielerSaisonViewHolder(inflater.inflate(R.layout.item_spieler_saisonliste, parent, false));
-            //9
-            case SpieldetailscardItem.TYPE:
-                return new SpielDetailcardViewHolder(inflater.inflate(R.layout.item_addgame_spieldetails, parent, false));
             //5
             case SpielListItem.TYPE:
                 return new SpielListViewHolder(inflater.inflate(R.layout.item_spiel_list_layout, parent, false));
@@ -88,6 +77,19 @@ public class ListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             //6
             case SpielDetailsItem.TYPE:
                 return new SpielDetailsViewHolder(inflater.inflate(R.layout.item_spieldetails_layout, parent, false));
+
+            //8
+            case SpielerSaisonListItem.TYPE:
+                return new SpielerSaisonViewHolder(inflater.inflate(R.layout.item_spieler_saisonliste, parent, false));
+
+            //9
+            case SpieldetailscardItem.TYPE:
+                return new SpielDetailcardViewHolder(inflater.inflate(R.layout.item_addgame_spieldetails, parent, false));
+
+            //10
+            case EndcardItem.TYPE:
+                return new EndcardViewHolder(
+                        inflater.inflate(R.layout.item_addgame_end, parent, false));
             default:
                 throw new RuntimeException("Unsupported item-type: " + viewType);
 

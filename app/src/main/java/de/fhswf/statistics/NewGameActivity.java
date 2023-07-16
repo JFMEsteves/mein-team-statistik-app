@@ -60,6 +60,7 @@ public class NewGameActivity extends AppCompatActivity implements EndcardItem.On
             throw new RuntimeException("Keine Spieler ausgewählt!");
         }
 
+        id = 1;
         //Setting up View
         setContentView(R.layout.add_game_view);
         RecyclerView container = findViewById(R.id.add_player_container);
@@ -183,14 +184,12 @@ public class NewGameActivity extends AppCompatActivity implements EndcardItem.On
     }
 
     public void getFreeSpielId(@NonNull List<Spiel> result) {
-        id = 1;
         for (Spiel c : result) {
             if (c.getId() >= id) {
                 id = c.getId();
                 id++;
             }
         }
-
     }
 
     /**

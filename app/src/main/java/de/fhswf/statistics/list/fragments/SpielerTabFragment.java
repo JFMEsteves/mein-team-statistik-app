@@ -58,10 +58,8 @@ public class SpielerTabFragment extends Fragment {
      * ViewPager vorbereiten
      */
     private void preparePager() {
-        // Spielername wird Titel
-        //setTitle(spieler.getName());
         FragmentPageAdapter fragmentPageAdapter = new FragmentPageAdapter(getActivity(), getActivity(), spieler);
-        //ViewPager viewPager = findViewById(R.id.viewpager);
+
 
         viewPager2.setAdapter(fragmentPageAdapter);
         // Verhindert die Swipe Geste zum Wechseln der Tabs, da Tests zeigten, dass sonst das seitliche Scrollen innerhalb des Tabs erschwert ist.

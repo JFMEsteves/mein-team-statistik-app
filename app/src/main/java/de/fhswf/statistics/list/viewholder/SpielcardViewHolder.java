@@ -17,7 +17,6 @@ import de.fhswf.statistics.list.item.SpielcardItem;
 import de.fhswf.statistics.model.Spiel;
 import de.fhswf.statistics.util.DateConverter;
 import de.fhswf.statistics.util.SimpleUpdateTextWatcher;
-import de.fhswf.statistics.util.StatCalculator;
 
 /**
  * Viewholder von @link {@link SpielcardItem}
@@ -45,7 +44,7 @@ public class SpielcardViewHolder extends BaseViewHolder<SpielcardItem> {
     public void bind(SpielcardItem item) {
         initDatePicker(item);
         initTextWatcher(item);
-        dateButton.setText(StatCalculator.getTodaysDate());
+        // dateButton.setText(StatCalculator.getTodaysDate());
         dateButton.setOnClickListener(v -> datePickerDialog.show());
 
     }
@@ -96,8 +95,6 @@ public class SpielcardViewHolder extends BaseViewHolder<SpielcardItem> {
             //Nutzereingabe "wiederherstellen"
             if (item.getSpiel().getDatum() != null) {
                 dateButton.setText(DateConverter.DateToString(item.getSpiel().getDatum()));
-            } else {
-                dateButton.setText(date);
             }
             Date datum = null;
             try {
@@ -107,8 +104,10 @@ public class SpielcardViewHolder extends BaseViewHolder<SpielcardItem> {
             }
             if (datum != null) {
                 item.getSpiel().setDatum(datum);
+                dateButton.setText(date);
             }
         };
+        //Setze Listener
         datePickerDialog.setOnDateSetListener(dateSetListener);
 
     }

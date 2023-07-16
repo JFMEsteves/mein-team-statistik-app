@@ -8,7 +8,12 @@ import org.json.JSONObject;
 
 import de.fhswf.statistics.model.Spiel;
 import de.fhswf.statistics.model.Spieldetails;
-
+/**
+ * Klasse für die Spieldetailskarte
+ * Viewholder:
+ *
+ * @see de.fhswf.statistics.list.viewholder.SpielDetailcardViewHolder
+ */
 public class SpieldetailscardItem implements SpieldetailsSubmitItem, SpielInterfaceListItem {
     public static final int TYPE = 9;
 

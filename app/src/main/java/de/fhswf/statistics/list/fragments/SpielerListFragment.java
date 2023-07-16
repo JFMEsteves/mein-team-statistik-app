@@ -95,6 +95,7 @@ public class SpielerListFragment extends Fragment implements SpielerListItem.OnS
         refreshContent();
     }
 
+
     private void refreshContent() {
         if (!busy) {
             this.busy = true;
@@ -135,7 +136,6 @@ public class SpielerListFragment extends Fragment implements SpielerListItem.OnS
         // Mithilfe von Safe Args wird hier die ID des ausgewählten Spielers an das Ziel Fragment übergeben.
         // Dieses Fragment nutzt die ID dann um die Spieler Einzelansicht aufzubauen
         // Übergibt auch den Namen als Titel  Für die ActionBar
-        //TODO HIER ÄNDERN
         NavDirections action = SpielerListFragmentDirections.actionNavHomeToNavPlayer(item.getSpieler().getName()).setSpielerID(item.getSpieler().getId());
         navController.navigate(action);
     }

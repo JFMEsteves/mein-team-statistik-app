@@ -60,7 +60,5 @@ public class SpielerListViewHolder extends BaseViewHolder<SpielerListItem>
         } else {
             itemView.setBackgroundColor((getAdapterPosition() % 2 == 0) ? BG_1 : BG_2);
         }
-        //itemView.setBackgroundColor((getAdapterPosition() % 2 == 0) ? BG_1 : BG_2);
-
     }
 }

@@ -22,6 +22,12 @@ public class SpielSpielerViewHolder extends BaseViewHolder<SpielSpielerListItem>
     int BG_3 = Color.GRAY;
     private static final @ColorInt
     int BG_2 = 0x22000000;
+    private final @ColorInt
+    int colorOrange = ContextCompat.getColor(itemView.getContext(), R.color.orange);
+    private final @ColorInt
+    int colorGreen = ContextCompat.getColor(itemView.getContext(), R.color.light_green);
+    private final @ColorInt
+    int colorRed = ContextCompat.getColor(itemView.getContext(), R.color.redish);
 
 
     private final TextView spielid, punkte, madeFreethrows, shotFreethrows, freethrowPercantage, threePointmades, fouls;
@@ -47,14 +53,13 @@ public class SpielSpielerViewHolder extends BaseViewHolder<SpielSpielerListItem>
         punkte.setText(String.valueOf(item.getStats().getPunkte()));
         madeFreethrows.setText(String.valueOf(item.getStats().getGetroffeneFreiwuerfe()));
         shotFreethrows.setText(String.valueOf(item.getStats().getGeworfeneFreiwuerfe()));
-        int colorGreenish = ContextCompat.getColor(itemView.getContext(), R.color.greenish);
-        int colororange = ContextCompat.getColor(itemView.getContext(), R.color.programmer_yellow);
+
+        // Farbliche Hervorhebung der Freiwurfquote
         if (item.getStats().getGeworfeneFreiwuerfe() != 0) {
             Double freethrowPercentageDouble = (double) item.getStats().getGetroffeneFreiwuerfe() / item.getStats().getGeworfeneFreiwuerfe() * 100;
-            if (freethrowPercentageDouble >= 70) freethrowPercantage.setTextColor(Color.GREEN);
-
-            else if (freethrowPercentageDouble >= 50) freethrowPercantage.setTextColor(colororange);
-            else if (freethrowPercentageDouble < 50) freethrowPercantage.setTextColor(Color.RED);
+            if (freethrowPercentageDouble >= 70) freethrowPercantage.setTextColor(colorGreen);
+            else if (freethrowPercentageDouble >= 50) freethrowPercantage.setTextColor(colorOrange);
+            else if (freethrowPercentageDouble < 50) freethrowPercantage.setTextColor(colorRed);
             String placeholder = freethrowPercentageDouble + "%";
             freethrowPercantage.setText(placeholder);
         } else if (item.getStats().getGeworfeneFreiwuerfe() == 0) {
@@ -71,6 +76,6 @@ public class SpielSpielerViewHolder extends BaseViewHolder<SpielSpielerListItem>
         } else {
             itemView.setBackgroundColor((getAdapterPosition() % 2 == 0) ? BG_1 : BG_2);
         }
-        // itemView.setBackgroundColor((getAdapterPosition() % 2 == 0) ? BG_1 : BG_2);
+    
     }
 }

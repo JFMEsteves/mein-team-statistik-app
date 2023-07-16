@@ -34,13 +34,16 @@ public class SpielDetailFragment extends Fragment {
 
         adapter = new ListAdapter();
         container.setAdapter(adapter);
+
         fetchSpieldetailsListe();
 
 
         return view;
     }
 
-
+    /**
+     * Fetched die SpieldetailsListe und added sie zum  adapter.
+     */
     private void fetchSpieldetailsListe() {
 
         if (spiel.getDetails() != null) {

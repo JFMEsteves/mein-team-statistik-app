@@ -10,19 +10,23 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import de.fhswf.statistics.list.fragments.SpielerSpielListFragment;
 import de.fhswf.statistics.list.fragments.SeasonFragment;
 import de.fhswf.statistics.model.Spieler;
-
+/**
+ * Adapter für die ViewPager2 Komponente.
+ * <p>
+ * Dieser Adapter wird verwendet um die Fragmente für die ViewPager2 Komponente zu erstellen.
+ * <p>
+ * Die Fragmente werden hierbei erstellt und mit dem Spieler Objekt initialisiert.
+ */
 public class FragmentPageAdapter extends FragmentStateAdapter {
 
 
     private final SeasonFragment seasonFragment;
     private final SpielerSpielListFragment spielerSpielListFragment;
-    private final Spieler spieler;
 
     public FragmentPageAdapter(@NonNull Context mContext,
                                @NonNull FragmentActivity fragmentActivity,
                                @NonNull Spieler spieler) {
         super(fragmentActivity);
-        this.spieler = spieler;
 
         this.seasonFragment = new SeasonFragment();
         seasonFragment.setSpieler(spieler);

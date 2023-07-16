@@ -34,6 +34,7 @@ public class SpielerSpielListFragment extends Fragment {
         textView = view.findViewById(R.id.GameID);
         String title = view.getContext().getString(R.string.team);
         textView.setText(title);
+
         // Set the adapter
         RecyclerView container = view.findViewById(R.id.container);
 
