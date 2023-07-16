@@ -65,14 +65,13 @@ public class SpielListViewHolder extends BaseViewHolder<SpielListItem>
         punkteDifferenz.setText(String.valueOf(differenz));
         teamfouls.setText(String.valueOf(StatCalculator.foulsCalcSpiel(item.getSpiel())));
 
-        if (differenz > 10) {
+        if (differenz > 0) {
             punkteDifferenz.setTextColor(colorGreen);
-        } else if (differenz > -10 && differenz < 0) {
+        } else if (differenz >= -10 && differenz < 0) {
             punkteDifferenz.setTextColor(colorOrange);
         } else if (differenz < -15) {
             punkteDifferenz.setTextColor(colorRed);
         }
-        // Alternierender Hintergrund
         // Alternierender Hintergrund
         int nightModeFlags = itemView.getContext().getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK;
         if (nightModeFlags == android.content.res.Configuration.UI_MODE_NIGHT_YES) {

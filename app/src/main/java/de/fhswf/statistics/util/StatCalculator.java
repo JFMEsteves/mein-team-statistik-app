@@ -68,19 +68,22 @@ public final class StatCalculator {
         return dreier;
     }
 
-    public static String freiwurfquoteCalc(@NonNull Spieler spieler) {
+    public static String freiwurfquoteCalc(@NonNull Spieler spieler, boolean isString) {
         double result;
         double geworfen;
         double getroffen;
         geworfen = geworfeneFreiwuerfeCalc(spieler);
         getroffen = getroffeneFreiwuerfeCalc(spieler);
-        if (geworfen == 0) {
+        if (geworfen == 0 && isString) {
             return 0 + "%";
         }
         result = getroffen / geworfen * 100;
         double roundresult = Math.round(result * 10.0) / 10.0;
 
-        return roundresult + "%";
+        if (isString) {
+            return roundresult + "%";
+        }
+        return String.valueOf(roundresult);
     }
 
     public static int geworfeneFreiwuerfeCalc(@NonNull Spieler spieler) {
