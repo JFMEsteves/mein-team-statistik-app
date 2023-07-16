@@ -33,7 +33,6 @@
     <string name="CloseDrawer">Schließe Navigation</string>
     <string name="gegner_punkte">Gegner Punkte</string>
     <string name="unsere_punkte">Team Punkte</string>
-    <string name="hello_blank_fragment">Hallo leeres Fragment</string>
     <string name="games">Spiele</string>
     <string name="player">Spieler</string>
     <string name="teamname">Teamname</string>
