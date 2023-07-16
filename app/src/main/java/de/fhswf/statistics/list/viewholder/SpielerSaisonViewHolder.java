@@ -37,6 +37,6 @@ public class SpielerSaisonViewHolder extends BaseViewHolder<SpielerSaisonListIte
         freiwurfquote.setText(StatCalculator.freiwurfquoteCalc(item.getSpieler()));
         gwfreiwuerfe.setText(String.valueOf(StatCalculator.geworfeneFreiwuerfeCalc(item.getSpieler())));
         gtfreiwuerfe.setText(String.valueOf(StatCalculator.getroffeneFreiwuerfeCalc(item.getSpieler())));
-        fouls.setText(String.valueOf(StatCalculator.foulsCalc(item.getSpieler())));
+        fouls.setText(String.valueOf(StatCalculator.foulsCalcSpieler(item.getSpieler())));
     }
 }

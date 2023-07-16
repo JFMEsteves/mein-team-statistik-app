@@ -10,6 +10,8 @@
     <color name="grey">#AFAFAF</color>
     <color name="light_grey">#ECECEC</color>
     <color name="light_green">#5BBB74</color>
+    <color name="greenish">#52964C</color>
+    <color name="programmer_yellow">#f6be66</color>
     <color name="light_red">#F46D61</color>
     <color name="transparent">#00000000</color>
 

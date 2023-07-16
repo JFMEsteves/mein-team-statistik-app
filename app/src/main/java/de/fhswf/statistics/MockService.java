@@ -21,6 +21,7 @@ import de.fhswf.statistics.api.parser.ParsingException;
 import de.fhswf.statistics.api.service.SpielerService;
 import de.fhswf.statistics.model.Spiel;
 import de.fhswf.statistics.model.SpielSpieler;
+import de.fhswf.statistics.model.Spieldetails;
 import de.fhswf.statistics.model.Spieler;
 
 /**
@@ -58,43 +59,110 @@ public class MockService implements SpielerService {
      * Testdaten die eine Antwort List<Spieler> vom call an das Backend simulieren
      */
     private void fillExampleSpieler() {
-        Spiel spielmarcel = new Spiel();
-        spielmarcel.setId(1);
-        spielmarcel.setTeamname("Hagen");
-        Spieler spielermarcel = new Spieler();
-        spielermarcel.setId(1);
-        spielermarcel.setName("Marcel");
-        spielerList.add(new Spieler(1, "Marcel").addstats(new SpielSpieler(1, 1, 13, 5, 2, 6, 1,spielmarcel,spielermarcel)));
-        /*
-        ).addstats(new SpielSpieler(1, 2, 9, 3, 3, 1, 4)
-        ).addstats(new SpielSpieler(1, 3, 45, 12, 8, 4, 2)
-        ).addstats(new SpielSpieler(1, 4, 30, 20, 20, 1, 0)));
+        Spieler spieler1 = new Spieler(1, "Marcel");
+        Spieler spieler2 = new Spieler(2, "Joey");
+        Spieler spieler3 = new Spieler(3, "Tahiry");
+        Spieler spieler4 = new Spieler(4, "Leon");
+        Spieler spieler5 = new Spieler(5, "Paul");
+        DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+        try {
+            Spiel spiel1 = new Spiel(1, df.parse("24.01.2020"), 10, 20, "Holzkeks");
+            Spiel spiel2 = new Spiel(2, df.parse("20.02.2019"), 20, 30, "Steckenpferd");
+            Spiel spiel3 = new Spiel(3, df.parse("16.03.2018"), 30, 40, "Hagen");
+            Spiel spiel4 = new Spiel(4, df.parse("12.04.2017"), 40, 50, "Bierbären");
+            Spiel spiel5 = new Spiel(5, df.parse("08.05.2016"), 50, 60, "Fernsehköche");
 
-        spielerList.add(new Spieler(2, "Joey")
-                .addstats(new SpielSpieler(2, 1, 5, 6, 5, 0, 0)));
 
-        spielerList.add(new Spieler(3, "Tahiry").addstats(new SpielSpieler(3, 1, 14, 2, 2, 3, 1)));
-        spielerList.add(new Spieler(4, "Leon").addstats(new SpielSpieler(4, 1, 14, 2, 2, 3, 1)));
-        spielerList.add(new Spieler(5, "Paul").addstats(new SpielSpieler(5, 1, 100, 50, 40, 30, 1)));
-        spielerList.add(new Spieler(6, "Lennard").addstats(new SpielSpieler(6, 2, 9, 0, 0, 3, 0)));
-        spielerList.add(new Spieler(7, "Dimi").addstats(new SpielSpieler(7, 4, 1400, 10, 20, 0, 1)));
-        spielerList.add(new Spieler(8, "Björn").addstats(new SpielSpieler(8, 1, 14, 2, 2, 3, 1)));
-        spielerList.add(new Spieler(9, "Sven").addstats(new SpielSpieler(9, 1, 14, 2, 2, 3, 1)));
-        spielerList.add(new Spieler(10, "Tolga").addstats(new SpielSpieler(10, 1, 14, 2, 2, 3, 1)));
-        spielerList.add(new Spieler(11, "Mike").addstats(new SpielSpieler(11, 1, 14, 2, 2, 3, 1)));
-        spielerList.add(new Spieler(12, "Jonas").addstats(new SpielSpieler(12, 1, 14, 2, 2, 3, 1)));
+            SpielSpieler stats1 = new SpielSpieler(1, 1, 1, 1, 1, 1, 1, spiel1, spieler1);
+            SpielSpieler stats2 = new SpielSpieler(2, 2, 2, 2, 2, 2, 2, spiel2, spieler2);
+            SpielSpieler stats3 = new SpielSpieler(3, 3, 3, 3, 3, 3, 3, spiel3, spieler3);
+            SpielSpieler stats4 = new SpielSpieler(4, 4, 4, 4, 4, 4, 4, spiel4, spieler4);
+            SpielSpieler stats5 = new SpielSpieler(5, 5, 5, 5, 5, 5, 5, spiel5, spieler5);
 
-         */
+            SpielSpieler stats1zwei = new SpielSpieler(2, 1, 1, 1, 1, 1, 1, spiel1, spieler2);
+            SpielSpieler stats1drei = new SpielSpieler(3, 1, 1, 1, 1, 1, 1, spiel1, spieler3);
+            SpielSpieler stats1vier = new SpielSpieler(4, 1, 1, 1, 1, 1, 1, spiel1, spieler4);
+            SpielSpieler stats1fuenf = new SpielSpieler(5, 1, 1, 1, 1, 1, 1, spiel1, spieler5);
+            SpielSpieler stats2zwei = new SpielSpieler(3, 2, 2, 2, 2, 2, 2, spiel2, spieler3);
+            SpielSpieler stats2drei = new SpielSpieler(4, 2, 2, 2, 2, 2, 2, spiel2, spieler4);
+            SpielSpieler stats2vier = new SpielSpieler(5, 2, 2, 2, 2, 2, 2, spiel2, spieler5);
+            SpielSpieler stats3zwei = new SpielSpieler(2, 3, 3, 3, 3, 3, 3, spiel3, spieler2);
+            SpielSpieler stats3drei = new SpielSpieler(4, 3, 3, 3, 3, 3, 3, spiel3, spieler4);
+            SpielSpieler stats3vier = new SpielSpieler(5, 3, 3, 3, 3, 3, 3, spiel3, spieler5);
+
+            Spiel spielmarcel = new Spiel();
+            spielmarcel.setId(1);
+            spielmarcel.setTeamname("Hagen");
+            Spieler spielermarcel = new Spieler();
+            spielermarcel.setId(1);
+            spielermarcel.setName("Marcel");
+            spielerList.add(spieler1.addstats(stats1));
+            spielerList.add(spieler2.addstats(stats2).addstats(stats3zwei));
+            spielerList.add(spieler3.addstats(stats3).addstats(stats1drei).addstats(stats2zwei));
+            spielerList.add(spieler4.addstats(stats4).addstats(stats1vier).addstats(stats2drei).addstats(stats3drei));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     private void fillExampleSpiele() {
         DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
         try {
-            spielelist.add(new Spiel(1, df.parse("12-02-2010"), 1, 2, "Holzkeks"));
-            spielelist.add(new Spiel(2, df.parse("13-05-2013"), 5, 2, "Verlieren"));
-            spielelist.add(new Spiel(3, df.parse("14-10-2015"), 4, 2, "Siegen"));
-            spielelist.add(new Spiel(4, df.parse("27-11-2016"), 2, 2, "Steckenpferd"));
-            spielelist.add(new Spiel(5, df.parse("25-04-2017"), 1, 2, "Baumrolle"));
+            Spieler spieler1 = new Spieler(1, "Marcel");
+            Spieler spieler2 = new Spieler(2, "Joey");
+            Spieler spieler3 = new Spieler(3, "Tahiry");
+            Spieler spieler4 = new Spieler(4, "Leon");
+            Spieler spieler5 = new Spieler(5, "Paul");
+            Spiel spiel1 = new Spiel(1, df.parse("24.01.2020"), 10, 20, "Holzkeks");
+            Spiel spiel2 = new Spiel(2, df.parse("20.02.2019"), 20, 30, "Steckenpferd");
+            Spiel spiel3 = new Spiel(3, df.parse("16.03.2018"), 30, 40, "Hagen");
+            Spiel spiel4 = new Spiel(4, df.parse("12.04.2017"), 40, 50, "Bierbären");
+            Spiel spiel5 = new Spiel(5, df.parse("08.05.2016"), 50, 60, "Fernsehköche");
+
+
+            SpielSpieler stats1 = new SpielSpieler(1, 1, 1, 1, 1, 1, 1, spiel1, spieler1);
+            SpielSpieler stats2 = new SpielSpieler(2, 2, 2, 2, 2, 2, 2, spiel2, spieler2);
+            SpielSpieler stats3 = new SpielSpieler(3, 3, 3, 3, 3, 3, 3, spiel3, spieler3);
+            SpielSpieler stats4 = new SpielSpieler(4, 4, 4, 4, 4, 4, 4, spiel4, spieler4);
+            SpielSpieler stats5 = new SpielSpieler(5, 5, 5, 5, 5, 5, 5, spiel5, spieler5);
+
+            SpielSpieler stats1zwei = new SpielSpieler(2, 1, 1, 1, 1, 1, 1, spiel1, spieler2);
+            SpielSpieler stats1drei = new SpielSpieler(3, 1, 1, 1, 1, 1, 1, spiel1, spieler3);
+            SpielSpieler stats1vier = new SpielSpieler(4, 1, 1, 1, 1, 1, 1, spiel1, spieler4);
+            SpielSpieler stats1fuenf = new SpielSpieler(5, 1, 1, 1, 1, 1, 1, spiel1, spieler5);
+            SpielSpieler stats2zwei = new SpielSpieler(3, 2, 2, 2, 2, 2, 2, spiel2, spieler3);
+            SpielSpieler stats2drei = new SpielSpieler(4, 2, 2, 2, 2, 2, 2, spiel2, spieler4);
+            SpielSpieler stats2vier = new SpielSpieler(5, 2, 2, 2, 2, 2, 2, spiel2, spieler5);
+            SpielSpieler stats3zwei = new SpielSpieler(2, 3, 3, 3, 3, 3, 3, spiel3, spieler2);
+            SpielSpieler stats3drei = new SpielSpieler(4, 3, 3, 3, 3, 3, 3, spiel3, spieler4);
+            SpielSpieler stats3vier = new SpielSpieler(5, 3, 3, 3, 3, 3, 3, spiel3, spieler5);
+
+
+            spielelist.add(spiel1.addstats(stats1)
+                    .addstats(stats1zwei)
+                    .addstats(stats1drei)
+                    .addstats(stats1vier)
+                    .addstats(stats1fuenf)
+                    .adddetails(new Spieldetails(1, 0, 1, 2, 3, 4, spiel1))
+                    .adddetails(new Spieldetails(1, 1, 1, 2, 3, 4, spiel1)));
+            spielelist.add(spiel2.addstats(stats2)
+                    .addstats(stats2zwei)
+                    .addstats(stats2drei)
+                    .addstats(stats2vier)
+                    .adddetails(new Spieldetails(2, 0, 1, 2, 3, 4, spiel2))
+                    .adddetails(new Spieldetails(2, 1, 1, 2, 3, 4, spiel2)));
+            spielelist.add(spiel3.addstats(stats3)
+                    .addstats(stats3zwei)
+                    .addstats(stats3drei)
+                    .addstats(stats3vier)
+                    .adddetails(new Spieldetails(3, 0, 1, 2, 3, 4, spiel3))
+                    .adddetails(new Spieldetails(3, 1, 1, 2, 3, 4, spiel3)));
+            spielelist.add(spiel4.addstats(stats4)
+                    .adddetails(new Spieldetails(4, 0, 1, 2, 3, 4, spiel4))
+                    .adddetails(new Spieldetails(4, 1, 1, 2, 3, 4, spiel4)));
+            spielelist.add(spiel5.addstats(stats5)
+                    .adddetails(new Spieldetails(5, 0, 1, 2, 3, 4, spiel5))
+                    .adddetails(new Spieldetails(5, 1, 1, 2, 3, 4, spiel5)));
 
         } catch (ParseException e) {
             e.printStackTrace();

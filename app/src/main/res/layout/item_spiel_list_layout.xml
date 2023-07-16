@@ -46,4 +46,24 @@
         android:textSize="@dimen/stat_textsize"
         android:textStyle="bold" />
 
+    <TextView
+        android:id="@+id/pointdifference"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/punkte_differenz"
+        android:textSize="@dimen/header_textsize"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/teamfouls"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/teamfouls"
+        android:textSize="@dimen/header_textsize"
+        android:textStyle="bold" />
+
 </LinearLayout>

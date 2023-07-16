@@ -42,7 +42,9 @@
     <string name="viertel2">2.Viertel</string>
     <string name="viertel3">3.Viertel</string>
     <string name="viertel4">4.Viertel</string>
-    <string name="team">Team</string>
+    <string name="team">Mannschaft</string>
     <string name="herren">4te Herren</string>
     <string name="button_hint">Neues Spiel hinzufügen</string>
+    <string name="punkte_differenz">Punktedifferenz</string>
+    <string name="teamfouls">Teamfouls</string>
 </resources>

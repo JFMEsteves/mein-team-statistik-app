@@ -10,6 +10,9 @@ import androidx.annotation.NonNull;
 import de.fhswf.statistics.R;
 import de.fhswf.statistics.list.item.SpielDetailsItem;
 
+/**
+ * Viewholder von @link {@link SpielDetailsItem}
+ */
 public class SpielDetailsViewHolder extends BaseViewHolder<SpielDetailsItem> {
     private static final @ColorInt
     int BG_1 = Color.WHITE;

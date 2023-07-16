@@ -11,7 +11,7 @@ import de.fhswf.statistics.model.Spiel;
  *
  * @see de.fhswf.statistics.list.viewholder.SpielcardViewHolder
  */
-public class SpielcardItem implements ListItem {
+public class SpielcardItem implements ListItem, SpielInterfaceListItem {
     public static final int TYPE = 2;
 
     @Nullable

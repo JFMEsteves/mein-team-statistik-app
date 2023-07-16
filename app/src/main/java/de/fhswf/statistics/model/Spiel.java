@@ -44,6 +44,12 @@ public class Spiel {
 
     }
 
+    public Spiel(int id, String teamname) {
+        this.id = id;
+        this.Teamname = teamname;
+    }
+
+
     public Spiel(int id) {
         this.id = id;
     }

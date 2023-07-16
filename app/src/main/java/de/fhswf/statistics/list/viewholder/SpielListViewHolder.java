@@ -11,6 +11,7 @@ import de.fhswf.statistics.R;
 import de.fhswf.statistics.list.item.SpielListItem;
 import de.fhswf.statistics.list.item.SpielerListItem;
 import de.fhswf.statistics.util.DateConverter;
+import de.fhswf.statistics.util.StatCalculator;
 
 /**
  * Viewholder von @link {@link SpielerListItem}
@@ -26,7 +27,7 @@ public class SpielListViewHolder extends BaseViewHolder<SpielListItem>
     int BG_2 = 0x22000000;
 
     private SpielListItem currentSpiel;
-    private final TextView datum, name, unserePunkte, gegnerPunkte;
+    private final TextView datum, name, unserePunkte, gegnerPunkte, punkteDifferenz, teamfouls;
 
     public SpielListViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -35,6 +36,8 @@ public class SpielListViewHolder extends BaseViewHolder<SpielListItem>
         this.datum = itemView.findViewById(R.id.date);
         this.unserePunkte = itemView.findViewById(R.id.our_points);
         this.gegnerPunkte = itemView.findViewById(R.id.enemy_points);
+        this.punkteDifferenz = itemView.findViewById(R.id.pointdifference);
+        this.teamfouls = itemView.findViewById(R.id.teamfouls);
 
         itemView.setOnClickListener(this);
     }
@@ -52,6 +55,8 @@ public class SpielListViewHolder extends BaseViewHolder<SpielListItem>
         name.setText(item.getSpiel().getTeamname());
         unserePunkte.setText(String.valueOf(item.getSpiel().getHeimPunkte()));
         gegnerPunkte.setText(String.valueOf(item.getSpiel().getGastPunkte()));
+        punkteDifferenz.setText(String.valueOf(item.getSpiel().getHeimPunkte() - item.getSpiel().getGastPunkte()));
+        teamfouls.setText(String.valueOf(StatCalculator.foulsCalcSpiel(item.getSpiel())));
 
 
         // Alternierender Hintergrund
@@ -62,7 +67,6 @@ public class SpielListViewHolder extends BaseViewHolder<SpielListItem>
         } else {
             itemView.setBackgroundColor((getAdapterPosition() % 2 == 0) ? BG_1 : BG_2);
         }
-        // itemView.setBackgroundColor((getAdapterPosition() % 2 == 0) ? BG_1 : BG_2);
 
     }
 }

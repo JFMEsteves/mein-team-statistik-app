@@ -32,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
-        //TODO: fix weightSum in landscape mode
     }
 
     @Override
@@ -41,12 +39,6 @@ public class MainActivity extends AppCompatActivity {
 
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
-
-
-        // navController.navigateUp();
-        //  NavigationUI.navigateUp(navController,mAppBarConfiguration);
-        //   return super.onSupportNavigateUp();
-
     }
 
 }

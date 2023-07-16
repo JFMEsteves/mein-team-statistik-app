@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,6 +23,7 @@ import de.fhswf.statistics.model.Spieler;
 public class SpielerSpielListFragment extends Fragment {
     private Spieler spieler;
     private ListAdapter adapter;
+    private TextView textView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent,
@@ -29,6 +31,9 @@ public class SpielerSpielListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_spiel_spielerlist, parent, false);
         Context context = inflater.getContext();
 
+        textView = view.findViewById(R.id.GameID);
+        String title = view.getContext().getString(R.string.team);
+        textView.setText(title);
         // Set the adapter
         RecyclerView container = view.findViewById(R.id.container);
 

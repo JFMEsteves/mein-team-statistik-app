@@ -10,6 +10,9 @@ import de.fhswf.statistics.R;
 import de.fhswf.statistics.list.item.SpieldetailscardItem;
 import de.fhswf.statistics.util.SimpleUpdateTextWatcher;
 
+/**
+ * Viewholder von @link {@link SpieldetailscardItem}
+ */
 public class SpielDetailcardViewHolder extends BaseViewHolder<SpieldetailscardItem> {
     private final TextView name, description;
     private final EditText viertel1Input, viertel2Input, viertel3Input, viertel4Input;

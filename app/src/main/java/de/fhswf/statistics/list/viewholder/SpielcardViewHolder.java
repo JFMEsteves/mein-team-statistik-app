@@ -14,6 +14,7 @@ import java.util.Date;
 
 import de.fhswf.statistics.R;
 import de.fhswf.statistics.list.item.SpielcardItem;
+import de.fhswf.statistics.model.Spiel;
 import de.fhswf.statistics.util.DateConverter;
 import de.fhswf.statistics.util.SimpleUpdateTextWatcher;
 import de.fhswf.statistics.util.StatCalculator;
@@ -52,7 +53,7 @@ public class SpielcardViewHolder extends BaseViewHolder<SpielcardItem> {
     /**
      * initialisiert die nötigen TextWatcher und füllt das item bei Eingaben über diesen
      *
-     * @param item
+     * @param item {@link Spiel}
      */
     private void initTextWatcher(SpielcardItem item) {
 

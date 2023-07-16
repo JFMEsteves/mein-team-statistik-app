@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import de.fhswf.statistics.model.Spiel;
 import de.fhswf.statistics.model.SpielSpieler;
 import de.fhswf.statistics.model.Spieler;
 
@@ -104,7 +105,7 @@ public final class StatCalculator {
         return getroffen;
     }
 
-    public static int foulsCalc(@NonNull Spieler spieler) {
+    public static int foulsCalcSpieler(@NonNull Spieler spieler) {
         int fouls = 0;
         int id = spieler.getId();
         for (SpielSpieler c : spieler.getStats()) {
@@ -114,6 +115,18 @@ public final class StatCalculator {
         }
         return fouls;
     }
+
+    public static int foulsCalcSpiel(@NonNull Spiel spiel) {
+        int fouls = 0;
+        int id = spiel.getId();
+        for (SpielSpieler c : spiel.getStats()) {
+            if (c.getSpielId() == id) {
+                fouls += c.getFouls();
+            }
+        }
+        return fouls;
+    }
+
 
     public static String makeDateString(int dayOfMonth, int month, int year) {
         return dayOfMonth + "." + month + "." + year;

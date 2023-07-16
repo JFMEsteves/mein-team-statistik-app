@@ -75,7 +75,7 @@ public class SpielerListFragment extends Fragment implements SpielerListItem.OnS
         navController = Navigation.findNavController(view);
 
         // init Service
-        //this.SpielerService = new MockService(false);
+        // this.SpielerService = new MockService(false);
         this.SpielerService = new RemoteSpielerService(getActivity());
 
 

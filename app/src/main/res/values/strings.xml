@@ -45,4 +45,6 @@
     <string name="team">Team</string>
     <string name="herren">4te Herren</string>
     <string name="button_hint">Add new Game</string>
+    <string name="punkte_differenz">Point difference</string>
+    <string name="teamfouls">Teamfouls</string>
 </resources>

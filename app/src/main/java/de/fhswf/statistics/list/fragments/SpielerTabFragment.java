@@ -31,10 +31,9 @@ public class SpielerTabFragment extends Fragment {
     private ViewPager2 viewPager2;
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState){
+                             Bundle savedInstanceState) {
 
         return inflater.inflate(R.layout.fragment_spieler_tab, container, false);
     }
@@ -44,8 +43,11 @@ public class SpielerTabFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         // Entnimmt die ID aus dem Argument
         spielerID = SpielerTabFragmentArgs.fromBundle(getArguments()).getSpielerID();
-       //   this.spielerService = new MockService(false);
+
+        //init Service
+        // this.spielerService = new MockService(false);
         this.spielerService = new RemoteSpielerService(getActivity());
+
         this.busy = false;
         viewPager2 = view.findViewById(R.id.viewpager2);
         tabLayout = view.findViewById(R.id.tabs_spiel);
@@ -58,7 +60,7 @@ public class SpielerTabFragment extends Fragment {
     private void preparePager() {
         // Spielername wird Titel
         //setTitle(spieler.getName());
-        FragmentPageAdapter fragmentPageAdapter = new FragmentPageAdapter(getActivity(),getActivity(),spieler);
+        FragmentPageAdapter fragmentPageAdapter = new FragmentPageAdapter(getActivity(), getActivity(), spieler);
         //ViewPager viewPager = findViewById(R.id.viewpager);
 
         viewPager2.setAdapter(fragmentPageAdapter);

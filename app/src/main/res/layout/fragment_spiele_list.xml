@@ -36,7 +36,7 @@ tools:context=".list.fragments.SpielerListFragment"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:minWidth="250dp"
+                android:minWidth="300dp"
                 android:text="@string/datum"
                 android:textSize="@dimen/header_textsize"
                 android:textStyle="bold" />
@@ -69,6 +69,26 @@ tools:context=".list.fragments.SpielerListFragment"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/unsere_punkte"
+                android:textSize="@dimen/header_textsize"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/HeaderPointdifference"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/punkte_differenz"
+                android:textSize="@dimen/header_textsize"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/HeaderTeamfouls"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/teamfouls"
                 android:textSize="@dimen/header_textsize"
                 android:textStyle="bold" />
 

@@ -75,6 +75,7 @@ public class SpieleListFragment extends Fragment implements SpielListItem.OnSpie
 
         refreshContent();
     }
+
     /**
      * Wenn Nutzer zurück zur MainActivity geht werden die Daten aktualisiert
      */
@@ -101,6 +102,7 @@ public class SpieleListFragment extends Fragment implements SpielListItem.OnSpie
             adapter.add(new SpielListItem(c).setOnSpielListener(this));
         }
     }
+
     private void refreshContent() {
         if (!busy) {
             this.busy = true;
@@ -111,6 +113,7 @@ public class SpieleListFragment extends Fragment implements SpielListItem.OnSpie
 
         }
     }
+
     @Override
     public void onSpielClick(@NonNull SpielListItem item) {
 

@@ -41,6 +41,9 @@ public class SpielTabFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         spielID = SpielTabFragmentArgs.fromBundle(getArguments()).getSpielID();
+
+        //init Service
+        //this.spielerService = new MockService(false);
         this.spielerService = new RemoteSpielerService(getActivity());
         this.busy = false;
         viewPager2 = view.findViewById(R.id.viewpager2_spiel);
