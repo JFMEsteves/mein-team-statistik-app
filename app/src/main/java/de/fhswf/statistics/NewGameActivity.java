@@ -1,7 +1,10 @@
 package de.fhswf.statistics;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -112,6 +115,7 @@ public class NewGameActivity extends AppCompatActivity implements EndcardItem.On
         adapter.clear();
         // Spielkarte hinzufügen
         this.spiel = new Spiel(id);
+
         this.spielcardItem = new SpielcardItem(spiel);
         this.spieldetailscardItemMyteam = new SpieldetailscardItem(spiel, new Spieldetails(id, 0), false);
         this.spieldetailscardItemEnemy = new SpieldetailscardItem(spiel, new Spieldetails(id, 1), true);
@@ -157,13 +161,17 @@ public class NewGameActivity extends AppCompatActivity implements EndcardItem.On
                     ((SpielercardItem) c).getSpielSpieler().setSpielId(id);
                 }
             }
-            //TODO look hier viertel
+
+            for (ListItem c : adapter.getItems()) {
+                if (c instanceof SpieldetailscardItem)
+                    ((SpieldetailscardItem) c).getSpieldetails().setId(id);
+
+            }
             for (ListItem c : adapter.getItems()) {
                 if (c instanceof SpieldetailsSubmitItem) {
                     details.put(((SpieldetailsSubmitItem) c).getResult());
                 }
             }
-
             // Spiel-Objekt
             JSONObject jSpiel = new JSONObject()
                     .put("id", id)
@@ -173,7 +181,7 @@ public class NewGameActivity extends AppCompatActivity implements EndcardItem.On
                     .put("unserePunkte", spiel.getHeimPunkte())
                     .put("viertel", details)
                     .put("stats", stats);
-
+            Log.d(TAG, "onEndButtonClick: " + jSpiel.toString());
             //Ergebnisse übermittlen
             spielerService.submitSpiel(jSpiel, r -> backToMain(), this::handleCommonError);
 
