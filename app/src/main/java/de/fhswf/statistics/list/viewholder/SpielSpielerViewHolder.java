@@ -57,10 +57,11 @@ public class SpielSpielerViewHolder extends BaseViewHolder<SpielSpielerListItem>
         // Farbliche Hervorhebung der Freiwurfquote
         if (item.getStats().getGeworfeneFreiwuerfe() != 0) {
             Double freethrowPercentageDouble = (double) item.getStats().getGetroffeneFreiwuerfe() / item.getStats().getGeworfeneFreiwuerfe() * 100;
+            double rounded = Math.round(freethrowPercentageDouble * 100.0) / 100.0;
             if (freethrowPercentageDouble >= 70) freethrowPercantage.setTextColor(colorGreen);
             else if (freethrowPercentageDouble >= 50) freethrowPercantage.setTextColor(colorOrange);
             else if (freethrowPercentageDouble < 50) freethrowPercantage.setTextColor(colorRed);
-            String placeholder = freethrowPercentageDouble + "%";
+            String placeholder = String.format("%.2f", rounded) + "%";
             freethrowPercantage.setText(placeholder);
         } else if (item.getStats().getGeworfeneFreiwuerfe() == 0) {
             freethrowPercantage.setText("0.0%");
