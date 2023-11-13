@@ -3,8 +3,6 @@ package de.fhswf.statistics.list.viewholder;
 import android.view.View;
 import android.widget.ImageButton;
 
-import androidx.annotation.NonNull;
-
 import de.fhswf.statistics.R;
 import de.fhswf.statistics.list.item.EndcardItem;
 
@@ -13,10 +11,10 @@ import de.fhswf.statistics.list.item.EndcardItem;
  */
 public class EndcardViewHolder extends BaseViewHolder<EndcardItem> {
 
-    @NonNull
+
     private final ImageButton submit;
 
-    public EndcardViewHolder(@NonNull View itemView) {
+    public EndcardViewHolder(View itemView) {
         super(itemView);
         this.submit = itemView.findViewById(R.id.submit);
     }

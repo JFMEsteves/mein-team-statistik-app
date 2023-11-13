@@ -1,7 +1,5 @@
 package de.fhswf.statistics;
 
-import static android.content.ContentValues.TAG;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -65,7 +63,7 @@ public class NewGameActivity extends AppCompatActivity implements EndcardItem.On
 
         id = 1;
         //Setting up View
-        setContentView(R.layout.add_game_view);
+         setContentView(R.layout.add_game_view);
         RecyclerView container = findViewById(R.id.add_player_container);
 
         layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
@@ -79,6 +77,7 @@ public class NewGameActivity extends AppCompatActivity implements EndcardItem.On
         //Set SnapHelper
         SnapHelper snapHelper = new PagerSnapHelper();
         snapHelper.attachToRecyclerView(container);
+
 
         //Init Service
         // this.spielerService = new MockService(false);
@@ -155,6 +154,7 @@ public class NewGameActivity extends AppCompatActivity implements EndcardItem.On
             for (ListItem c : adapter.getItems()) {
                 if (c instanceof SpielerSubmitItem)
                     stats.put(((SpielerSubmitItem) c).getResult());
+                Log.d("ENDBUTTON", "Stats: " + stats);
             }
             for (ListItem c : adapter.getItems()) {
                 if (c instanceof SpielercardItem) {
@@ -181,7 +181,7 @@ public class NewGameActivity extends AppCompatActivity implements EndcardItem.On
                     .put("unserePunkte", spiel.getHeimPunkte())
                     .put("viertel", details)
                     .put("stats", stats);
-            Log.d(TAG, "onEndButtonClick: " + jSpiel.toString());
+            Log.d("SENDING", "onEndButtonClick: " + jSpiel);
             //Ergebnisse übermittlen
             spielerService.submitSpiel(jSpiel, r -> backToMain(), this::handleCommonError);
 

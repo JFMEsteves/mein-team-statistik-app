@@ -29,7 +29,7 @@ public class SimpleUpdateTextWatcher implements TextWatcher {
 
     @Override
     public void afterTextChanged(Editable s) {
-        onTextUpdateListener.onTextUpdated(s.toString());
+            onTextUpdateListener.onTextUpdated(s.toString());
     }
 
     public interface OnTextUpdateListener {

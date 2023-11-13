@@ -15,6 +15,7 @@ import de.fhswf.statistics.util.SimpleUpdateTextWatcher;
  */
 public class SpielDetailcardViewHolder extends BaseViewHolder<SpieldetailscardItem> {
     private final TextView name, description;
+    private SimpleUpdateTextWatcher watcherViertel1, watcherViertel2, watcherViertel3, watcherViertel4;
     private final EditText viertel1Input, viertel2Input, viertel3Input, viertel4Input;
 
     public SpielDetailcardViewHolder(@NonNull View itemView) {
@@ -29,12 +30,14 @@ public class SpielDetailcardViewHolder extends BaseViewHolder<SpieldetailscardIt
 
     @Override
     public void bind(SpieldetailscardItem item) {
-        initTextWatcher(item);
+        clearTextWatchers();
+
         if (item.isEnemy()) {
             name.setText(itemView.getResources().getString(R.string.gegner));
         } else {
             name.setText(itemView.getResources().getString(R.string.herren));
         }
+        initTextWatcher(item);
     }
 
     /**
@@ -45,24 +48,55 @@ public class SpielDetailcardViewHolder extends BaseViewHolder<SpieldetailscardIt
     private void initTextWatcher(SpieldetailscardItem item) {
         if (item.getSpieldetails().getViertel1() != 0) {
             viertel1Input.setText(String.valueOf(item.getSpieldetails().getViertel1()));
+        } else if (item.getSpieldetails().getViertel1() == 0) {
+            viertel1Input.setText(null);
         }
-        viertel1Input.addTextChangedListener(new SimpleUpdateTextWatcher(
-                t -> item.getSpieldetails().setViertel1(Integer.parseInt(t))));
+        watcherViertel1 = new SimpleUpdateTextWatcher(
+                t -> {
+                    if (!t.isEmpty()) item.getSpieldetails().setViertel1(Integer.parseInt(t));
+                });
+
         if (item.getSpieldetails().getViertel2() != 0) {
             viertel2Input.setText(String.valueOf(item.getSpieldetails().getViertel2()));
+        } else if (item.getSpieldetails().getViertel2() == 0) {
+            viertel2Input.setText(null);
         }
-        viertel2Input.addTextChangedListener(new SimpleUpdateTextWatcher(
-                t -> item.getSpieldetails().setViertel2(Integer.parseInt(t))));
+        watcherViertel2 = new SimpleUpdateTextWatcher(
+                t -> {
+                    if (!t.isEmpty()) item.getSpieldetails().setViertel2(Integer.parseInt(t));
+                });
+
         if (item.getSpieldetails().getViertel3() != 0) {
             viertel3Input.setText(String.valueOf(item.getSpieldetails().getViertel3()));
+        } else if (item.getSpieldetails().getViertel3() == 0) {
+            viertel3Input.setText(null);
         }
-        viertel3Input.addTextChangedListener(new SimpleUpdateTextWatcher(
-                t -> item.getSpieldetails().setViertel3(Integer.parseInt(t))));
+        watcherViertel3 = new SimpleUpdateTextWatcher(
+                t -> {
+                    if (!t.isEmpty()) item.getSpieldetails().setViertel3(Integer.parseInt(t));
+                });
+
         if (item.getSpieldetails().getViertel4() != 0) {
             viertel4Input.setText(String.valueOf(item.getSpieldetails().getViertel4()));
+        } else if (item.getSpieldetails().getViertel4() == 0) {
+            viertel4Input.setText(null);
         }
-        viertel4Input.addTextChangedListener(new SimpleUpdateTextWatcher(
-                t -> item.getSpieldetails().setViertel4(Integer.parseInt(t))));
+        watcherViertel4 = new SimpleUpdateTextWatcher(
+                t -> {
+                    if (!t.isEmpty()) item.getSpieldetails().setViertel4(Integer.parseInt(t));
+                });
+        viertel1Input.addTextChangedListener(watcherViertel1);
+        viertel2Input.addTextChangedListener(watcherViertel2);
+        viertel3Input.addTextChangedListener(watcherViertel3);
+        viertel4Input.addTextChangedListener(watcherViertel4);
 
+
+    }
+
+    private void clearTextWatchers() {
+        viertel1Input.removeTextChangedListener(watcherViertel1);
+        viertel2Input.removeTextChangedListener(watcherViertel2);
+        viertel3Input.removeTextChangedListener(watcherViertel3);
+        viertel4Input.removeTextChangedListener(watcherViertel4);
     }
 }

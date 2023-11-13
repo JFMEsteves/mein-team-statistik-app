@@ -22,13 +22,15 @@ public class SpielerListViewHolder extends BaseViewHolder<SpielerListItem>
 
     private static final @ColorInt
     int BG_1 = Color.WHITE;
-    private static final @ColorInt
-    int BG_3 = Color.GRAY;
+
     private static final @ColorInt
     int BG_2 = 0x22000000;
 
     private final @ColorInt
     int colorOrange = ContextCompat.getColor(itemView.getContext(), R.color.orange);
+
+    private final @ColorInt
+    int colorXboxgrey = ContextCompat.getColor(itemView.getContext(), R.color.xbox_grey);
     private final @ColorInt
     int colorGreen = ContextCompat.getColor(itemView.getContext(), R.color.light_green);
     private final @ColorInt
@@ -69,14 +71,15 @@ public class SpielerListViewHolder extends BaseViewHolder<SpielerListItem>
             else if (statcheck < 50)
                 freiwurfquote.setTextColor(colorRed);
         }
-        freiwurfquote.setText(quote + "%");
+        String placeholder = quote + "%";
+        freiwurfquote.setText(placeholder);
         fouls.setText(String.valueOf(StatCalculator.foulsCalcSpieler(item.getSpieler())));
 
         // Alternierender Hintergrund
 
         int nightModeFlags = itemView.getContext().getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK;
         if (nightModeFlags == android.content.res.Configuration.UI_MODE_NIGHT_YES) {
-            itemView.setBackgroundColor((getAdapterPosition() % 2 == 0) ? BG_3 : BG_2);
+            itemView.setBackgroundColor((getAdapterPosition() % 2 == 0) ? colorXboxgrey : BG_2);
         } else {
             itemView.setBackgroundColor((getAdapterPosition() % 2 == 0) ? BG_1 : BG_2);
         }

@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import de.fhswf.statistics.R;
 import de.fhswf.statistics.list.item.SpielDetailsItem;
@@ -16,8 +17,9 @@ import de.fhswf.statistics.list.item.SpielDetailsItem;
 public class SpielDetailsViewHolder extends BaseViewHolder<SpielDetailsItem> {
     private static final @ColorInt
     int BG_1 = Color.WHITE;
-    private static final @ColorInt
-    int BG_3 = Color.GRAY;
+    private final @ColorInt
+    int colorXboxgrey = ContextCompat.getColor(itemView.getContext(), R.color.xbox_grey);
+
     private static final @ColorInt
     int BG_2 = 0x22000000;
     private final TextView teamname, viertel1, viertel2, viertel3, viertel4, gesamtpunkte;
@@ -51,7 +53,7 @@ public class SpielDetailsViewHolder extends BaseViewHolder<SpielDetailsItem> {
         // Alternierender Hintergrund
         int nightModeFlags = itemView.getContext().getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK;
         if (nightModeFlags == android.content.res.Configuration.UI_MODE_NIGHT_YES) {
-            itemView.setBackgroundColor((getAdapterPosition() % 2 == 0) ? BG_3 : BG_2);
+            itemView.setBackgroundColor((getAdapterPosition() % 2 == 0) ? colorXboxgrey : BG_2);
         } else {
             itemView.setBackgroundColor((getAdapterPosition() % 2 == 0) ? BG_1 : BG_2);
         }

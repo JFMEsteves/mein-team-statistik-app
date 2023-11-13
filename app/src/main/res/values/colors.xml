@@ -18,4 +18,7 @@
     <color name="transparent">#00000000</color>
     <color name="orange">#ffa500</color>
     <color name="semi_black">#68000000</color>
+    <color name="xbox_grey">#1a1b1e</color>
+    <color name="xbox_black">#121212</color>
+
 </resources>

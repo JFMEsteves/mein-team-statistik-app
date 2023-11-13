@@ -45,4 +45,6 @@
     <string name="button_hint">Add new Game</string>
     <string name="punkte_differenz">Point difference</string>
     <string name="teamfouls">Teamfouls</string>
+    <string name="Enemy_Spielcard">Enemy :</string>
+    <string name="myTeam">4te</string>
 </resources>

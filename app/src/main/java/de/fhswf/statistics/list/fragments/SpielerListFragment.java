@@ -116,9 +116,10 @@ public class SpielerListFragment extends Fragment implements SpielerListItem.OnS
     private void addSpielerToList(List<Spieler> result) {
         this.busy = false;
         adapter.clear();
-
+        result.sort((spieler, t1) -> spieler.getName().compareToIgnoreCase(t1.getName()));
         for (Spieler c : result) {
             playerList.add(c);
+
 
             adapter.add(new SpielerListItem(c).setOnSpielerListener(this));
         }

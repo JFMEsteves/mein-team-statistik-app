@@ -23,19 +23,19 @@ import de.fhswf.statistics.util.SimpleUpdateTextWatcher;
  */
 public class SpielcardViewHolder extends BaseViewHolder<SpielcardItem> {
 
-    @NonNull
-    private DatePickerDialog datePickerDialog;
-    @NonNull
+
+    private final DatePickerDialog datePickerDialog;
+
     private final Button dateButton;
-    @NonNull
+
     private final EditText nameInput, myteamInput, enemyteamInput;
 
     public SpielcardViewHolder(@NonNull View itemView) {
         super(itemView);
         this.dateButton = itemView.findViewById(R.id.date_button);
         this.nameInput = itemView.findViewById(R.id.name_input);
-        this.myteamInput = itemView.findViewById(R.id.myteam_input);
-        this.enemyteamInput = itemView.findViewById(R.id.enemy_input);
+        this.myteamInput = itemView.findViewById(R.id.myteamInput);
+        this.enemyteamInput = itemView.findViewById(R.id.enemyInput);
         datePickerDialog = new DatePickerDialog(itemView.getContext());
     }
 
@@ -61,25 +61,28 @@ public class SpielcardViewHolder extends BaseViewHolder<SpielcardItem> {
          * alle children gleichzeitig persistiert müssen daten zugewiesen werden wenn sie erneut persistiert
          * werden nachdem man dort schon etwas eingegeben hat.
          */
-        if (item.getSpiel().getTeamname() != null) {
-            nameInput.setText(item.getSpiel().getTeamname());
-        }
+        if (item.getSpiel().getTeamname() != null) nameInput.setText(item.getSpiel().getTeamname());
+        else if (item.getSpiel().getTeamname() == null) nameInput.setText(null);
         nameInput.addTextChangedListener(new SimpleUpdateTextWatcher(
                 t -> item.getSpiel().setTeamname(t)));
 
 
-        if (item.getSpiel().getGastPunkte() != 0) {
-            enemyteamInput.setText(item.getSpiel().getGastPunkte());
-        }
+        if (item.getSpiel().getGastPunkte() != 0)
+            enemyteamInput.setText(String.valueOf(item.getSpiel().getGastPunkte()));
+        else if (item.getSpiel().getGastPunkte() == 0) enemyteamInput.setText(null);
         enemyteamInput.addTextChangedListener(new SimpleUpdateTextWatcher(
-                t -> item.getSpiel().setGastPunkte(Integer.parseInt(t))));
+                t -> {
+                    if (!t.isEmpty()) item.getSpiel().setGastPunkte(Integer.parseInt(t));
+                }));
 
+        if (item.getSpiel().getHeimPunkte() != 0)
+            myteamInput.setText(String.valueOf(item.getSpiel().getHeimPunkte()));
+        else if (item.getSpiel().getHeimPunkte() == 0) myteamInput.setText(null);
 
-        if (item.getSpiel().getHeimPunkte() != 0) {
-            myteamInput.setText(item.getSpiel().getHeimPunkte());
-        }
         myteamInput.addTextChangedListener(new SimpleUpdateTextWatcher(
-                t -> item.getSpiel().setHeimPunkte(Integer.parseInt(t))));
+                t -> {
+                    if (!t.isEmpty()) item.getSpiel().setHeimPunkte(Integer.parseInt(t));
+                }));
 
     }
 

@@ -18,8 +18,8 @@ public class SpielSpielerViewHolder extends BaseViewHolder<SpielSpielerListItem>
 
     private static final @ColorInt
     int BG_1 = Color.WHITE;
-    private static final @ColorInt
-    int BG_3 = Color.GRAY;
+    private final @ColorInt
+    int colorXboxgrey = ContextCompat.getColor(itemView.getContext(), R.color.xbox_grey);
     private static final @ColorInt
     int BG_2 = 0x22000000;
     private final @ColorInt
@@ -56,7 +56,7 @@ public class SpielSpielerViewHolder extends BaseViewHolder<SpielSpielerListItem>
 
         // Farbliche Hervorhebung der Freiwurfquote
         if (item.getStats().getGeworfeneFreiwuerfe() != 0) {
-            Double freethrowPercentageDouble = (double) item.getStats().getGetroffeneFreiwuerfe() / item.getStats().getGeworfeneFreiwuerfe() * 100;
+            double freethrowPercentageDouble = (double) item.getStats().getGetroffeneFreiwuerfe() / item.getStats().getGeworfeneFreiwuerfe() * 100;
             double rounded = Math.round(freethrowPercentageDouble * 100.0) / 100.0;
             if (freethrowPercentageDouble >= 70) freethrowPercantage.setTextColor(colorGreen);
             else if (freethrowPercentageDouble >= 50) freethrowPercantage.setTextColor(colorOrange);
@@ -64,7 +64,7 @@ public class SpielSpielerViewHolder extends BaseViewHolder<SpielSpielerListItem>
             String placeholder = String.format("%.2f", rounded) + "%";
             freethrowPercantage.setText(placeholder);
         } else if (item.getStats().getGeworfeneFreiwuerfe() == 0) {
-            freethrowPercantage.setText("0.0%");
+            freethrowPercantage.setText("0.00%");
         }
         threePointmades.setText(String.valueOf(item.getStats().getDreiPunkteTreffer()));
         fouls.setText(String.valueOf(item.getStats().getFouls()));
@@ -73,7 +73,7 @@ public class SpielSpielerViewHolder extends BaseViewHolder<SpielSpielerListItem>
         // Alternierender Hintergrund
         int nightModeFlags = itemView.getContext().getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK;
         if (nightModeFlags == android.content.res.Configuration.UI_MODE_NIGHT_YES) {
-            itemView.setBackgroundColor((getAdapterPosition() % 2 == 0) ? BG_3 : BG_2);
+            itemView.setBackgroundColor((getAdapterPosition() % 2 == 0) ? colorXboxgrey : BG_2);
         } else {
             itemView.setBackgroundColor((getAdapterPosition() % 2 == 0) ? BG_1 : BG_2);
         }

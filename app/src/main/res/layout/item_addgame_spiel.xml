@@ -87,7 +87,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/default_marginTop"
-                    android:text="Gegner:"
+                    android:text="@string/Enemy_Spielcard"
                     android:textColor="@color/white"
                     android:textSize="30sp"
                     tools:text="Gegner:" />
@@ -111,7 +111,7 @@
                         android:textColor="@color/white"
                         android:textSize="26sp"
 
-                        tools:text="Lüdenscheid" />
+                        tools:text="irgendeinTeam" />
                 </LinearLayout>
 
                 <TableLayout
@@ -137,17 +137,18 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="4te"
+                            android:text="@string/myTeam"
                             android:textColor="@color/white"
                             android:textSize="30sp"
                             tools:text="4te" />
 
                         <EditText
-                            android:id="@+id/myteam_input"
+                            android:id="@+id/myteamInput"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="100dp"
                             android:background="@drawable/black_border"
+                            android:textColor="@color/black"
                             android:ems="2"
                             android:inputType="number"
                             android:maxLength="3"
@@ -170,12 +171,13 @@
                             tools:text="Gegner" />
 
                         <EditText
-                            android:id="@+id/enemy_input"
+                            android:id="@+id/enemyInput"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="100dp"
                             android:background="@drawable/black_border"
                             android:ems="2"
+                            android:textColor="@color/black"
                             android:imeOptions="actionNext"
                             android:inputType="number"
                             android:maxLength="3"
