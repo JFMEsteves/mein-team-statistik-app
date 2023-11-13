@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,7 +20,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
 import de.fhswf.statistics.R;
 import de.fhswf.statistics.api.service.RemoteSpielerService;
@@ -28,6 +35,7 @@ import de.fhswf.statistics.dialog.SpielerAuswahlDialog;
 import de.fhswf.statistics.list.Adapter.ListAdapter;
 import de.fhswf.statistics.list.item.SpielerListItem;
 import de.fhswf.statistics.model.Spieler;
+import de.fhswf.statistics.util.StatCalculator;
 
 public class SpielerListFragment extends Fragment implements SpielerListItem.OnSpielerListener {
 
@@ -36,6 +44,11 @@ public class SpielerListFragment extends Fragment implements SpielerListItem.OnS
     private boolean busy;
 
     private ArrayList<Spieler> playerList;
+    private String sort = "";
+
+    private HashMap<String, Integer> map;
+
+    private HashMap<String, Double> doubleMap;
 
     private NavController navController;
 
@@ -61,7 +74,53 @@ public class SpielerListFragment extends Fragment implements SpielerListItem.OnS
         //Neues Spiel hinzufügen Button mit AuswahlDialog
         FloatingActionButton addGame = root.findViewById(R.id.addGameBtn);
         addGame.setOnClickListener(v -> new SpielerAuswahlDialog(getActivity(), playerList));
+        TextView headerName = root.findViewById(R.id.HeaderName);
+        TextView headerAllPoints = root.findViewById(R.id.HeaderAllPoints);
+        TextView headerPointsPerGame = root.findViewById(R.id.HeaderPointsPerGame);
+        TextView headerFreethrows = root.findViewById(R.id.HeaderFreethrows);
+        TextView headerFouls = root.findViewById(R.id.HeaderFouls);
 
+
+        headerName.setOnClickListener(v -> {
+            if (Objects.equals(sort, "NameAsc")) {
+                sort = "NameDesc";
+            } else {
+                sort = "NameAsc";
+            }
+            refreshContent();
+        });
+        headerAllPoints.setOnClickListener(v -> {
+            if (Objects.equals(sort, "AllPointsDesc")) {
+                sort = "AllPointsAsc";
+            } else {
+                sort = "AllPointsDesc";
+            }
+            refreshContent();
+        });
+        headerPointsPerGame.setOnClickListener(v -> {
+            if (Objects.equals(sort, "PointsPerGameDesc")) {
+                sort = "PointsPerGameAsc";
+            } else {
+                sort = "PointsPerGameDesc";
+            }
+            refreshContent();
+        });
+        headerFreethrows.setOnClickListener(v -> {
+            if (Objects.equals(sort, "FreethrowsDesc")) {
+                sort = "FreethrowsAsc";
+            } else {
+                sort = "FreethrowsDesc";
+            }
+            refreshContent();
+        });
+        headerFouls.setOnClickListener(v -> {
+            if (Objects.equals(sort, "FoulsDesc")) {
+                sort = "FoulsAsc";
+            } else {
+                sort = "FoulsDesc";
+            }
+            refreshContent();
+        });
 
         return root;
     }
@@ -116,13 +175,307 @@ public class SpielerListFragment extends Fragment implements SpielerListItem.OnS
     private void addSpielerToList(List<Spieler> result) {
         this.busy = false;
         adapter.clear();
-        result.sort((spieler, t1) -> spieler.getName().compareToIgnoreCase(t1.getName()));
-        for (Spieler c : result) {
-            playerList.add(c);
+        map = new HashMap<>();
+        doubleMap = new HashMap<>();
+        LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
+        ArrayList<Integer> list = new ArrayList<>();
+        ArrayList<Double> doubleList = new ArrayList<>();
+        LinkedHashMap<String, Double> sortedDoubleMap = new LinkedHashMap<>();
 
 
-            adapter.add(new SpielerListItem(c).setOnSpielerListener(this));
+        switch (sort) {
+            case "NameAsc":
+                result.sort((spieler, t1) -> spieler.getName().compareToIgnoreCase(t1.getName()));
+                for (Spieler c : result) {
+                    playerList.add(c);
+
+
+                    adapter.add(new SpielerListItem(c).setOnSpielerListener(this));
+                }
+
+                break;
+            case "NameDesc":
+                result.sort((spieler, t1) -> spieler.getName().compareToIgnoreCase(t1.getName()));
+                Collections.reverse(result);
+                for (Spieler c : result) {
+                    playerList.add(c);
+
+
+                    adapter.add(new SpielerListItem(c).setOnSpielerListener(this));
+                }
+
+                break;
+            case "AllPointsAsc":
+                /*
+                Ziel: Liste sortieren nach Werten die erst errechnet werden müssen.
+                 */
+                map.clear();
+                sortedMap.clear();
+                list.clear();
+
+                // erstelle eine Hashmap mit dem Namen des Spielers als Key und den Gesamtpunkten als Value
+                createHashMap(result, "Gesamtpunkte");
+
+                for (Map.Entry<String, Integer> entry : map.entrySet()) {
+                    list.add(entry.getValue());
+                }
+                // sortiere die Werte in der Liste
+                Collections.sort(list);
+                // sortiere die Map nach den  sortierten Werten der Liste
+                for (int num : list) {
+                    for (Map.Entry<String, Integer> entry : map.entrySet()) {
+                        if (entry.getValue().equals(num)) {
+                            sortedMap.put(entry.getKey(), num);
+                        }
+                    }
+
+                }
+                Set<String> keys = sortedMap.keySet();
+                ArrayList<String> keyListAsc = new ArrayList<>(keys);
+                for (String key : keyListAsc) {
+                    for (Spieler c : result) {
+                        if (c.getName().equals(key)) {
+                            playerList.add(c);
+                            adapter.add(new SpielerListItem(c).setOnSpielerListener(this));
+                        }
+                    }
+                }
+                break;
+            case "AllPointsDesc":
+                map.clear();
+                sortedMap.clear();
+                list.clear();
+                // erstelle eine Hashmap mit dem Namen des Spielers als Key und den Gesamtpunkten als Value
+
+                createHashMap(result, "Gesamtpunkte");
+
+                for (Map.Entry<String, Integer> entry : map.entrySet()) {
+                    list.add(entry.getValue());
+                }
+                // sortiere die Werte in der Liste und drehe sie um für absteigende Reihenfolge
+                Collections.sort(list);
+                Collections.reverse(list);
+                for (int num : list) {
+                    for (Map.Entry<String, Integer> entry : map.entrySet()) {
+                        if (entry.getValue().equals(num)) {
+                            sortedMap.put(entry.getKey(), num);
+                        }
+                    }
+
+                }
+                Set<String> keys2 = sortedMap.keySet();
+                ArrayList<String> keyListDesc = new ArrayList<>(keys2);
+                for (String key : keyListDesc) {
+                    for (Spieler c : result) {
+                        if (c.getName().equals(key)) {
+                            playerList.add(c);
+                            adapter.add(new SpielerListItem(c).setOnSpielerListener(this));
+                        }
+                    }
+                }
+                break;
+            case "PointsPerGameAsc":
+                doubleMap.clear();
+                doubleList.clear();
+                sortedDoubleMap.clear();
+
+                createHashMap(result, "PunkteProSpiel");
+
+                for (Map.Entry<String, Double> entry : doubleMap.entrySet()) {
+                    doubleList.add(entry.getValue());
+                }
+                // sortiere die Werte in der Liste für aufsteigende Reihenfolge
+                Collections.sort(doubleList);
+                for (double num : doubleList) {
+                    for (Map.Entry<String, Double> entry : doubleMap.entrySet()) {
+                        if (entry.getValue().equals(num)) {
+                            sortedDoubleMap.put(entry.getKey(), num);
+                        }
+                    }
+
+                }
+                Set<String> keysPPGA = sortedDoubleMap.keySet();
+                ArrayList<String> keyListPPGA = new ArrayList<>(keysPPGA);
+                for (String key : keyListPPGA) {
+                    for (Spieler c : result) {
+                        if (c.getName().equals(key)) {
+                            playerList.add(c);
+                            adapter.add(new SpielerListItem(c).setOnSpielerListener(this));
+                        }
+                    }
+                }
+                break;
+            case "PointsPerGameDesc":
+                doubleMap.clear();
+                doubleList.clear();
+                sortedDoubleMap.clear();
+
+                createHashMap(result, "PunkteProSpiel");
+
+                for (Map.Entry<String, Double> entry : doubleMap.entrySet()) {
+                    doubleList.add(entry.getValue());
+                }
+                // sortiere die Werte in der Liste und drehe sie um für absteigende Reihenfolge
+                Collections.sort(doubleList);
+                Collections.reverse(doubleList);
+                for (double num : doubleList) {
+                    for (Map.Entry<String, Double> entry : doubleMap.entrySet()) {
+                        if (entry.getValue().equals(num)) {
+                            sortedDoubleMap.put(entry.getKey(), num);
+                        }
+                    }
+
+                }
+                Set<String> keysPPGD = sortedDoubleMap.keySet();
+                ArrayList<String> keyListPPGD = new ArrayList<>(keysPPGD);
+                for (String key : keyListPPGD) {
+                    for (Spieler c : result) {
+                        if (c.getName().equals(key)) {
+                            playerList.add(c);
+                            adapter.add(new SpielerListItem(c).setOnSpielerListener(this));
+                        }
+                    }
+                }
+                break;
+            case "FreethrowsAsc":
+                doubleMap.clear();
+                doubleList.clear();
+                sortedDoubleMap.clear();
+
+                createHashMap(result, "Freiwurfquote");
+
+                for (Map.Entry<String, Double> entry : doubleMap.entrySet()) {
+                    doubleList.add(entry.getValue());
+                }
+                // sortiere die Werte in der Liste für aufsteigende Reihenfolge
+                Collections.sort(doubleList);
+                for (double num : doubleList) {
+                    for (Map.Entry<String, Double> entry : doubleMap.entrySet()) {
+                        if (entry.getValue().equals(num)) {
+                            sortedDoubleMap.put(entry.getKey(), num);
+                        }
+                    }
+
+                }
+                Set<String> keysFWA = sortedDoubleMap.keySet();
+                ArrayList<String> keyListFWA = new ArrayList<>(keysFWA);
+                for (String key : keyListFWA) {
+                    for (Spieler c : result) {
+                        if (c.getName().equals(key)) {
+                            playerList.add(c);
+                            adapter.add(new SpielerListItem(c).setOnSpielerListener(this));
+                        }
+                    }
+                }
+                break;
+            case "FreethrowsDesc":
+                doubleMap.clear();
+                doubleList.clear();
+                sortedDoubleMap.clear();
+
+                createHashMap(result, "Freiwurfquote");
+
+                for (Map.Entry<String, Double> entry : doubleMap.entrySet()) {
+                    doubleList.add(entry.getValue());
+                }
+                // sortiere die Werte in der Liste und drehe sie um für absteigende Reihenfolge
+                Collections.sort(doubleList);
+                Collections.reverse(doubleList);
+                for (double num : doubleList) {
+                    for (Map.Entry<String, Double> entry : doubleMap.entrySet()) {
+                        if (entry.getValue().equals(num)) {
+                            sortedDoubleMap.put(entry.getKey(), num);
+                        }
+                    }
+
+                }
+                Set<String> keysFWD = sortedDoubleMap.keySet();
+                ArrayList<String> keyListFWD = new ArrayList<>(keysFWD);
+                for (String key : keyListFWD) {
+                    for (Spieler c : result) {
+                        if (c.getName().equals(key)) {
+                            playerList.add(c);
+                            adapter.add(new SpielerListItem(c).setOnSpielerListener(this));
+                        }
+                    }
+                }
+                break;
+            case "FoulsAsc":
+                map.clear();
+                sortedMap.clear();
+                list.clear();
+
+                createHashMap(result, "Fouls");
+
+                for (Map.Entry<String, Integer> entry : map.entrySet()) {
+                    list.add(entry.getValue());
+                }
+                // sortiere die Werte in der Liste für aufsteigende Reihenfolge
+                Collections.sort(list);
+                for (int num : list) {
+                    for (Map.Entry<String, Integer> entry : map.entrySet()) {
+                        if (entry.getValue().equals(num)) {
+                            sortedMap.put(entry.getKey(), num);
+                        }
+                    }
+
+                }
+                Set<String> keysFA = sortedMap.keySet();
+                ArrayList<String> keyListFA = new ArrayList<>(keysFA);
+                for (String key : keyListFA) {
+                    for (Spieler c : result) {
+                        if (c.getName().equals(key)) {
+                            playerList.add(c);
+                            adapter.add(new SpielerListItem(c).setOnSpielerListener(this));
+                        }
+                    }
+                }
+                break;
+            case "FoulsDesc":
+                map.clear();
+                sortedMap.clear();
+                list.clear();
+
+                createHashMap(result, "Fouls");
+
+                for (Map.Entry<String, Integer> entry : map.entrySet()) {
+                    list.add(entry.getValue());
+                }
+                // sortiere die Werte in der Liste und drehe sie um für absteigende Reihenfolge
+                Collections.sort(list);
+                Collections.reverse(list);
+                for (int num : list) {
+                    for (Map.Entry<String, Integer> entry : map.entrySet()) {
+                        if (entry.getValue().equals(num)) {
+                            sortedMap.put(entry.getKey(), num);
+                        }
+                    }
+
+                }
+                Set<String> keysFD = sortedMap.keySet();
+                ArrayList<String> keyListFD = new ArrayList<>(keysFD);
+                for (String key : keyListFD) {
+                    for (Spieler c : result) {
+                        if (c.getName().equals(key)) {
+                            playerList.add(c);
+                            adapter.add(new SpielerListItem(c).setOnSpielerListener(this));
+                        }
+                    }
+                }
+                break;
+
+            default:
+                //nothing, sorted by id
+                for (Spieler c : result) {
+                    playerList.add(c);
+
+
+                    adapter.add(new SpielerListItem(c).setOnSpielerListener(this));
+                }
+
         }
+
+
     }
 
     /**
@@ -161,6 +514,34 @@ public class SpielerListFragment extends Fragment implements SpielerListItem.OnS
                 .setCancelable(true)
                 .setOnCancelListener(dialog -> getActivity().finish())
                 .show();
+    }
+
+    private void createHashMap(List<Spieler> result, String s) {
+        switch (s) {
+            case "Gesamtpunkte":
+                for (Spieler c : result) {
+                    map.put(c.getName(), StatCalculator.gesamtpunkteCalc(c));
+                }
+                break;
+            case "PunkteProSpiel":
+                for (Spieler c : result) {
+                    doubleMap.put(c.getName(), StatCalculator.punktePerSpielCalc(c));
+                }
+                break;
+            case "Freiwurfquote":
+                for (Spieler c : result) {
+                    doubleMap.put(c.getName(), Double.valueOf(StatCalculator.freiwurfquoteCalc(c, false)));
+                }
+                break;
+            case "Fouls":
+                for (Spieler c : result) {
+                    map.put(c.getName(), StatCalculator.foulsCalcSpieler(c));
+                }
+                break;
+            default:
+                break;
+        }
+
     }
 
 }

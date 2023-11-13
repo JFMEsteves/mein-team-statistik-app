@@ -18,7 +18,6 @@ import de.fhswf.statistics.util.SimpleUpdateTextWatcher;
 public class SpielercardViewHolder extends BaseViewHolder<SpielercardItem> {
     private final TextView name, decription;
 
-    // private List<SimpleUpdateTextWatcher> textWatchers = new ArrayList<>();
     private SimpleUpdateTextWatcher watcherPunkte, watcherDreier, watcherGeworfeneFreiwuerfe, watcherGetroffeneFreiwuerfe, watcherFouls;
     private final EditText punkteInput, dreierInput, geworfeneFreiwuerfeInput, getroffeneFreiwuerfeInput, foulsInput;
 
@@ -54,16 +53,6 @@ public class SpielercardViewHolder extends BaseViewHolder<SpielercardItem> {
         if (item.getSpielSpieler().getPunkte() != 0)
             punkteInput.setText(String.valueOf(item.getSpielSpieler().getPunkte()));
         else if (item.getSpielSpieler().getPunkte() == 0) punkteInput.setText(null);
-      /*
-        punkteInput.addTextChangedListener(new SimpleUpdateTextWatcher(
-                t -> {
-                    if (!t.isEmpty()) {
-                        item.getSpielSpieler().setPunkte(Integer.parseInt(t));
-                        Log.d("SPIELERCARDADD", "detected Update: " + t + " value: " + item.getSpielSpieler().getPunkte() + " Spieler: " + item.getSpieler().getName());
-                    }
-                }));
-
-*/
         watcherPunkte = new SimpleUpdateTextWatcher(
                 t -> {
                     if (!t.isEmpty())
@@ -92,15 +81,6 @@ public class SpielercardViewHolder extends BaseViewHolder<SpielercardItem> {
                         item.getSpielSpieler().setGeworfeneFreiwuerfe(Integer.parseInt(t));
                 });
 
-        /*
-        getroffeneFreiwuerfeInput.addTextChangedListener(new SimpleUpdateTextWatcher(
-                t -> {
-                    if (!t.isEmpty())
-                        item.getSpielSpieler().setGetroffeneFreiwuerfe(Integer.parseInt(t));
-                }));
-
-
-         */
 
         // getroffene Freiwürfe
         if (item.getSpielSpieler().getGetroffeneFreiwuerfe() != 0)
@@ -113,16 +93,7 @@ public class SpielercardViewHolder extends BaseViewHolder<SpielercardItem> {
                         item.getSpielSpieler().setGetroffeneFreiwuerfe(Integer.parseInt(t));
                 });
 
-        /*
-        geworfeneFreiwuerfeInput.addTextChangedListener(new SimpleUpdateTextWatcher(
-                t -> {
-                    if (!t.isEmpty())
-                        item.getSpielSpieler().setGeworfeneFreiwuerfe(Integer.parseInt(t));
-                }));
 
-
-
-         */
         // Fouls
         if (item.getSpielSpieler().getFouls() != 0)
             foulsInput.setText(String.valueOf(item.getSpielSpieler().getFouls()));
@@ -133,39 +104,17 @@ public class SpielercardViewHolder extends BaseViewHolder<SpielercardItem> {
                         item.getSpielSpieler().setFouls(Integer.parseInt(t));
                 });
 
-        /*
-        foulsInput.addTextChangedListener(new SimpleUpdateTextWatcher(
-                t -> {
-                    if (!t.isEmpty())
-                        item.getSpielSpieler().setFouls(Integer.parseInt(t));
-                }));
 
-
-         */
         punkteInput.addTextChangedListener(watcherPunkte);
         dreierInput.addTextChangedListener(watcherDreier);
         geworfeneFreiwuerfeInput.addTextChangedListener(watcherGeworfeneFreiwuerfe);
         getroffeneFreiwuerfeInput.addTextChangedListener(watcherGetroffeneFreiwuerfe);
         foulsInput.addTextChangedListener(watcherFouls);
 
-        // textWatchers.add(watcherPunkte);
-        // textWatchers.add(watcherDreier);
-        // textWatchers.add(watcherGeworfeneFreiwuerfe);
-        // textWatchers.add(watcherGetroffeneFreiwuerfe);
-        //  textWatchers.add(watcherFouls);
     }
 
     public void clearTextWatchers() {
-       /* for(SimpleUpdateTextWatcher watcher : textWatchers){
-            punkteInput.removeTextChangedListener(watcher);
-            dreierInput.removeTextChangedListener(watcher);
-            geworfeneFreiwuerfeInput.removeTextChangedListener(watcher);
-            getroffeneFreiwuerfeInput.removeTextChangedListener(watcher);
-            foulsInput.removeTextChangedListener(watcher);
-            textWatchers.clear();
-        }
 
-        */
         punkteInput.removeTextChangedListener(watcherPunkte);
         dreierInput.removeTextChangedListener(watcherDreier);
         geworfeneFreiwuerfeInput.removeTextChangedListener(watcherGeworfeneFreiwuerfe);
