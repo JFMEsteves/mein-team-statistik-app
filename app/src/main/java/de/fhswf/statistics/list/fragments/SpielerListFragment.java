@@ -22,11 +22,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 
 import de.fhswf.statistics.R;
 import de.fhswf.statistics.api.service.RemoteSpielerService;
@@ -35,7 +32,7 @@ import de.fhswf.statistics.dialog.SpielerAuswahlDialog;
 import de.fhswf.statistics.list.Adapter.ListAdapter;
 import de.fhswf.statistics.list.item.SpielerListItem;
 import de.fhswf.statistics.model.Spieler;
-import de.fhswf.statistics.util.StatCalculator;
+import de.fhswf.statistics.util.ViewSort;
 
 public class SpielerListFragment extends Fragment implements SpielerListItem.OnSpielerListener {
 
@@ -47,12 +44,6 @@ public class SpielerListFragment extends Fragment implements SpielerListItem.OnS
     private String sort = "";
 
     private HashMap<String, Double> map;
-
-    private ArrayList<Double> list;
-    private LinkedHashMap<String, Double> sortedMap;
-
-    private Set<String> keys;
-    private ArrayList<String> keyList;
 
     private NavController navController;
 
@@ -180,8 +171,6 @@ public class SpielerListFragment extends Fragment implements SpielerListItem.OnS
         this.busy = false;
         adapter.clear();
         map = new HashMap<>();
-        list = new ArrayList<>();
-        sortedMap = new LinkedHashMap<>();
 
 
         switch (sort) {
@@ -210,11 +199,11 @@ public class SpielerListFragment extends Fragment implements SpielerListItem.OnS
                 /*
                 Ziel: Liste sortieren nach Werten die erst errechnet werden müssen.
                  */
-                clearall();
-                // erstelle eine Hashmap mit dem Namen des Spielers als Key und den Gesamtpunkten als Value
-                createHashMap(result, "Gesamtpunkte");
-                sortMap(false);
 
+                // erstelle eine Hashmap mit dem Namen des Spielers als Key und den Gesamtpunkten als Value
+                map = ViewSort.createHashMapSpieler(result, "Gesamtpunkte");
+                // sortiere die Map nach den Werten
+                ArrayList<String> keyList = ViewSort.sortedList(map, false);
 
                 for (String key : keyList) {
                     for (Spieler c : result) {
@@ -224,12 +213,12 @@ public class SpielerListFragment extends Fragment implements SpielerListItem.OnS
                         }
                     }
                 }
-
+                clear();
                 break;
             case "AllPointsDesc":
 
-                createHashMap(result, "Gesamtpunkte");
-                sortMap(true);
+                map = ViewSort.createHashMapSpieler(result, "Gesamtpunkte");
+                keyList = ViewSort.sortedList(map, true);
 
 
                 for (String key : keyList) {
@@ -240,13 +229,13 @@ public class SpielerListFragment extends Fragment implements SpielerListItem.OnS
                         }
                     }
                 }
-                clearall();
+                clear();
                 break;
             case "PointsPerGameAsc":
 
 
-                createHashMap(result, "PunkteProSpiel");
-                sortMap(false);
+                map = ViewSort.createHashMapSpieler(result, "PunkteProSpiel");
+                keyList = ViewSort.sortedList(map, false);
 
 
                 for (String key : keyList) {
@@ -257,13 +246,13 @@ public class SpielerListFragment extends Fragment implements SpielerListItem.OnS
                         }
                     }
                 }
-                clearall();
+                clear();
                 break;
             case "PointsPerGameDesc":
 
 
-                createHashMap(result, "PunkteProSpiel");
-                sortMap(true);
+                map = ViewSort.createHashMapSpieler(result, "PunkteProSpiel");
+                keyList = ViewSort.sortedList(map, true);
 
 
                 for (String key : keyList) {
@@ -274,14 +263,13 @@ public class SpielerListFragment extends Fragment implements SpielerListItem.OnS
                         }
                     }
                 }
-                clearall();
+                clear();
                 break;
             case "FreethrowsAsc":
 
 
-                createHashMap(result, "Freiwurfquote");
-
-                sortMap(false);
+                map = ViewSort.createHashMapSpieler(result, "Freiwurfquote");
+                keyList = ViewSort.sortedList(map, false);
 
 
                 for (String key : keyList) {
@@ -292,12 +280,12 @@ public class SpielerListFragment extends Fragment implements SpielerListItem.OnS
                         }
                     }
                 }
-                clearall();
+                clear();
                 break;
             case "FreethrowsDesc":
-                createHashMap(result, "Freiwurfquote");
 
-                sortMap(true);
+                map = ViewSort.createHashMapSpieler(result, "Freiwurfquote");
+                keyList = ViewSort.sortedList(map, true);
 
 
                 for (String key : keyList) {
@@ -308,14 +296,14 @@ public class SpielerListFragment extends Fragment implements SpielerListItem.OnS
                         }
                     }
                 }
-                clearall();
+                clear();
                 break;
 
             case "FoulsAsc":
 
 
-                createHashMap(result, "Fouls");
-                sortMap(false);
+                map = ViewSort.createHashMapSpieler(result, "Fouls");
+                keyList = ViewSort.sortedList(map, false);
 
                 for (String key : keyList) {
                     for (Spieler c : result) {
@@ -325,13 +313,13 @@ public class SpielerListFragment extends Fragment implements SpielerListItem.OnS
                         }
                     }
                 }
-                clearall();
+                clear();
                 break;
             case "FoulsDesc":
 
 
-                createHashMap(result, "Fouls");
-                sortMap(true);
+                map = ViewSort.createHashMapSpieler(result, "Fouls");
+                keyList = ViewSort.sortedList(map, true);
 
 
                 for (String key : keyList) {
@@ -342,7 +330,7 @@ public class SpielerListFragment extends Fragment implements SpielerListItem.OnS
                         }
                     }
                 }
-                clearall();
+                clear();
                 break;
 
             default:
@@ -397,60 +385,9 @@ public class SpielerListFragment extends Fragment implements SpielerListItem.OnS
                 .show();
     }
 
-    private void createHashMap(List<Spieler> result, String s) {
-        switch (s) {
-            case "Gesamtpunkte":
-                for (Spieler c : result) {
-                    map.put(c.getName(), (double) StatCalculator.gesamtpunkteCalc(c));
-                }
-                break;
-            case "PunkteProSpiel":
-                for (Spieler c : result) {
-                    map.put(c.getName(), StatCalculator.punktePerSpielCalc(c));
-                }
-                break;
-            case "Freiwurfquote":
-                for (Spieler c : result) {
-                    map.put(c.getName(), Double.valueOf(StatCalculator.freiwurfquoteCalc(c, false)));
-                }
-                break;
-            case "Fouls":
-                for (Spieler c : result) {
-                    map.put(c.getName(), (double) StatCalculator.foulsCalcSpieler(c));
-                }
-                break;
-            default:
-                break;
-        }
 
-    }
-
-    private void sortMap(boolean reverse) {
-
-        for (Map.Entry<String, Double> entry : map.entrySet()) {
-            list.add(entry.getValue());
-        }
-        // sortiere die Werte in der Liste
-        Collections.sort(list);
-        if (reverse) Collections.reverse(list);
-        // sortiere die Map nach den  sortierten Werten der Liste
-        for (Double num : list) {
-            for (Map.Entry<String, Double> entry : map.entrySet()) {
-                if (entry.getValue().equals(num)) {
-                    sortedMap.put(entry.getKey(), num);
-                }
-            }
-
-        }
-        keys = sortedMap.keySet();
-        keyList = new ArrayList<>(keys);
-
-    }
-
-    private void clearall() {
+    private void clear() {
         if (!map.isEmpty()) map.clear();
-        if (!sortedMap.isEmpty()) sortedMap.clear();
-        if (!list.isEmpty()) list.clear();
     }
 
 }
