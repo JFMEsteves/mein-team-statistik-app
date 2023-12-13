@@ -2,11 +2,6 @@ package de.fhswf.statistics.util;
 
 import androidx.annotation.NonNull;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-
 import de.fhswf.statistics.model.Spiel;
 import de.fhswf.statistics.model.SpielSpieler;
 import de.fhswf.statistics.model.Spieler;
@@ -54,7 +49,7 @@ public final class StatCalculator {
         int punkte = gesamtpunkteCalc(spieler);
         int attendedGames = attendedGamesCalc(spieler);
         if (punkte == 0 && attendedGames == 0) return 0;
-        return punkte / attendedGames;
+        return (double) punkte / attendedGames;
     }
 
     public static int dreierCalc(@NonNull Spieler spieler) {
@@ -131,8 +126,7 @@ public final class StatCalculator {
     }
 
     public static int punktedifferenzCalc(@NonNull Spiel spiel) {
-        int differenz = spiel.getHeimPunkte() - spiel.getGastPunkte();
-        return differenz;
+        return spiel.getHeimPunkte() - spiel.getGastPunkte();
     }
 
 
@@ -141,19 +135,4 @@ public final class StatCalculator {
     }
 
 
-    public static String getTodaysDate() {
-        Date currentdate = Calendar.getInstance().getTime();
-        SimpleDateFormat format = new SimpleDateFormat("dd.MMM.yyyy");
-
-        return format.format(currentdate);
-    }
-
-    public static String getChosenString(ArrayList<Spieler> list) {
-        String stringlist = "";
-        for (Spieler c : list) {
-            stringlist.concat(c.getId() + ";");
-        }
-        return stringlist;
-
-    }
 }
