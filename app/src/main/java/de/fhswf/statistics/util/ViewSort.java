@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import de.fhswf.statistics.model.Spiel;
 import de.fhswf.statistics.model.Spieler;
 
 /**
@@ -42,6 +43,23 @@ public class ViewSort {
                 }
                 break;
             default:
+                break;
+        }
+        return map;
+    }
+
+    public static HashMap<String, Double> createHashMapSpiel(List<Spiel> spielList, String choice) {
+        HashMap<String, Double> map = new HashMap<>();
+        switch (choice) {
+            case "Punktedifferenz":
+                for (Spiel c : spielList) {
+                    map.put(c.getTeamname(), (double) StatCalculator.punktedifferenzCalc(c));
+                }
+                break;
+            case "Teamfouls":
+                for (Spiel c : spielList) {
+                    map.put(c.getTeamname(), (double) StatCalculator.foulsCalcSpiel(c));
+                }
                 break;
         }
         return map;

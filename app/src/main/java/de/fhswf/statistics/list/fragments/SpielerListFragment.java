@@ -171,6 +171,7 @@ public class SpielerListFragment extends Fragment implements SpielerListItem.OnS
         this.busy = false;
         adapter.clear();
         map = new HashMap<>();
+        ArrayList<String> keyList;
 
 
         switch (sort) {
@@ -203,7 +204,8 @@ public class SpielerListFragment extends Fragment implements SpielerListItem.OnS
                 // erstelle eine Hashmap mit dem Namen des Spielers als Key und den Gesamtpunkten als Value
                 map = ViewSort.createHashMapSpieler(result, "Gesamtpunkte");
                 // sortiere die Map nach den Werten
-                ArrayList<String> keyList = ViewSort.sortedList(map, false);
+
+                keyList = ViewSort.sortedList(map, false);
 
                 for (String key : keyList) {
                     for (Spieler c : result) {

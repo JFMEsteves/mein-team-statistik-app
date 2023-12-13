@@ -61,7 +61,7 @@ public class SpielListViewHolder extends BaseViewHolder<SpielListItem>
         name.setText(item.getSpiel().getTeamname());
         unserePunkte.setText(String.valueOf(item.getSpiel().getHeimPunkte()));
         gegnerPunkte.setText(String.valueOf(item.getSpiel().getGastPunkte()));
-        int differenz = item.getSpiel().getHeimPunkte() - item.getSpiel().getGastPunkte();
+        int differenz = StatCalculator.punktedifferenzCalc(item.getSpiel());
         punkteDifferenz.setText(String.valueOf(differenz));
         teamfouls.setText(String.valueOf(StatCalculator.foulsCalcSpiel(item.getSpiel())));
 

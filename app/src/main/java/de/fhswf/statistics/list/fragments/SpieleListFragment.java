@@ -1,9 +1,12 @@
 package de.fhswf.statistics.list.fragments;
 
+import static java.util.Comparator.comparing;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,7 +19,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 import de.fhswf.statistics.R;
 import de.fhswf.statistics.api.service.RemoteSpielerService;
@@ -24,6 +29,7 @@ import de.fhswf.statistics.api.service.SpielerService;
 import de.fhswf.statistics.list.Adapter.ListAdapter;
 import de.fhswf.statistics.list.item.SpielListItem;
 import de.fhswf.statistics.model.Spiel;
+import de.fhswf.statistics.util.ViewSort;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,9 +37,12 @@ import de.fhswf.statistics.model.Spiel;
 public class SpieleListFragment extends Fragment implements SpielListItem.OnSpielListener {
 
     private ListAdapter adapter;
-    private ArrayList<Spiel> spielList;
+    // private ArrayList<Spiel> spielList;
     private SpielerService SpielerService;
     private boolean busy;
+    private String sort = "";
+
+    private HashMap<String, Double> map;
 
     private NavController navController;
 
@@ -43,7 +52,7 @@ public class SpieleListFragment extends Fragment implements SpielListItem.OnSpie
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_spiele_list, container, false);
-        spielList = new ArrayList<>();
+        // spielList = new ArrayList<>();
         RecyclerView recyclerView = root.findViewById(R.id.container);
         LinearLayoutManager layoutManager = new LinearLayoutManager(
                 getActivity(), LinearLayoutManager.VERTICAL, false);
@@ -54,6 +63,68 @@ public class SpieleListFragment extends Fragment implements SpielListItem.OnSpie
         recyclerView.setAdapter(adapter);
 
 
+        // Set OnClick Listener for Sorting the List
+
+        TextView headerDatum = root.findViewById(R.id.HeaderDate);
+        TextView headerName = root.findViewById(R.id.HeaderName);
+        TextView headerGegnerPunkte = root.findViewById(R.id.HeaderEnemyPoints);
+        TextView headerUnserePunkte = root.findViewById(R.id.HeaderOurPoints);
+        TextView headerPunktdifferenz = root.findViewById(R.id.HeaderPointdifference);
+        TextView headerTeamfouls = root.findViewById(R.id.HeaderTeamfouls);
+
+        headerDatum.setOnClickListener(v -> {
+            if (Objects.equals(sort, "DatumAsc")) {
+                sort = "DatumDesc";
+            } else {
+                sort = "DatumAsc";
+            }
+            refreshContent();
+        });
+
+        headerName.setOnClickListener(v -> {
+            if (Objects.equals(sort, "NameAsc")) {
+                sort = "NameDesc";
+            } else {
+                sort = "NameAsc";
+            }
+            refreshContent();
+        });
+
+        headerGegnerPunkte.setOnClickListener(v -> {
+            if (Objects.equals(sort, "GegnerPunkteDesc")) {
+                sort = "GegnerPunkteAsc";
+            } else {
+                sort = "GegnerPunkteDesc";
+            }
+            refreshContent();
+        });
+
+        headerUnserePunkte.setOnClickListener(v -> {
+            if (Objects.equals(sort, "UnserePunkteDesc")) {
+                sort = "UnserePunkteAsc";
+            } else {
+                sort = "UnserePunkteDesc";
+            }
+            refreshContent();
+        });
+
+        headerPunktdifferenz.setOnClickListener(v -> {
+            if (Objects.equals(sort, "PunktedifferenzDesc")) {
+                sort = "PunktedifferenzAsc";
+            } else {
+                sort = "PunktedifferenzDesc";
+            }
+            refreshContent();
+        });
+
+        headerTeamfouls.setOnClickListener(v -> {
+            if (Objects.equals(sort, "TeamfoulsDesc")) {
+                sort = "TeamfoulsAsc";
+            } else {
+                sort = "TeamfoulsDesc";
+            }
+            refreshContent();
+        });
         return root;
     }
 
@@ -83,7 +154,7 @@ public class SpieleListFragment extends Fragment implements SpielListItem.OnSpie
     @Override
     public void onResume() {
         super.onResume();
-        spielList = new ArrayList<>();
+        //   spielList = new ArrayList<>();
         refreshContent();
     }
 
@@ -96,12 +167,131 @@ public class SpieleListFragment extends Fragment implements SpielListItem.OnSpie
     private void addSpielToList(List<Spiel> result) {
         this.busy = false;
         adapter.clear();
+        map = new HashMap<>();
+        ArrayList<String> keyList;
 
-        for (Spiel c : result) {
-            spielList.add(c);
+        switch (sort) {
+            case "DatumAsc":
+                result.sort(comparing(Spiel::getDatum));
+                for (Spiel c : result) {
+                    //   spielList.add(c);
+                    adapter.add(new SpielListItem(c).setOnSpielListener(this));
+                }
+                break;
+            case "DatumDesc":
+                result.sort(comparing(Spiel::getDatum).reversed());
+                for (Spiel c : result) {
+                    // spielList.add(c);
+                    adapter.add(new SpielListItem(c).setOnSpielListener(this));
+                }
+                break;
+            case "NameAsc":
+                result.sort(comparing(Spiel::getTeamname));
+                for (Spiel c : result) {
+                    //  spielList.add(c);
+                    adapter.add(new SpielListItem(c).setOnSpielListener(this));
+                }
+                break;
+            case "NameDesc":
+                result.sort(comparing(Spiel::getTeamname).reversed());
+                for (Spiel c : result) {
+                    //  spielList.add(c);
+                    adapter.add(new SpielListItem(c).setOnSpielListener(this));
+                }
+                break;
+            case "GegnerPunkteAsc":
+                result.sort(comparing(Spiel::getGastPunkte));
+                for (Spiel c : result) {
+                    //  spielList.add(c);
+                    adapter.add(new SpielListItem(c).setOnSpielListener(this));
+                }
+                break;
+            case "GegnerPunkteDesc":
+                result.sort(comparing(Spiel::getGastPunkte).reversed());
+                for (Spiel c : result) {
+                    // spielList.add(c);
+                    adapter.add(new SpielListItem(c).setOnSpielListener(this));
+                }
+                break;
+            case "UnserePunkteAsc":
+                result.sort(comparing(Spiel::getHeimPunkte));
+                for (Spiel c : result) {
+                    // spielList.add(c);
+                    adapter.add(new SpielListItem(c).setOnSpielListener(this));
+                }
+                break;
+            case "UnserePunkteDesc":
+                result.sort(comparing(Spiel::getHeimPunkte).reversed());
+                for (Spiel c : result) {
+                    // spielList.add(c);
+                    adapter.add(new SpielListItem(c).setOnSpielListener(this));
+                }
+                break;
+            case "PunktedifferenzAsc":
+                map = ViewSort.createHashMapSpiel(result, "Punktedifferenz");
+                keyList = ViewSort.sortedList(map, false);
 
-            adapter.add(new SpielListItem(c).setOnSpielListener(this));
+                for (String key : keyList) {
+                    for (Spiel c : result) {
+                        if (c.getTeamname().equals(key)) {
+                            //   spielList.add(c);
+                            adapter.add(new SpielListItem(c).setOnSpielListener(this));
+                        }
+                    }
+                }
+                clear();
+                break;
+            case "PunktedifferenzDesc":
+                map = ViewSort.createHashMapSpiel(result, "Punktedifferenz");
+                keyList = ViewSort.sortedList(map, true);
+
+                for (String key : keyList) {
+                    for (Spiel c : result) {
+                        if (c.getTeamname().equals(key)) {
+                            // spielList.add(c);
+                            adapter.add(new SpielListItem(c).setOnSpielListener(this));
+                        }
+                    }
+                }
+                clear();
+                break;
+            case "TeamfoulsAsc":
+                map = ViewSort.createHashMapSpiel(result, "Teamfouls");
+                keyList = ViewSort.sortedList(map, false);
+
+                for (String key : keyList) {
+                    for (Spiel c : result) {
+                        if (c.getTeamname().equals(key)) {
+                            //   spielList.add(c);
+                            adapter.add(new SpielListItem(c).setOnSpielListener(this));
+                        }
+                    }
+                }
+                clear();
+                break;
+            case "TeamfoulsDesc":
+                map = ViewSort.createHashMapSpiel(result, "Teamfouls");
+                keyList = ViewSort.sortedList(map, true);
+
+                for (String key : keyList) {
+                    for (Spiel c : result) {
+                        if (c.getTeamname().equals(key)) {
+                            // spielList.add(c);
+                            adapter.add(new SpielListItem(c).setOnSpielListener(this));
+                        }
+                    }
+                }
+                clear();
+                break;
+            default:
+                for (Spiel c : result) {
+                    //spielList.add(c);
+
+                    adapter.add(new SpielListItem(c).setOnSpielListener(this));
+                }
         }
+
+
     }
 
     private void refreshContent() {
@@ -142,5 +332,9 @@ public class SpieleListFragment extends Fragment implements SpielListItem.OnSpie
                 .setCancelable(true)
                 .setOnCancelListener(dialog -> getActivity().finish())
                 .show();
+    }
+
+    private void clear() {
+        if (!map.isEmpty()) map.clear();
     }
 }

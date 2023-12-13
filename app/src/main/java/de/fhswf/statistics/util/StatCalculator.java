@@ -130,6 +130,11 @@ public final class StatCalculator {
         return fouls;
     }
 
+    public static int punktedifferenzCalc(@NonNull Spiel spiel) {
+        int differenz = spiel.getHeimPunkte() - spiel.getGastPunkte();
+        return differenz;
+    }
+
 
     public static String makeDateString(int dayOfMonth, int month, int year) {
         return dayOfMonth + "." + month + "." + year;
