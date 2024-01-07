@@ -20,5 +20,7 @@
     <color name="semi_black">#68000000</color>
     <color name="xbox_grey">#1a1b1e</color>
     <color name="xbox_black">#121212</color>
+    <color name="TextViewBase">#757575</color>
+    <color name="TextViewBaseDark">#b8b8b8</color>
 
 </resources>

@@ -35,6 +35,7 @@ public class SpielDetailFragment extends Fragment {
         adapter = new ListAdapter();
         container.setAdapter(adapter);
 
+
         fetchSpieldetailsListe();
 
 
@@ -46,10 +47,15 @@ public class SpielDetailFragment extends Fragment {
      */
     private void fetchSpieldetailsListe() {
 
+
+        // Füllt die Liste result mit den Spieldetails des Spielers um Sie dann sortiert oder unsortiert an den Adapter zu übergeben.
         if (spiel.getDetails() != null) {
             for (Spieldetails c : spiel.getDetails()) {
-                if (c.getId() == spiel.getId())
+                if (c.getId() == spiel.getId()) {
+
                     adapter.add(new SpielDetailsItem(c));
+                }
+
             }
 
         }

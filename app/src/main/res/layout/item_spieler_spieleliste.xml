@@ -7,7 +7,7 @@
     >
 
     <TextView
-        android:id="@+id/GameID"
+        android:id="@+id/HeaderId"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -18,7 +18,7 @@
         tools:text="SpielID" />
 
     <TextView
-        android:id="@+id/Points"
+        android:id="@+id/HeaderPoints"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -30,7 +30,7 @@
 
     <TextView
 
-        android:id="@+id/freethrows_made"
+        android:id="@+id/HeaderFreethrowsMade"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -42,7 +42,7 @@
 
     <TextView
 
-        android:id="@+id/freethrows_thrown"
+        android:id="@+id/HeaderFreethrowsThrown"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -64,7 +64,7 @@
 
     <TextView
 
-        android:id="@+id/threes_made"
+        android:id="@+id/HeaderThreesMade"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -76,7 +76,7 @@
 
     <TextView
 
-        android:id="@+id/fouls"
+        android:id="@+id/HeaderFoulsDetails"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"

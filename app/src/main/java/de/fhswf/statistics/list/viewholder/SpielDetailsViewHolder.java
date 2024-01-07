@@ -27,11 +27,11 @@ public class SpielDetailsViewHolder extends BaseViewHolder<SpielDetailsItem> {
     public SpielDetailsViewHolder(@NonNull View itemView) {
         super(itemView);
         this.teamname = itemView.findViewById(R.id.teamname);
-        this.viertel1 = itemView.findViewById(R.id.viertel1);
-        this.viertel2 = itemView.findViewById(R.id.viertel2);
-        this.viertel3 = itemView.findViewById(R.id.viertel3);
-        this.viertel4 = itemView.findViewById(R.id.viertel4);
-        this.gesamtpunkte = itemView.findViewById(R.id.gesamtpunkte);
+        this.viertel1 = itemView.findViewById(R.id.HeaderQuarter1);
+        this.viertel2 = itemView.findViewById(R.id.HeaderQuarter2);
+        this.viertel3 = itemView.findViewById(R.id.HeaderQuarter3);
+        this.viertel4 = itemView.findViewById(R.id.HeaderQuarter4);
+        this.gesamtpunkte = itemView.findViewById(R.id.HeaderTotalPoints);
     }
 
     @Override

@@ -30,6 +30,10 @@ public class SpielerListViewHolder extends BaseViewHolder<SpielerListItem>
     int colorOrange = ContextCompat.getColor(itemView.getContext(), R.color.orange);
 
     private final @ColorInt
+    int colorBase = ContextCompat.getColor(itemView.getContext(), R.color.TextViewBase);
+    private final @ColorInt
+    int colorBaseDark = ContextCompat.getColor(itemView.getContext(), R.color.TextViewBaseDark);
+    private final @ColorInt
     int colorXboxgrey = ContextCompat.getColor(itemView.getContext(), R.color.xbox_grey);
     private final @ColorInt
     int colorGreen = ContextCompat.getColor(itemView.getContext(), R.color.light_green);
@@ -45,7 +49,7 @@ public class SpielerListViewHolder extends BaseViewHolder<SpielerListItem>
         this.gesamtpunkte = itemView.findViewById(R.id.all_points);
         this.punkteProSpiel = itemView.findViewById(R.id.points_per_game);
         this.freiwurfquote = itemView.findViewById(R.id.freethrow_percentage);
-        this.fouls = itemView.findViewById(R.id.fouls);
+        this.fouls = itemView.findViewById(R.id.HeaderFoulsDetails);
         itemView.setOnClickListener(this);
     }
 
@@ -63,16 +67,28 @@ public class SpielerListViewHolder extends BaseViewHolder<SpielerListItem>
         punkteProSpiel.setText(String.valueOf(StatCalculator.punktePerSpielCalc(item.getSpieler())));
         String quote = StatCalculator.freiwurfquoteCalc(item.getSpieler(), false);
         double statcheck = parseDouble(quote);
-        if (StatCalculator.geworfeneFreiwuerfeCalc(item.getSpieler()) != 0) {
+        int thrown = StatCalculator.geworfeneFreiwuerfeCalc(item.getSpieler());
+        if (thrown != 0) {
             if (statcheck >= 75.0)
                 freiwurfquote.setTextColor(colorGreen);
             else if (statcheck >= 50.0)
                 freiwurfquote.setTextColor(colorOrange);
-            else if (statcheck < 50)
+            else if (statcheck < 50.0)
                 freiwurfquote.setTextColor(colorRed);
+        } else {
+            // Textfarbe muss gesetzt werden, weil sonst eine falsche Farbe übernommen wird
+            // woher genau diese Farbe kommt ist mir nicht bekannt, jedoch funktioniert der "übermalen" approach.
+
+            int nightModeFlags = itemView.getContext().getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK;
+
+            if (nightModeFlags == android.content.res.Configuration.UI_MODE_NIGHT_YES) {
+                freiwurfquote.setTextColor(colorBaseDark);
+            } else {
+                freiwurfquote.setTextColor(colorBase);
+            }
         }
-        String placeholder = quote + "%";
-        freiwurfquote.setText(placeholder);
+
+        freiwurfquote.setText(quote);
         fouls.setText(String.valueOf(StatCalculator.foulsCalcSpieler(item.getSpieler())));
 
         // Alternierender Hintergrund

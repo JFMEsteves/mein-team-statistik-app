@@ -64,7 +64,7 @@ public class NewGameActivity extends AppCompatActivity implements EndcardItem.On
         id = 1;
         //Setting up View
          setContentView(R.layout.add_game_view);
-        RecyclerView container = findViewById(R.id.add_player_container);
+        RecyclerView container = findViewById(R.id.AddPlayerContainer);
 
         layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
         container.setLayoutManager(layoutManager);

@@ -5,7 +5,7 @@
     <string name="spielid">Spiel ID</string>
     <string name="getroffene_freiwuerfe">getroffene Freiwürfe</string>
     <string name="geworfene_freiwuerfe">geworfene Freiwürfe</string>
-    <string name="freiwurfquote">Freiwurfquote</string>
+    <string name="freiwurfquote">Freiwurfquote %</string>
     <string name="threes_made">3PM</string>
     <string name="fouls">Fouls</string>
     <string name="punkte_pro_spiel">Punkte pro Spiel</string>

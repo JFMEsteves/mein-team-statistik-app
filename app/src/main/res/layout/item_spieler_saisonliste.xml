@@ -6,7 +6,7 @@
     android:paddingVertical="@dimen/default_vertical_padding">
 
     <TextView
-        android:id="@+id/attended_Games"
+        android:id="@+id/HeaderAttendedGames"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -18,7 +18,7 @@
         tools:text="Spielanzahl" />
 
     <TextView
-        android:id="@+id/all_points_season"
+        android:id="@+id/HeaderAllPointsSeason"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -28,7 +28,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/points_per_game_season"
+        android:id="@+id/HeaderPointsPerGameSeason"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -39,7 +39,7 @@
 
     <TextView
 
-        android:id="@+id/threes_made_season"
+        android:id="@+id/HeaderThreesMadeSeason"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -50,7 +50,7 @@
         tools:text="3 Punkte Würfe" />
 
     <TextView
-        android:id="@+id/freethrows_percentage_season"
+        android:id="@+id/HeaderFreethrowPercentageSeason"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -61,7 +61,7 @@
 
     <TextView
 
-        android:id="@+id/freethrows_thrown_season"
+        android:id="@+id/HeaderFreethrowsThrownSeason"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -73,7 +73,7 @@
 
     <TextView
 
-        android:id="@+id/freethrows_made_season"
+        android:id="@+id/HeaderFreethrowsMadeSeason"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -85,7 +85,7 @@
 
     <TextView
 
-        android:id="@+id/fouls_season"
+        android:id="@+id/HeaderFoulsSeason"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"

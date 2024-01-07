@@ -17,14 +17,14 @@ public class SpielerSaisonViewHolder extends BaseViewHolder<SpielerSaisonListIte
 
     public SpielerSaisonViewHolder(@NonNull View itemView) {
         super(itemView);
-        this.attendGames = itemView.findViewById(R.id.attended_Games);
-        this.gesamtpunkte = itemView.findViewById(R.id.all_points_season);
-        this.punkteProSpiel = itemView.findViewById(R.id.points_per_game_season);
-        this.dreier = itemView.findViewById(R.id.threes_made_season);
-        this.freiwurfquote = itemView.findViewById(R.id.freethrows_percentage_season);
-        this.gwfreiwuerfe = itemView.findViewById(R.id.freethrows_thrown_season);
-        this.gtfreiwuerfe = itemView.findViewById(R.id.freethrows_made_season);
-        this.fouls = itemView.findViewById(R.id.fouls_season);
+        this.attendGames = itemView.findViewById(R.id.HeaderAttendedGames);
+        this.gesamtpunkte = itemView.findViewById(R.id.HeaderAllPointsSeason);
+        this.punkteProSpiel = itemView.findViewById(R.id.HeaderPointsPerGameSeason);
+        this.dreier = itemView.findViewById(R.id.HeaderThreesMadeSeason);
+        this.freiwurfquote = itemView.findViewById(R.id.HeaderFreethrowPercentageSeason);
+        this.gwfreiwuerfe = itemView.findViewById(R.id.HeaderFreethrowsThrownSeason);
+        this.gtfreiwuerfe = itemView.findViewById(R.id.HeaderFreethrowsMadeSeason);
+        this.fouls = itemView.findViewById(R.id.HeaderFoulsSeason);
     }
 
 

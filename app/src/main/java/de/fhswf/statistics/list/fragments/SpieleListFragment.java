@@ -66,7 +66,7 @@ public class SpieleListFragment extends Fragment implements SpielListItem.OnSpie
         // Set OnClick Listener for Sorting the List
 
         TextView headerDatum = root.findViewById(R.id.HeaderDate);
-        TextView headerName = root.findViewById(R.id.HeaderName);
+        TextView headerName = root.findViewById(R.id.HeaderTeamName);
         TextView headerGegnerPunkte = root.findViewById(R.id.HeaderEnemyPoints);
         TextView headerUnserePunkte = root.findViewById(R.id.HeaderOurPoints);
         TextView headerPunktdifferenz = root.findViewById(R.id.HeaderPointdifference);

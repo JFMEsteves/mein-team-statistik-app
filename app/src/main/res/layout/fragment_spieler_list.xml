@@ -31,7 +31,7 @@
                 >
 
                 <TextView
-                    android:id="@+id/HeaderName"
+                    android:id="@+id/HeaderPlayerName"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -63,7 +63,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/HeaderFreethrows"
+                    android:id="@+id/HeaderFreethrowPercentage"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

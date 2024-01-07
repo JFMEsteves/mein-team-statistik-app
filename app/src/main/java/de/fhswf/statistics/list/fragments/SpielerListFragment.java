@@ -69,10 +69,10 @@ public class SpielerListFragment extends Fragment implements SpielerListItem.OnS
         //Neues Spiel hinzufügen Button mit AuswahlDialog
         FloatingActionButton addGame = root.findViewById(R.id.addGameBtn);
         addGame.setOnClickListener(v -> new SpielerAuswahlDialog(getActivity(), playerList));
-        TextView headerName = root.findViewById(R.id.HeaderName);
+        TextView headerName = root.findViewById(R.id.HeaderPlayerName);
         TextView headerAllPoints = root.findViewById(R.id.HeaderAllPoints);
         TextView headerPointsPerGame = root.findViewById(R.id.HeaderPointsPerGame);
-        TextView headerFreethrows = root.findViewById(R.id.HeaderFreethrows);
+        TextView headerFreethrows = root.findViewById(R.id.HeaderFreethrowPercentage);
         TextView headerFouls = root.findViewById(R.id.HeaderFouls);
 
 

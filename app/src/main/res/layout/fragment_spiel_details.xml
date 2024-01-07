@@ -26,7 +26,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/team"
+                    android:id="@+id/HeaderTeam"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -37,7 +37,7 @@
                     tools:text="Team" />
 
                 <TextView
-                    android:id="@+id/gesamtpunkte"
+                    android:id="@+id/HeaderTotalPoints"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -48,7 +48,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/viertel1"
+                    android:id="@+id/HeaderQuarter1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -59,7 +59,7 @@
                     tools:text="1.Viertel" />
 
                 <TextView
-                    android:id="@+id/viertel2"
+                    android:id="@+id/HeaderQuarter2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -70,7 +70,7 @@
                     tools:text="2.Viertel" />
 
                 <TextView
-                    android:id="@+id/viertel3"
+                    android:id="@+id/HeaderQuarter3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -81,7 +81,7 @@
 
                 <TextView
 
-                    android:id="@+id/viertel4"
+                    android:id="@+id/HeaderQuarter4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

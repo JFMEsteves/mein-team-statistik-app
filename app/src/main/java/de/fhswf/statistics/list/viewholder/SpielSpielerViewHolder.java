@@ -29,18 +29,24 @@ public class SpielSpielerViewHolder extends BaseViewHolder<SpielSpielerListItem>
     private final @ColorInt
     int colorRed = ContextCompat.getColor(itemView.getContext(), R.color.redish);
 
+    private final @ColorInt
+    int colorBase = ContextCompat.getColor(itemView.getContext(), R.color.TextViewBase);
+
+    private final @ColorInt
+    int colorBaseDark = ContextCompat.getColor(itemView.getContext(), R.color.TextViewBaseDark);
+
 
     private final TextView spielid, punkte, madeFreethrows, shotFreethrows, freethrowPercantage, threePointmades, fouls;
 
     public SpielSpielerViewHolder(@NonNull View itemView) {
         super(itemView);
-        this.spielid = itemView.findViewById(R.id.GameID);
-        this.punkte = itemView.findViewById(R.id.Points);
-        this.madeFreethrows = itemView.findViewById(R.id.freethrows_made);
-        this.shotFreethrows = itemView.findViewById(R.id.freethrows_thrown);
+        this.spielid = itemView.findViewById(R.id.HeaderId);
+        this.punkte = itemView.findViewById(R.id.HeaderPoints);
+        this.madeFreethrows = itemView.findViewById(R.id.HeaderFreethrowsMade);
+        this.shotFreethrows = itemView.findViewById(R.id.HeaderFreethrowsThrown);
         this.freethrowPercantage = itemView.findViewById(R.id.freethrows_percentage);
-        this.threePointmades = itemView.findViewById(R.id.threes_made);
-        this.fouls = itemView.findViewById(R.id.fouls);
+        this.threePointmades = itemView.findViewById(R.id.HeaderThreesMade);
+        this.fouls = itemView.findViewById(R.id.HeaderFoulsDetails);
     }
 
     @Override
@@ -53,30 +59,38 @@ public class SpielSpielerViewHolder extends BaseViewHolder<SpielSpielerListItem>
         punkte.setText(String.valueOf(item.getStats().getPunkte()));
         madeFreethrows.setText(String.valueOf(item.getStats().getGetroffeneFreiwuerfe()));
         shotFreethrows.setText(String.valueOf(item.getStats().getGeworfeneFreiwuerfe()));
+        int nightModeFlags = itemView.getContext().getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK;
 
         // Farbliche Hervorhebung der Freiwurfquote
         if (item.getStats().getGeworfeneFreiwuerfe() != 0) {
             double freethrowPercentageDouble = (double) item.getStats().getGetroffeneFreiwuerfe() / item.getStats().getGeworfeneFreiwuerfe() * 100;
             double rounded = Math.round(freethrowPercentageDouble * 100.0) / 100.0;
-            if (freethrowPercentageDouble >= 70) freethrowPercantage.setTextColor(colorGreen);
-            else if (freethrowPercentageDouble >= 50) freethrowPercantage.setTextColor(colorOrange);
-            else if (freethrowPercentageDouble < 50) freethrowPercantage.setTextColor(colorRed);
-            String placeholder = String.format("%.2f", rounded) + "%";
+            if (rounded >= 70) freethrowPercantage.setTextColor(colorGreen);
+            else if (rounded >= 50) freethrowPercantage.setTextColor(colorOrange);
+            else if (rounded < 50) freethrowPercantage.setTextColor(colorRed);
+            String placeholder = String.format("%.2f", rounded);
             freethrowPercantage.setText(placeholder);
+            //TODO Lösung für die schneinbar wirkürliche Farbänderung finden (siehe 0.00%) ohne das nightmode-if-statement
         } else if (item.getStats().getGeworfeneFreiwuerfe() == 0) {
-            freethrowPercantage.setText("0.00%");
+            // Textfarbe muss gesetzt werden, weil sonst eine falsche Farbe übernommen wird
+            // woher genau diese Farbe kommt ist mir nicht bekannt, jedoch funktioniert der "übermalen" approach.
+            if (nightModeFlags == android.content.res.Configuration.UI_MODE_NIGHT_YES) {
+                freethrowPercantage.setTextColor(colorBaseDark);
+            } else {
+                freethrowPercantage.setTextColor(colorBase);
+            }
+            freethrowPercantage.setText("0.00");
         }
         threePointmades.setText(String.valueOf(item.getStats().getDreiPunkteTreffer()));
         fouls.setText(String.valueOf(item.getStats().getFouls()));
         if (item.getStats().getFouls() == 5) fouls.setTextColor(Color.RED);
 
         // Alternierender Hintergrund
-        int nightModeFlags = itemView.getContext().getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK;
         if (nightModeFlags == android.content.res.Configuration.UI_MODE_NIGHT_YES) {
             itemView.setBackgroundColor((getAdapterPosition() % 2 == 0) ? colorXboxgrey : BG_2);
         } else {
             itemView.setBackgroundColor((getAdapterPosition() % 2 == 0) ? BG_1 : BG_2);
         }
-    
+
     }
 }

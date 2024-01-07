@@ -16,7 +16,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/gesamtpunkte"
+        android:id="@+id/HeaderTotalPoints"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -27,7 +27,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/viertel1"
+        android:id="@+id/HeaderQuarter1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -38,7 +38,7 @@
 
     <TextView
 
-        android:id="@+id/viertel2"
+        android:id="@+id/HeaderQuarter2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -48,7 +48,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/viertel3"
+        android:id="@+id/HeaderQuarter3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -58,7 +58,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/viertel4"
+        android:id="@+id/HeaderQuarter4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"

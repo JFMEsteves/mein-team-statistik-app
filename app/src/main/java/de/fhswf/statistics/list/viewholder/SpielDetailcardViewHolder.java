@@ -20,7 +20,7 @@ public class SpielDetailcardViewHolder extends BaseViewHolder<SpieldetailscardIt
 
     public SpielDetailcardViewHolder(@NonNull View itemView) {
         super(itemView);
-        this.name = itemView.findViewById(R.id.team);
+        this.name = itemView.findViewById(R.id.HeaderTeam);
         this.description = itemView.findViewById(R.id.description);
         this.viertel1Input = itemView.findViewById(R.id.viertel1_input);
         this.viertel2Input = itemView.findViewById(R.id.viertel2_input);
